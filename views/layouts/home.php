@@ -54,7 +54,7 @@ AppHomeAsset::register($this);
         <div class="container">
             <div class="logo-nav">
                 <div class="logo-nav-left">
-                    <h1><a href="<?= \yii\helpers\Url::home()?>">Instrumental<span>All for you</span></a></h1>
+                    <h1><a href="index.html">Instrumental<span>All for you</span></a></h1>
                 </div>
                 <div class="logo-nav-left1">
                     <nav class="navbar navbar-default">
@@ -68,14 +68,11 @@ AppHomeAsset::register($this);
                             </button>
                         </div>
                         <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
-                                <!-- dropDownWidget -->
-                            <ul class="nav navbar-nav">
-                                <?= \app\components\DropDownWidget::widget([
-                                    'tpl' => 'dropDown',
-//                'ul_class' => 'nav navbar-nav nav_1'
-                                ])?>
-                            </ul>
-                                <!-- dropDownWidget -->
+
+                                <!-- dropDown -->
+                                <?= $this->render('//layouts/include/dropDown') ?>
+                                <!-- dropDown -->
+
                         </div>
                     </nav>
                 </div>

@@ -1,12 +1,12 @@
 
 
-<li <?php if(isset($category['children'])) echo 'class="dropdown"'  ?>>
-    <a  <?php if($category['parent_id']) : ?>
+<li <?php if(isset($category['children'])) echo 'class="dropdown"' ?>>
+    <a  <?php if(!isset($category['parent_id'])) : ?>
 
             href="<?= \yii\helpers\Url::to(['category/view', 'id' => $category['id']])?>"
         <?php endif; ?>
         <?php if(isset($category['children']))
-            echo 'class="dropdown-toogle" data-toggle="dropdown" style="cursor: pointer"' ?>>
+            echo 'class="dropdown-toogle" data-toggle="dropdown" ' ?>>
         <?= $category['name'] ?>
         <?php if(isset($category['children'])) echo '<b class="caret"></b>' ?>
     </a>
@@ -17,7 +17,7 @@
                 <ul class="multi-column-dropdown">
                     <?= $this->getMenuHtml($category['children']) ?>
                 </ul>
-<!--            </div>-->
+            </div>
 <!--            <div class="col-sm-3  multi-gd-img">-->
 <!--                <a href="products.html"><img src="images/woo.jpg" alt=" "/></a>-->
 <!--            </div>-->
