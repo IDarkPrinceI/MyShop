@@ -15,7 +15,7 @@ class HomeController extends AppHomeController
         $productNew = Product::find()->where(['is_new' => 1])->all();
         return $this->render('index', compact('productNew'));
     }
-
+//1
 
 
 
