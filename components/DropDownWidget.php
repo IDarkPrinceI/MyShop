@@ -22,6 +22,7 @@ class DropDownWidget extends Widget
 //        if ($this->ul_class === null) {
 //            $this->ul_class = 'dropDown';
 //        }
+//        1
         if ($this->tpl === null) {
             $this->tpl = 'dropDown';
         }
