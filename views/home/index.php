@@ -78,6 +78,7 @@
                             <p ><del>$100.00</del><em class="item_price">$70.00</em></p>
                             <a href="#" data-text="Add To Cart" class="my-cart-b item_add">Add To Cart</a>
                         </div>
+<!--                        1-->
                     </div>
                 </div>
                 <div class="col-md-3 arrival-grid simpleCart_shelfItem">
