@@ -61,6 +61,7 @@ $config = [
             'showScriptName' => false,
             'enableStrictParsing' => false,
             'rules' => [
+                'new/<page:\d+>' => 'home/index',
             ],
         ],
 

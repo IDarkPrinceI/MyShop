@@ -1,55 +1,19 @@
+<?php
+
+use yii\widgets\LinkPager;
+use yii\widgets\Pjax;
+
+?>
+
 <div class="content">
-    <!--banner-bottom-->
-<!--    <div class="ban-bottom-w3l">-->
-<!--        <div class="container">-->
-<!--            <div class="col-md-6 ban-bottom">-->
-<!--                <div class="ban-top">-->
-<!--                    <img src="images/p1.jpg" class="img-responsive" alt=""/>-->
-<!--                    <div class="ban-text">-->
-<!--                        <h4>Men’s Clothing</h4>-->
-<!--                    </div>-->
-<!--                    <div class="ban-text2 hvr-sweep-to-top">-->
-<!--                        <h4>50% <span>Off/-</span></h4>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="col-md-6 ban-bottom3">-->
-<!--                <div class="ban-top">-->
-<!--                    <img src="images/p2.jpg" class="img-responsive" alt=""/>-->
-<!--                    <div class="ban-text1">-->
-<!--                        <h4>Women's Clothing</h4>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="ban-img">-->
-<!--                    <div class=" ban-bottom1">-->
-<!--                        <div class="ban-top">-->
-<!--                            <img src="images/p3.jpg" class="img-responsive" alt=""/>-->
-<!--                            <div class="ban-text1">-->
-<!--                                <h4>T - Shirt</h4>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="ban-bottom2">-->
-<!--                        <div class="ban-top">-->
-<!--                            <img src="images/p4.jpg" class="img-responsive" alt=""/>-->
-<!--                            <div class="ban-text1">-->
-<!--                                <h4>Hand Bag</h4>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="clearfix"></div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="clearfix"></div>-->
-<!--        </div>-->
-<!--    </div>-->
-    <!--banner-bottom-->
-    <!--new-arrivals-->
+
     <!--    --><?//= debug($productNew) ?>
-    <?php if(!empty($productNew)) :?>
+    <?php Pjax::begin(); ?>
+    <?php
+    if(!empty($productNew)) :?>
     <div class="new-arrivals-w3agile">
         <div class="container">
-            <h2 class="tittle">Новые поступления</h2>
+            <h2 class="tittle" id="my_new_title">Новые товары</h2>
             <?php foreach ($productNew as $new): ?>
             <div class="arrivals-grids">
                 <div class="col-md-3 arrival-grid simpleCart_shelfItem">
@@ -74,12 +38,11 @@
                         </div>
                         <div class="women">
                             <h6><a href="single.html"><?=$new->name ?></a></h6>
-                            <span class="size">XL / XXL / S </span>
                             <p ><em class="price"><?= $new->price ?>
                                     <em class="rub"> Р</em>
                                 </em>
                             </p>
-                            <a href="#" data-text="Add To Cart" class="my-cart-b item_add">Add To Cart</a>
+                            <a href="#" data-text="Add To Cart" class="my-cart-b item_add">Добавить в корзину</a>
                         </div>
                     </div>
                 </div>
@@ -87,91 +50,19 @@
                 <?php endif; ?>
                     </div>
                 </div>
-                <div class="col-md-3 arrival-grid simpleCart_shelfItem">
-                    <div class="grid-arr">
-                        <div  class="grid-arrival">
-                            <figure>
-                                <a href="#" class="new-gri" data-toggle="modal" data-target="#myModal2">
-                                    <div class="grid-img">
-                                        <img  src="images/p7.jpg" class="img-responsive" alt="">
-                                    </div>
-                                    <div class="grid-img">
-                                        <img  src="images/p8.jpg" class="img-responsive"  alt="">
-                                    </div>
-                                </a>
-                            </figure>
-                        </div>
-                        <div class="ribben2">
-                            <p>OUT OF STOCK</p>
-                        </div>
-                        <div class="block">
-                            <div class="starbox small ghosting"> </div>
-                        </div>
-                        <div class="women">
-                            <h6><a href="single.html">Sed ut perspiciatis unde</a></h6>
-                            <span class="size">XL / XXL / S </span>
-                            <p ><del>$100.00</del><em class="item_price">$70.00</em></p>
-                            <a href="#" data-text="Add To Cart" class=" my-cart-b item_add">Add To Cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 arrival-grid simpleCart_shelfItem">
-                    <div class="grid-arr">
-                        <div  class="grid-arrival">
-                            <figure>
-                                <a href="#" class="new-gri" data-toggle="modal" data-target="#myModal3">
-                                    <div class="grid-img">
-                                        <img  src="images/p10.jpg" class="img-responsive" alt="">
-                                    </div>
-                                    <div class="grid-img">
-                                        <img  src="images/p9.jpg" class="img-responsive"  alt="">
-                                    </div>
-                                </a>
-                            </figure>
-                        </div>
-                        <div class="ribben1">
-                            <p>SALE</p>
-                        </div>
-                        <div class="block">
-                            <div class="starbox small ghosting"> </div>
-                        </div>
-                        <div class="women">
-                            <h6><a href="single.html">Sed ut perspiciatis unde</a></h6>
-                            <span class="size">XL / XXL / S </span>
-                            <p ><del>$100.00</del><em class="item_price">$70.00</em></p>
-                            <a href="#" data-text="Add To Cart" class="my-cart-b item_add">Add To Cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 arrival-grid simpleCart_shelfItem">
-                    <div class="grid-arr">
-                        <div  class="grid-arrival">
-                            <figure>
-                                <a href="#" class="new-gri" data-toggle="modal" data-target="#myModal4">
-                                    <div class="grid-img">
-                                        <img  src="images/p11.jpg" class="img-responsive" alt="">
-                                    </div>
-                                    <div class="grid-img">
-                                        <img  src="images/p12.jpg" class="img-responsive"  alt="">
-                                    </div>
-                                </a>
-                            </figure>
-                        </div>
-                        <div class="block">
-                            <div class="starbox small ghosting"> </div>
-                        </div>
-                        <div class="women">
-                            <h6><a href="single.html">Sed ut perspiciatis unde</a></h6>
-                            <span class="size">XL / XXL / S </span>
-                            <p ><del>$100.00</del><em class="item_price">$70.00</em></p>
-                            <a href="#" data-text="Add To Cart" class="my-cart-b item_add">Add To Cart</a>
-                        </div>
-                    </div>
-                </div>
                 <div class="clearfix"></div>
+
+        <?=  LinkPager::widget([
+            'pagination' => $pages,
+            'maxButtonCount' => 3,
+        ]);
+        ?>
+
             </div>
         </div>
     </div>
+<?php Pjax::end(); ?>
+
     <!--new-arrivals-->
     <!--accessories-->
     <div class="accessories-w3l">
