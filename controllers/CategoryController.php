@@ -34,6 +34,6 @@ class CategoryController extends AppHomeController
         $products = $query->offset($pages->offset)->limit($pages->limit)->all();
         //pagination product
 
-        return $this->render('view', compact('products'));
+        return $this->render('view', compact('products', 'pages'));
     }
 }
