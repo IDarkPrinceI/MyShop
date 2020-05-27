@@ -61,6 +61,7 @@ $config = [
             'showScriptName' => false,
             'enableStrictParsing' => false,
             'rules' => [
+                'category/<id:\d+>' => 'category/view',
                 'new/<page:\d+>' => 'home/index',
             ],
         ],
