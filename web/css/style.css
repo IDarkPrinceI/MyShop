@@ -572,8 +572,8 @@ a.simpleCart_empty {
 }
 h2.tittle {
     text-align: center;
-    font-size: 3em;
-    color: #1565C0;
+	padding: 0.3em;
+    color: #ffffff;
 	background: #798ca2;
 }
 .new-arrivals-w3agile {
@@ -982,6 +982,9 @@ h3.tittle1 {
 .latest-text2 h4 {
     font-size: 1.2em;
     color: #fff;
+}
+#my_content {
+	min-height: 1700px;
 }
 .footer-w3l {
     background: #1565C0;

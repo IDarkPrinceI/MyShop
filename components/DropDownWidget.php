@@ -14,7 +14,7 @@ class DropDownWidget extends Widget
     public $data;
     public $tree;
     public $menuHtml;
-    public $cache_time = 120;
+//    public $cache_time = 120;
 
 
     public function init()
@@ -33,12 +33,12 @@ class DropDownWidget extends Widget
     public function run()
     {
         //get cache
-        if($this->cache_time) {
-            $menu = \Yii::$app->cache->get('dropDown');
-            if($menu) {
-                return $menu;
-            }
-        }
+//        if($this->cache_time) {
+//            $menu = \Yii::$app->cache->get('dropDown');
+//            if($menu) {
+//                return $menu;
+//            }
+//        }
         $this->data = Category::find()->select('id, parent_id, name')
             ->indexBy('id')->asArray()->all();
         $this->tree = $this->getTree();
@@ -46,9 +46,9 @@ class DropDownWidget extends Widget
 //        debug($this->data);
 
         //set cache
-        if($this->cache_time) {
-            \Yii::$app->cache->set('dropDown', $this->menuHtml, $this->cache_time);
-        }
+//        if($this->cache_time) {
+//            \Yii::$app->cache->set('dropDown', $this->menuHtml, $this->cache_time);
+//        }
         return $this->menuHtml;
     }
 

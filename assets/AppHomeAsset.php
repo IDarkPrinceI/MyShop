@@ -31,6 +31,7 @@ class AppHomeAsset extends AssetBundle
         'js/jstarbox.js',
 //        основной слайдер
         'js/coreSlider.js',
+        'js/jquery-ui.js',
 
     ];
     public $depends = [

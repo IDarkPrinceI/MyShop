@@ -1,1 +1,2 @@
-<?php debug($products) ?>
+<?php //debug($products) ?>
+
