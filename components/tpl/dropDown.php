@@ -29,3 +29,5 @@
     </ul>
     <?php endif; ?>
 </li>
+
+<!--<li class="divider"></li>-->

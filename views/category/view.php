@@ -16,10 +16,12 @@
             <div class="product-agileinfo-grids w3l">
                 <div class="col-md-3 product-agileinfo-grid">
                     <div class="categories">
-                        <h3>Categories</h3>
-                        <?= \app\components\DropDownWidget::widget([
+                        <ul class="tree-list-pad">
+                            <h3>Categories</h3>
+                            <?= \app\components\DropDownWidget::widget([
                                 'tpl' => 'menuCategory'
-                        ]) ?>
+                            ]) ?>
+                        </ul>
                     </div>
                     <div class="price">
                         <h3>Price Range</h3>
