@@ -64,21 +64,20 @@ class DropDownWidget extends Widget
         return $tree;
     }
 
-    protected function getMenuHtml($tree, $i = 0)
+    protected function getMenuHtml($tree)
     {
-            $i = $i + 1;
-            $str = '';
-            foreach ($tree as $category) {
-                $str .= $this->catToTemplate($category, $i);
-            }
-            return $str;
+
+        foreach ($tree as $category) {
+            $str .= $this->catToTemplate($category);
+        }
+        return $str;
     }
 
-    protected function catToTemplate($category, $i)
+    protected function catToTemplate($category)
     {
-            ob_start();
-            include __DIR__ . '/tpl/' . $this->tpl;
-            return ob_get_clean();
+        ob_start();
+        include __DIR__ . '/tpl/' . $this->tpl;
+        return ob_get_clean();
     }
 
 }

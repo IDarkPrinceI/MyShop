@@ -111,7 +111,8 @@ AppHomeAsset::register($this);
 <?= $content ?>
 
 <!---footer--->
-<div class="footer-w3l">
+
+<div class="footer-w3l" id="my_footer">
     <div class="container">
         <div class="footer-grids">
             <div class="col-md-3 footer-grid">
