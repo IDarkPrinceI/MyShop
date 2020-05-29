@@ -159,4 +159,7 @@ jQuery(document).ready(function($){
 		var divUpd = $(this).parent().find('.value1'), newVal = parseInt(divUpd.text(), 10)-1;
 		if(newVal>=1) divUpd.text(newVal);
 	});
+
+	if ($(document).height() <= $(window).height())
+		$("my_footer").addClass("navbar-fixed-bottom");
 });
