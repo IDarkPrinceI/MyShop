@@ -31,6 +31,7 @@ jQuery(document).ready(function($){
 		closeNav();
 	});
 
+
 	$(window).load(function(){
 		$( "#slider-range" ).slider({
 			range: true,
@@ -42,13 +43,8 @@ jQuery(document).ready(function($){
 		});
 		$( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) + " - $" + $( "#slider-range" ).slider( "values", 1 ) );
 
-	});//]]>
-	
-	
-	
+	});
 
-
-	
 
 	//submenu items - go back link
 	$('.go-back').on('click', function(){
@@ -162,4 +158,5 @@ jQuery(document).ready(function($){
 
 	if ($(document).height() <= $(window).height())
 		$("my_footer").addClass("navbar-fixed-bottom");
+
 });

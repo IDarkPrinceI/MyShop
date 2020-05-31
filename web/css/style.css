@@ -590,6 +590,7 @@ h2.tittle {
     -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
     padding: 0em;
+	background: #ffffff;
 }
 .grid-arr .grid-arrival figure {
   position: relative;
@@ -621,8 +622,9 @@ h2.tittle {
 	margin-right: auto
 }
 .rub {
+	font-size: 22px;
 	font-family: arial;
-	vertical-align: middle;
+	font-weight: bold;
 	border-bottom: 1px solid;
 	line-height: 8px;
 	display: inline-block;
@@ -665,7 +667,7 @@ h2.tittle {
 }
 .women p {
     font-size: 1em;
-    color: #999;
+    color: #070707;
     margin: 0.9em 0;
 }
 em.item_price {
@@ -1283,7 +1285,7 @@ h3.tittle1 {
     text-align: center;
     font-size: 2.5em;
     padding: .2em;
-    background: #f19e1f;
+    background: #8ebebe;
     color: #fff;
     margin-bottom: .5em;
 }
