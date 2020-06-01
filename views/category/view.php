@@ -1,4 +1,7 @@
-<?php //debug($products) ?>
+<?php
+
+use yii\widgets\LinkPager;
+?>
 
 <!--brendcrumbs-->
 <!--<div class="banner1">-->
@@ -133,7 +136,7 @@
                                             <div class="grid-arr">
                                                 <div  class="grid-arrival">
                                                     <figure>
-                                                        <a href="#" class="new-gri" data-toggle="modal" data-target="#myModal1">
+                                                        <a href="<?= \yii\helpers\Url::to(['product/view', 'id' => $product['id']]) ?>" class="new-gri" >
                                                             <div class="grid-img">
                                                                 <img  src="<?= \yii\helpers\Url::to(["@web/product_img/{$product->img}", ['alt' => $product->name, ] ]) ?>" class="img-responsive">
                                                             </div>
@@ -156,7 +159,7 @@
                                                         <em class="price"><?= $product->price?></em>
                                                         <em class="rub"> Р</em>
                                                     </p>
-                                                    <a href="#" data-text="Add To Cart" class="my-cart-b item_add">Добавить в корзину</a>
+                                                    <a href="<?= \yii\helpers\Url::to(['card/add', 'id' => $product['id']]) ?>" data-text="Add To Cart" class="my-cart-b item_add">Добавить в корзину</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -165,6 +168,11 @@
                                 <?php endforeach; ?>
                             </div>
                     </div>
+                    <div class="clearfix"> </div>
+                    <?= LinkPager::widget([
+                        'pagination' => $pages,
+                        'maxButtonCount' => 3,
+                    ])?>
                 </div>
                 <div class="clearfix"> </div>
             </div>

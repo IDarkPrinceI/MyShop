@@ -49,7 +49,7 @@ use yii\widgets\Pjax;
                     <div class="grid-arr">
                         <div  class="grid-arrival">
                             <figure>
-                                <a href="#" class="new-gri" data-toggle="modal" data-target="#myModal1">
+                                <a href="<?= \yii\helpers\Url::to(['product/view', 'id' => $new['id']]) ?>" class="new-gri" data-toggle="modal">
                                     <div class="grid-img">
                                         <img  src="<?= \yii\helpers\Url::to(["@web/product_img/{$new->img}", ['alt' => $new->name, 'class'=>'img-responsive']]) ?>" class="img-responsive" alt="">
                                     </div>
@@ -66,12 +66,12 @@ use yii\widgets\Pjax;
                             <div class="starbox small ghosting"> </div>
                         </div>
                         <div class="women">
-                            <h6><a href="single.html"><?=$new->name ?></a></h6>
+                            <h6><a href="<?= \yii\helpers\Url::to(['product/view', 'id' => $new['id']]) ?>"><?=$new->name ?></a></h6>
                             <p ><em class="price"><?= $new->price ?>
                                     <em class="rub"> Р</em>
                                 </em>
                             </p>
-                            <a href="#" data-text="Add To Cart" class="my-cart-b item_add">Добавить в корзину</a>
+                            <a href="<?= \yii\helpers\Url::to(['card/add', 'id' => $new['id']]) ?>" data-text="Add To Cart" class="my-cart-b item_add">Добавить в корзину</a>
                         </div>
                     </div>
                 </div>
@@ -84,8 +84,7 @@ use yii\widgets\Pjax;
         <?=  LinkPager::widget([
             'pagination' => $pages,
             'maxButtonCount' => 3,
-        ]);
-        ?>
+        ]); ?>
 
             </div>
         </div>

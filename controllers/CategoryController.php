@@ -26,15 +26,15 @@ class CategoryController extends AppHomeController
         $this->setMeta("{$category->name}", $category->keywords, $category->description);
         //set Meta
 
-        $products = Product::find()->where(['category_id' => $id])->all();
-//        $pages = new Pagination(['totalCount' => $query->count(),
-//            'pageSize' => 4,
-//            'forcePageParam' => false,
-//            'pageSizeParam' => false
-//        ]);
-//        $categoryProducts = $query->offset($pages->offset)->limit($pages->limit)->all();
+        $query = Product::find()->where(['category_id' => $id]);
+        $pages = new Pagination(['totalCount' => $query->count(),
+            'pageSize' => 1,
+            'forcePageParam' => false,
+            'pageSizeParam' => false
+        ]);
+        $products = $query->offset($pages->offset)->limit($pages->limit)->all();
         //pagination product
 
-        return $this->render('view', compact('category','products'));
+        return $this->render('view', compact('category','products', 'pages'));
     }
 }
