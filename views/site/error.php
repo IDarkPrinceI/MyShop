@@ -11,16 +11,14 @@ $this->title = $name;
 ?>
 <div class="site-error container">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1 id="error_404"><?= Html::encode($this->title) ?></h1>
 
     <div class="alert alert-danger">
         <?= nl2br(Html::encode($message)) ?>
     </div>
 
-    <p>
+    <p id="my_error">
         Произошла ошибка, так как запрашиваемой страницы не найдено.
-    </p>
-    <p>
         Пожалуйста, сообщите нам об ошибке. Спасибо!
     </p>
 
