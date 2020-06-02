@@ -75,7 +75,7 @@ use yii\widgets\LinkPager;
                         <div  class="grid-arrival">
 
                             <figure>
-                                <a href="single.html">
+                                <a href="<?= \yii\helpers\Url::to(['product/view', 'id' => $sale['id']])?>">
                                     <div class="grid-img">
                                         <img  src="<?= \yii\helpers\Url::to(["@web/product_img/{$sale->img}", ['alt' => $sale->name]]) ?>" class="img-responsive">
                                     </div>
@@ -92,7 +92,7 @@ use yii\widgets\LinkPager;
                             <div class="starbox small ghosting"> </div>
                         </div>
                         <div class="women">
-                            <h6><a href="single.html"><?= $sale->name ?></a></h6>
+                            <h6><a href="<?= \yii\helpers\Url::to(['product/view', 'id' => $sale['id']])?>"><?= $sale->name ?></a></h6>
                             <p ><?php if((float)($sale->old_price)): ?>
                                     <del> <?= $sale->old_price ?> </del>
                                     /

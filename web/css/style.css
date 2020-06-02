@@ -235,7 +235,6 @@ ul.multi-column-dropdown h6 {
     position: absolute;
     display: inline-block;
     top: 72px;
-    right: 22%;
 }
 .cd-header-buttons li {
 	display: inline-block;
@@ -990,8 +989,9 @@ h3.tittle1 {
 	min-height: 1700px;
 }
 .footer-w3l {
-    background: #1565C0;
-    padding: 5em 0;
+    background: #8ebebe;;
+    padding: 4em 0;
+	height: 250px;
 }
 .footer-grid h4 {
     font-size: 2em;
@@ -1596,6 +1596,8 @@ li.list-group-item1 {
 }
 .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
 	z-index: 0;
+	background-color:#798ca2;
+	border-color: #8ebebe;
 }
 .badge-primary {
 	background-color: #03a9f4;
@@ -3457,6 +3459,9 @@ h3.tittle1, h3.tittle {
 .cd-header-buttons {
     top: 132px;
     right: 85%;
+}
+	.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+	background-color:#798ca2
 }
 
 }

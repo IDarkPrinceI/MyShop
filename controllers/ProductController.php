@@ -6,6 +6,7 @@ namespace app\controllers;
 use Yii;
 use app\models\Product;
 use yii\data\Pagination;
+use yii\data\Sort;
 use yii\web\NotFoundHttpException;
 
 class ProductController extends AppHomeController
@@ -38,5 +39,34 @@ class ProductController extends AppHomeController
 
         return $this->render('view', compact('product','sale_product', 'pages'));
     }
+
+
+    public function actionSearch()
+    {
+        $search = trim(Yii::$app->request->get('search'));
+
+        //set Meta
+        $this->setMeta("Поиск: {$search} ");
+        //set Meta
+
+        //404
+        if (empty($search)) {
+            return $this->render('search');
+        }
+        //404
+
+        //pagination search
+        $query = Product::find()->where(['like', 'name', $search]);
+        $pages = new Pagination(['totalCount' => $query->count(),
+            'pageSize' => 3,
+            'forcePageParam' => false,
+            'pageSizeParam' => false
+        ]);
+        $searchProducts = $query->offset($pages->offset)->limit($pages->limit)->all();
+        //pagination search
+
+        return $this->render('search', compact('searchProducts', 'pages', 'search'));
+    }
+
 
 }

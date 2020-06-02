@@ -7,6 +7,19 @@ jQuery(document).ready(function($){
 		(!window.requestAnimationFrame) ? setTimeout(moveNavigation, 300) : window.requestAnimationFrame(moveNavigation);
 	});
 
+	$(window).load(function(){
+		$( "#slider-range" ).slider({
+			range: true,
+			min: 0,
+			max: 9000,
+			values: [ 1000, 7000 ],
+			slide: function( event, ui ) {  $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+			}
+		});
+		$( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) + " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+
+	});
+
 	//mobile - open lateral menu clicking on the menu icon
 	$('.cd-nav-trigger').on('click', function(event){
 		event.preventDefault();
@@ -32,18 +45,6 @@ jQuery(document).ready(function($){
 	});
 
 
-	$(window).load(function(){
-		$( "#slider-range" ).slider({
-			range: true,
-			min: 0,
-			max: 9000,
-			values: [ 1000, 7000 ],
-			slide: function( event, ui ) {  $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
-			}
-		});
-		$( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) + " - $" + $( "#slider-range" ).slider( "values", 1 ) );
-
-	});
 
 
 	//submenu items - go back link
@@ -136,6 +137,11 @@ jQuery(document).ready(function($){
 			})
 		});
 	});
+
+	// $('.sort').on('click', function(){
+	// var file = $('select[@name=sort] option:selected').val();
+	// $('.content').load(file);
+	// });
 
 
 	$('#example1').coreSlider({

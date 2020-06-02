@@ -20,9 +20,9 @@ class AppHomeAsset extends AssetBundle
         '//fonts.googleapis.com/css?family=Open+Sans:400,800italic,800,700italic,700,600italic,600,400italic,300italic,300',
     ];
     public $js = [
-        'js/jquery.min.js',
+//        'js/jquery.min.js',
 //        search jQuery
-        'js/main.js',
+        'js/jquery-ui.js',
         'js/responsiveslides.min.js',
         'js/bootstrap-3.1.1.min.js',
 //        cart
@@ -31,7 +31,8 @@ class AppHomeAsset extends AssetBundle
         'js/jstarbox.js',
 //        основной слайдер
         'js/coreSlider.js',
-        'js/jquery-ui.js',
+        'js/main.js',
+
 
     ];
     public $depends = [
