@@ -110,14 +110,8 @@ use yii\widgets\LinkPager;
                     <!--                    </div>-->
                     <div class="mens-toolbar">
                         <p >Showing 1–9 of 21 results</p>
-                        <p class="showing">Sorting By
-                            <select>
-                                <option value=""> Name</option>
-                                <option value="">  Rate</option>
-                                <option value=""> Color </option>
-                                <option value=""> Price </option>
-                            </select>
-                        </p>
+                        <p class="showing">Сортировать:
+                            <?php echo $sort->link('name')  . '|' . $sort->link('price')?>
                         <p>Show
                             <select>
                                 <option value=""> 9</option>

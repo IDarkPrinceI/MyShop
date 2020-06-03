@@ -16,7 +16,7 @@ class CategoryController extends AppHomeController
 
     public function actionView($id)
     {
-
+        //sort
         $sort = new Sort([
             'attributes' => [
                 'price' => [
@@ -30,35 +30,38 @@ class CategoryController extends AppHomeController
                 ]
             ]
         ]);
+        //sort
 
-        $category = Product::find()
+        $products = Product::find()
             ->where(['category_id' => $id])
-            ->orderBy($sort->orders)
-            ->all();
+            ->orderBy($sort->orders);
 
         //404
-//        $category = Category::findOne($id);
+        $category = Category::findOne($id);
         if (empty($category)) {
             throw new NotFoundHttpException('Запрашиваемая страница не существует.');
         }
         //404
 
         //set Meta
-//        $this->setMeta("{$category->name}", $category->keywords, $category->description);
+        $this->setMeta("{$category->name}", $category->keywords, $category->description);
         //set Meta
 
-        $query = Product::find()->where(['category_id' => $id]);
-        $pages = new Pagination(['totalCount' => $query->count(),
-            'pageSize' => 4,
+        //pagination product
+        $pages = new Pagination(['totalCount' => $products->count(),
+            'pageSize' => 3,
             'forcePageParam' => false,
             'pageSizeParam' => false
         ]);
-        $products = $query->offset($pages->offset)->limit($pages->limit)->all();
+        $renderProducts = $products
+            ->offset($pages->offset)
+            ->limit($pages->limit)
+            ->all();
         //pagination product
 
 //        return $this->render('view', compact('category','products', 'pages', 'sort'));
 //        return $this->render('view', ['models' => $category, 'sort' => $sort]);
-        return $this->render('view', compact( 'category',  'sort'));
+        return $this->render('view', compact(   'catergory','sort', 'renderProducts', 'pages'));
     }
 
 }

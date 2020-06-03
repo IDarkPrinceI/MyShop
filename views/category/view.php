@@ -14,8 +14,8 @@ use yii\widgets\LinkPager;
 <div class="content" id="my_content">
     <div class="products-agileinfo">
 <!--        --><?php //foreach ($products as $product) ?>
-        <?php foreach ($category as $product) ?>
-        <h2 class="tittle"><?= $category->name ?></h2>
+        <?php foreach ($renderProducts as $product) ?>
+<!--        <h2 class="tittle">--><?//= $category->name ?><!--</h2>-->
         <div class="container">
             <div class="product-agileinfo-grids w3l">
                 <div class="col-md-3 product-agileinfo-grid">
@@ -134,7 +134,7 @@ use yii\widgets\LinkPager;
                         <ul id="myTab" class="nav1 nav1-tabs left-tab" role="tablist">
                             <div id="myTabContent" class="tab-content">
 <!--                                --><?php //foreach ($products as $product) :?>
-                                <?php foreach ($category as $product) :?>
+                                <?php foreach ($renderProducts as $product) :?>
                                 <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
                                     <div class="product-tab">
                                         <div class="col-md-4 product-tab-grid simpleCart_shelfItem">
@@ -174,10 +174,10 @@ use yii\widgets\LinkPager;
                             </div>
                     </div>
                     <div class="clearfix"> </div>
-<!--                    --><?//= LinkPager::widget([
-//                        'pagination' => $pages,
-//                        'maxButtonCount' => 3,
-//                    ])?>
+                    <?= LinkPager::widget([
+                        'pagination' => $pages,
+                        'maxButtonCount' => 3,
+                    ])?>
                 </div>
                 <div class="clearfix"> </div>
             </div>
