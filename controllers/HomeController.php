@@ -13,17 +13,35 @@ class HomeController extends AppHomeController
 
     public function actionIndex()
     {
-        $query = Product::find()->where(['is_new' => 1]);
-        //pagination product
-        $pages = new Pagination(['totalCount' => $query->count(),
+        $queryNew = Product::find()->where(['is_new' => 1]);
+
+        //pagination productNew
+        $pagesNew = new Pagination(['totalCount' => $queryNew->count(),
             'pageSize' => 4,
-            'forcePageParam' => true,
+            'pageParam' => 'pageNew',
+            'forcePageParam' => false,
             'pageSizeParam' => false
         ]);
-        $productNew = $query->offset($pages->offset)->limit($pages->limit)->all();
-        //pagination product
+        $productNew = $queryNew->offset($pagesNew->offset)->limit($pagesNew->limit)->all();
+        //pagination productNew
 
-        return $this->render('index', compact('productNew', 'pages'));
+        $queryHit = Product::find()->where(['is_hit' => 1]);
+
+        //pagination productHit
+        $pagesHit = new Pagination(['totalCount' => $queryHit->count(),
+            'pageSize' => 4,
+            'pageParam' => 'pageHit',
+            'forcePageParam' => false,
+            'pageSizeParam' => false
+        ]);
+        $productHit = $queryHit->offset($pagesHit->offset)->limit($pagesHit->limit)->all();
+        //pagination productHit
+
+        return $this->render('index', compact(
+            'productNew',
+                  'pagesNew',
+                    'productHit',
+                    'pagesHit'));
     }
 
 

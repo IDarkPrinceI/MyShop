@@ -63,11 +63,11 @@ use yii\widgets\LinkPager;
         </div>
     </div>
     <!--single-->
-    <?php if(isset($sale_product)): ?>
+    <?php if(isset($productSale)): ?>
     <div class="new-arrivals-w3agile">
         <div class="container">
             <h2 class="tittle">Распродажа</h2>
-            <?php foreach ($sale_product as $sale): ?>
+            <?php foreach ($productSale as $sale): ?>
             <div class="arrivals-grids">
                 <div class="col-md-3 arrival-grid simpleCart_shelfItem">
 

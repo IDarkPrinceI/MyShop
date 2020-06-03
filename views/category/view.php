@@ -1,6 +1,7 @@
 <?php
 
 use yii\widgets\LinkPager;
+
 ?>
 
 <!--brendcrumbs-->
@@ -28,56 +29,13 @@ use yii\widgets\LinkPager;
                         </ul>
                     </div>
                     <div class="price">
-                        <h3>Price Range</h3>
+                        <h3>Диапазон цены</h3>
                         <ul class="dropdown-menu6">
                             <li>
                                 <div id="slider-range"></div>
                                 <input type="text" id="amount" style="border: 0; color: #ffffff; font-weight: normal;" />
                             </li>
                         </ul>
-                    </div>
-                    <div class="top-rates">
-                        <h3>Top Rates products</h3>
-                        <div class="recent-grids">
-                            <div class="recent-left">
-                                <a href="single.html"><img class="img-responsive " src="/images/r.jpg" alt=""></a>
-                            </div>
-                            <div class="recent-right">
-                                <h6 class="best2"><a href="single.html">Lorem ipsum dolor </a></h6>
-                                <p><del>$100.00</del> <em class="item_price">$09.00</em></p>
-                            </div>
-                            <div class="clearfix"> </div>
-                        </div>
-                        <div class="recent-grids">
-                            <div class="recent-left">
-                                <a href="single.html"><img class="img-responsive " src="/images/r1.jpg" alt=""></a>
-                            </div>
-                            <div class="recent-right">
-                                <h6 class="best2"><a href="single.html">Duis aute irure </a></h6>
-                                <p><del>$100.00</del> <em class="item_price">$19.00</em></p>
-                            </div>
-                            <div class="clearfix"> </div>
-                        </div>
-                        <div class="recent-grids">
-                            <div class="recent-left">
-                                <a href="single.html"><img class="img-responsive " src="/images/r2.jpg" alt=""></a>
-                            </div>
-                            <div class="recent-right">
-                                <h6 class="best2"><a href="single.html">Lorem ipsum dolor </a></h6>
-                                <p><del>$100.00</del> <em class="item_price">$39.00</em></p>
-                            </div>
-                            <div class="clearfix"> </div>
-                        </div>
-                        <div class="recent-grids">
-                            <div class="recent-left">
-                                <a href="single.html"><img class="img-responsive " src="/images/r3.jpg" alt=""></a>
-                            </div>
-                            <div class="recent-right">
-                                <h6 class="best2"><a href="single.html">Ut enim ad minim </a></h6>
-                                <p><em class="item_price">$39.00</em></p>
-                            </div>
-                            <div class="clearfix"> </div>
-                        </div>
                     </div>
                     <div class="brand-w3l">
                         <h3>Brands Filter</h3>

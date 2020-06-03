@@ -27,22 +27,38 @@ class ProductController extends AppHomeController
         $this->setMeta("{$product->name}", $product->keywords, $product->description);
         //set Meta
 
-        //        pagination product
+        //        pagination productSale
         $query = Product::find()->where(['is_sale' => 1]);
         $pages = new Pagination(['totalCount' => $query->count(),
             'pageSize' => 4,
             'forcePageParam' => false,
             'pageSizeParam' => false
         ]);
-        $sale_product = $query->offset($pages->offset)->limit($pages->limit)->all();
-        //        pagination product
+        $productSale = $query->offset($pages->offset)->limit($pages->limit)->all();
+        //        pagination productSale
 
-        return $this->render('view', compact('product','sale_product', 'pages'));
+        return $this->render('view', compact('product','productSale', 'pages'));
     }
 
 
     public function actionSearch()
     {
+        //sort
+        $sort = new Sort([
+            'attributes' => [
+                'price' => [
+                    'label' => 'Цена'
+                ],
+                'name' => [
+                    'asc' => ['name' => SORT_ASC],
+                    'desc' => ['name' => SORT_DESC],
+                    'default' => SORT_ASC,
+                    'label' => 'Название',
+                ]
+            ]
+        ]);
+        //sort
+
         $search = trim(Yii::$app->request->get('search'));
 
         //set Meta
@@ -62,10 +78,14 @@ class ProductController extends AppHomeController
             'forcePageParam' => false,
             'pageSizeParam' => false
         ]);
-        $searchProducts = $query->offset($pages->offset)->limit($pages->limit)->all();
+        $searchProducts = $query
+            ->offset($pages->offset)
+            ->limit($pages->limit)
+            ->orderBy($sort->orders)
+            ->all();
         //pagination search
 
-        return $this->render('search', compact('searchProducts', 'pages', 'search'));
+        return $this->render('search', compact('searchProducts', 'pages', 'search', 'sort'));
     }
 
 

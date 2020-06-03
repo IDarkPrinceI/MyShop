@@ -33,8 +33,7 @@ class CategoryController extends AppHomeController
         //sort
 
         $products = Product::find()
-            ->where(['category_id' => $id])
-            ->orderBy($sort->orders);
+            ->where(['category_id' => $id]);
 
         //404
         $category = Category::findOne($id);
@@ -56,11 +55,10 @@ class CategoryController extends AppHomeController
         $renderProducts = $products
             ->offset($pages->offset)
             ->limit($pages->limit)
+            ->orderBy($sort->orders)
             ->all();
         //pagination product
 
-//        return $this->render('view', compact('category','products', 'pages', 'sort'));
-//        return $this->render('view', ['models' => $category, 'sort' => $sort]);
         return $this->render('view', compact(   'catergory','sort', 'renderProducts', 'pages'));
     }
 

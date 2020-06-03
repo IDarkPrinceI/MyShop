@@ -89,10 +89,33 @@ AppHomeAsset::register($this);
                 </div>
                 <div class="header-right2">
                     <div class="cart box_1">
-                        <a href="checkout.html">
+
                             <h3> <div class="total">
-                                    <span class="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> items)</div>
-                                <img src="/images/bag.png" alt="" />
+                                    <button id="my_cart" type="button"  data-toggle="modal" data-target="#modal-cart">
+                                        0 руб
+                                    </button>
+                                    <!-- modalCart -->
+                                    <div class="modal fade" id="modal-cart" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                    <h4 class="modal-title" id="myModalLabel">Корзина</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    ...
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Продолжить покупки</button>
+                                                    <a href="<?= \yii\helpers\Url::to(['cart/view'])?>" class="btn btn-success">Оформить заказ</a>
+                                                    <button type="button" class="btn btn-primary">Очистить корзину</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- modalCart -->
+<!--                                    <span class="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> items)</div>-->
+                                <img id="my_bag" src="/images/bag.png" alt="" />
                             </h3>
                         </a>
                         <p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>

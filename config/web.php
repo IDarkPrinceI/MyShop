@@ -71,9 +71,11 @@ $config = [
             'showScriptName' => false,
             'enableStrictParsing' => false,
             'rules' => [
+//                'new/<pageHit:\d+>' => 'home/index',
+//                'new/<pageNew:\d+>' => 'home/index',
                 'category/<id:\d+>' => 'category/view',
                 'product/<id:\d+>' => 'product/view',
-                'new/<page:\d+>' => 'home/index',
+
                 'search' => 'product/search'
             ],
         ],
