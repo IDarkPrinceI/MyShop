@@ -73,7 +73,7 @@ use yii\widgets\Pjax;
                                 <?php endif; ?>
                                 <em class="price"><?= $new->price?></em>
                                 <em class="rub"> Р</em></p>
-                            <a href="<?= \yii\helpers\Url::to(['card/add', 'id' => $new['id']]) ?>" data-text="Add To Cart" class="my-cart-b item_add">Добавить в корзину</a>
+                            <a href="<?= \yii\helpers\Url::to(['card/add', 'id' => $new->id])?>" data-id="<?= $new->id ?>" data-text="Add To Cart" class="button add-to-cart my-cart-b">Добавить в корзину</a>
                         </div>
                     </div>
                 </div>
@@ -122,7 +122,7 @@ use yii\widgets\Pjax;
                                 <?php endif; ?>
                                 <em class="price"><?= $hit->price?></em>
                                 <em class="rub"> Р</em></p>
-                            <a href="<?= \yii\helpers\Url::to(['card/add', 'id' => $hit['id']])?>" data-text="Add To Cart" class="my-cart-b item_add">Добавить в корзину</a>
+                            <a href="<?= \yii\helpers\Url::to(['card/add', 'id' => $hit->id])?>" data-id="<?= $hit->id ?>" data-text="Add To Cart" class="button add-to-cart my-cart-b">Добавить в корзину</a>
                         </div>
                     </div>
                 </div>

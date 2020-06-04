@@ -806,6 +806,9 @@ a.my-cart-b {
 	text-align: right;
 	background: #798ca2;
 }
+#my_close {
+ 	opacity: 1;
+}
 /*#my_bag{*/
 /*	width: 25px;*/
 /*	height: 25px;*/

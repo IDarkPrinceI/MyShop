@@ -155,7 +155,7 @@ use yii\widgets\LinkPager;
                                                             <em class="price"><?= $product->price?></em>
                                                             <em class="rub"> Р</em>
                                                         </p>
-                                                        <a href="<?= \yii\helpers\Url::to(['card/add', 'id' => $product['id']]) ?>" data-text="Add To Cart" class="my-cart-b item_add">Добавить в корзину</a>
+                                                        <a href="<?= \yii\helpers\Url::to(['card/add', 'id' => $product->id])?>" data-id="<?= $product->id ?>" data-text="Add To Cart" class="button add-to-cart my-cart-b">Добавить в корзину</a>
                                                     </div>
                                                 </div>
                                             </div>
