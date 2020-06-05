@@ -73,10 +73,10 @@ $config = [
             'rules' => [
 //                'new/<pageHit:\d+>' => 'home/index',
 //                'new/<pageNew:\d+>' => 'home/index',
-                'category/<id:\d+>' => 'category/view',
-                'product/<id:\d+>' => 'product/view',
+//                'category/<id:\d+>' => 'category/view',
+//                'product/<id:\d+>' => 'product/view',
 
-                'search' => 'product/search'
+//                'search' => 'product/search'
             ],
         ],
 

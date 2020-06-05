@@ -3,25 +3,19 @@
 $('.add-to-cart').on('click', function () {
 	let id = $(this).data('id');
 	$.ajax({
-		url:'card/add',
+		url: 'cart/add',
 		data: {id: id},
 		type: 'GET',
 		success: function (res) {
 			console.log(res);
 		},
-		error: function () {
-			alert('Error');
+		error: function(){
+			alert('Error!');
 		}
 	});
 	return false;
-})
+});
 /* Cart */
-
-
-
-
-
-
 
 jQuery(document).ready(function($){
 	//if you change this breakpoint in the style.css file (or _layout.scss if you use SASS), don't forget to update this value as well
@@ -191,5 +185,7 @@ jQuery(document).ready(function($){
 		$("my_footer").addClass("navbar-fixed-bottom");
 
 	});
+
+
 
 

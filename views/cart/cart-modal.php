@@ -1,2 +1,2 @@
-<?php //debug($session['cart']) ?>
-cart
+<?php debug($session['cart']) ?>
+

@@ -15,7 +15,7 @@ use yii\widgets\LinkPager;
 <div class="content" id="my_content">
     <div class="products-agileinfo">
 <!--        --><?php //foreach ($products as $product) ?>
-        <?php foreach ($renderProducts as $product) ?>
+<!--        --><?php //foreach ($renderProducts as $product) ?>
 <!--        <h2 class="tittle">--><?//= $category->name ?><!--</h2>-->
         <div class="container">
             <div class="product-agileinfo-grids w3l">
@@ -122,7 +122,7 @@ use yii\widgets\LinkPager;
                                                         <em class="price"><?= $product->price?></em>
                                                         <em class="rub"> Р</em>
                                                     </p>
-                                                    <a href="<?= \yii\helpers\Url::to(['card/add', 'id' => $product->id])?>" data-id="<?= $product->id ?>" data-text="Add To Cart" class="button add-to-cart my-cart-b">Добавить в корзину</a>
+                                                    <a href="<?= \yii\helpers\Url::to(['cart/add', 'id' => $product->id])?>" data-id="<?= $product->id ?>" data-text="Add To Cart" class="button add-to-cart my-cart-b">Добавить в корзину</a>
                                                 </div>
                                             </div>
                                         </div>

@@ -52,7 +52,7 @@ use yii\widgets\LinkPager;
                                 </div>
                             </div>
                             <div class="women">
-                                <a href="<?= \yii\helpers\Url::to(['card/add', 'id' => $product->id])?>" data-id="<?= $product->id ?>" data-text="Add To Cart" class="button add-to-cart my-cart-b">Добавить в корзину</a>
+                                <a href="<?= \yii\helpers\Url::to(['cart/add', 'id' => $product->id])?>" data-id="<?= $product->id ?>" data-text="Add To Cart" class="button add-to-cart my-cart-b">Добавить в корзину</a>
                             </div>
                         </div>
                         <div class="clearfix"> </div>
@@ -99,7 +99,7 @@ use yii\widgets\LinkPager;
                                 <?php endif; ?>
                                 <em class="price"><?= $sale->price?></em>
                                 <em class="rub"> Р</em></p>
-                            <a href="<?= \yii\helpers\Url::to(['card/add', 'id' => $sale->id])?>" data-id="<?= $sale->id ?>" data-text="Add To Cart" class="button add-to-cart my-cart-b">Добавить в корзину</a>
+                            <a href="<?= \yii\helpers\Url::to(['cart/add', 'id' => $sale->id])?>" data-id="<?= $sale->id ?>" data-text="Add To Cart" class="button add-to-cart my-cart-b">Добавить в корзину</a>
                         </div>
                     </div>
                 </div>
