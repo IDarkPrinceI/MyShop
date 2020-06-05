@@ -16,6 +16,7 @@ class CategoryController extends AppHomeController
 
     public function actionView($id)
     {
+//        $id = Yii::$app->request->get($id);
         //sort
         $sort = new Sort([
             'attributes' => [

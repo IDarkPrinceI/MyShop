@@ -23,16 +23,16 @@ $config = [
         ],
     ],
     'components' => [
-        'assetManager' => [
-            'bundles' => [
-                'yii\web\JqueryAsset' => [
-                    'sourcePath' => null,   // не опубликовывать комплект
-                    'js' => [
-                        'js/jquery.min.js',
-                    ]
-                ],
-            ],
-        ],
+//        'assetManager' => [
+//            'bundles' => [
+//                'yii\web\JqueryAsset' => [
+//                    'sourcePath' => null,   // не опубликовывать комплект
+//                    'js' => [
+//                        'js/jquery.min.js',
+//                    ]
+//                ],
+//            ],
+//        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'kWvmSbridDnOOyyoWNFNicbn7mQxO9Gc',
