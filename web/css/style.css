@@ -574,6 +574,7 @@ h2.tittle {
 	padding: 0.3em;
     color: #ffffff;
 	background: #798ca2;
+	border-radius: 10px;
 }
 .new-arrivals-w3agile {
     padding: 5em 0;
@@ -770,6 +771,7 @@ a:focus {
 }
 a.my-cart-b {
     text-decoration: none;
+	border-radius: 5px;
 }
 .my-cart-b {
     background: none;
@@ -800,14 +802,20 @@ a.my-cart-b {
 	color: #fff;
 	font-size: 15px;
 	outline: none;
-	text-transform: capitalize;
-	padding: .4em .8em .3em 5em;
+	padding: .4em .8em .3em 1em;
 	border: 1px solid #8ebebe;
 	text-align: right;
 	background: #798ca2;
+	font-family: 'Georgia', sans-serif;
 }
 #my_close {
  	opacity: 1;
+}
+#my_cart-sum {
+	color: #e1e985;
+}
+#my_cart-qty {
+	color: #e1e985;
 }
 /*#my_bag{*/
 /*	width: 25px;*/
@@ -1663,8 +1671,30 @@ section#tables  p {
 }
 .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
 	font-size: 0.9em;
-	color: #999;
+	color: #111010;
 	border-top: none !important;
+	border-bottom: 1px solid ;
+	padding-bottom: 5px;
+}
+.modal-title {
+	padding: 10px;
+}
+.btn-success {
+	background-color: #8ebebe;
+	border-color: #8ebebe;
+}
+.btn-danger {
+	background: rgba(252, 0, 0, 0.5);
+	border-color: rgba(252, 3, 3, 0.2);
+}
+#not_visible {
+	color: #FFFFFF;
+}
+#cart-qty {
+	font-weight:bold
+}
+#cart-sum {
+	font-weight:bold
 }
 .tab-content > .active {
 	display: block;
@@ -1685,7 +1715,9 @@ section#tables  p {
 	font-size: 0.85em;
 	margin-top: 15px;
 	text-align: center;
-
+}
+.modal-header .close {
+	margin: 10px;
 }
 h1.t-button,h2.t-button,h3.t-button,h4.t-button,h5.t-button {
 	line-height:2em;

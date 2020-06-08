@@ -92,8 +92,9 @@ AppHomeAsset::register($this);
                             <h3>
 <!--                                button cart-->
                                 <div class="total">
-                                    <button id="my_cart" type="button"  data-toggle="modal" data-target="#modal-cart">
-                                        0 руб
+                                    <button onclick="getCart()" id="my_cart" type="button"  data-toggle="modal" data-target="#modal-cart">
+                                        <span class="cart-qty" id="my_cart-qty"><?= $_SESSION['cart.qty'] ?? '' ?></span> на сумму:
+                                        <span class="cart-sum" id="my_cart-sum"><?= $_SESSION['cart.sum'] ?? '0' ?> руб</span>
                                     </button>
 <!--                                button cart-->
 <!--                                    <span class="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> items)</div>-->
@@ -109,14 +110,14 @@ AppHomeAsset::register($this);
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" id="my_close" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title" id="myModalLabel">Корзина</h4>
+                                    <h4 class="modal-title" id="myModalLabel">Моя корзина</h4>
                                 </div>
                                 <div class="modal-body">
                                 </div>
                                 <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger pull-left" id="my_clean">Очистить корзину</button>
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Продолжить покупки</button>
                                     <a href="<?= \yii\helpers\Url::to(['cart/view'])?>" class="btn btn-success">Оформить заказ</a>
-                                    <button type="button" class="btn btn-danger">Очистить корзину</button>
                                 </div>
                             </div>
                         </div>
