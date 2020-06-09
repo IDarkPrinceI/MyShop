@@ -101,7 +101,6 @@ AppHomeAsset::register($this);
                                 <img id="my_bag" src="/images/bag.png" alt="" />
                             </h3>
                         </a>
-                        <p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
                         <div class="clearfix"> </div>
                     </div>
                     <!-- modalCart -->
@@ -115,9 +114,9 @@ AppHomeAsset::register($this);
                                 <div class="modal-body">
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger pull-left" id="my_clean">Очистить корзину</button>
+                                    <button onclick="clearCart()" type="button" class="btn btn-danger pull-left" id="my_clean">Очистить корзину</button>
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Продолжить покупки</button>
-                                    <a href="<?= \yii\helpers\Url::to(['cart/view'])?>" class="btn btn-success">Оформить заказ</a>
+                                    <a href="<?= \yii\helpers\Url::to(['cart/checkout'])?>" class="btn btn-success">Оформить заказ</a>
                                 </div>
                             </div>
                         </div>

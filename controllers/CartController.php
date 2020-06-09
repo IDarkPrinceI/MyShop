@@ -34,4 +34,36 @@ class CartController extends AppHomeController
         $session->open();
         return $this->renderPartial('cart-modal', compact('session'));
     }
+
+    public function actionDelItem()
+    {
+        $id =\Yii::$app->request->get('id');
+        $session = \Yii::$app->session;
+        $session->open();
+        $cart = new Cart();
+        $cart->recalc($id);
+        if(\Yii::$app->request->isAjax){
+            return $this->renderPartial('cart-modal', compact('session'));
+        }
+        return $this->redirect(\Yii::$app->request->referrer);
+    }
+
+    public function actionClear()
+    {
+        $session = \Yii::$app->session;
+        $session->open();
+        $session->remove('cart');
+        $session->remove('cart.qty');
+        $session->remove('cart.sum');
+        return $this->renderPartial('cart-modal', compact('session'));
+    }
+
+    public function actionCheckout()
+    {
+        $this->setMeta("Оформление заказа");
+
+        $session = \Yii::$app->session;
+        $session->open();
+        return $this->render('checkout', compact('session'));
+    }
 }
