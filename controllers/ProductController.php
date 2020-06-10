@@ -14,7 +14,6 @@ class ProductController extends AppHomeController
 
     public function actionView($id)
     {
-
         $product = Product::findOne($id);
 
         //404
@@ -37,7 +36,7 @@ class ProductController extends AppHomeController
         $productSale = $query->offset($pages->offset)->limit($pages->limit)->all();
         //        pagination productSale
 
-        return $this->render('view', compact('product','productSale', 'pages'));
+        return $this->render('view', compact('product','productSale', 'pages', 'productQty'));
     }
 
 

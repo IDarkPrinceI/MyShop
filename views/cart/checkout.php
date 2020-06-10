@@ -15,7 +15,8 @@
                         <th>Изображение</th>
                         <th>Количество</th>
                         <th>Описание</th>
-                        <th>Цена</th>
+                        <th>Цена за еденицу</th>
+                        <th>Общая цена</th>
                         <th>Удалить</th>
                     </tr>
                     </thead>
@@ -31,14 +32,15 @@
                             <td>
                                 <div class="quantity">
                                     <div class="quantity-select">
-                                        <div class="entry value-minus" data-id="<?= $id ?>" data-qty="-1">&nbsp;</div>
+                                        <div class="entry value-minus" id="minus" data-id="<?= $id ?>" data-qty="-1">&nbsp;</div>
                                         <div class="entry value"><span><?= $item['qty']?></span></div>
-                                        <div class="entry value-plus active" data-id="<?= $id ?>" data-qty="1">&nbsp;</div>
+                                        <div class="entry value-plus active" id="plus" data-id="<?= $id ?>" data-qty="1">&nbsp;</div>
                                     </div>
                                 </div>
                             </td>
-                            <td><?= $item['name']?></td>
-                            <td><?= $item['price']?> руб</td>
+                            <td><?= $item['name'] ?></td>
+                            <td><?= $item['price'] ?> руб</td>
+                            <td><?= $item['price'] * $item['qty'] ?> руб</td>
                             <td>
                                 <a class="close1" href="<?= \yii\helpers\Url::to(['cart/del-item', 'id' => $id])?>"></a>
                             </td>

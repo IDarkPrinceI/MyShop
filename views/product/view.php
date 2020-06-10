@@ -34,7 +34,7 @@ use yii\widgets\LinkPager;
                             <p class="price item_price">
                                 <?php if((float)($product->old_price)): ?>
                                     <del> <?= $product->old_price ?> </del>
-                                    /
+                                    <span>/</span>
                                 <?php endif; ?>
                                 <em class="price"><?= $product->price ?></em>
                                 <em class="rub"> Р</em></p>
@@ -45,14 +45,17 @@ use yii\widgets\LinkPager;
                                 <h6>Количество :</h6>
                                 <div class="quantity">
                                     <div class="quantity-select">
-                                        <div class="entry value-minus1">&nbsp;</div>
-                                        <div class="entry value1"><span>1</span></div>
-                                        <div class="entry value-plus1 active">&nbsp;</div>
+                                        <div class="entry value-minus1"><span><?= $i =- 1 ?></span></div>
+                                        <div class="entry value1"><span><?= $productQty = 5 ?></span></div>
+                                        <div class="entry value-plus1 active"><span><?= $i =+ 1 ?></span></div>
+<!--                                        <div class="entry value-minus"  id="product_minus" data-qty="-1">&nbsp;</div>-->
+<!--                                        <div class="entry value"><span>1</span></div>-->
+<!--                                        <div class="entry value-plus active" id="product_plus" data-qty="1">&nbsp;</div>-->
                                     </div>
                                 </div>
                             </div>
                             <div class="women">
-                                <a href="<?= \yii\helpers\Url::to(['cart/add', 'id' => $product->id])?>" data-id="<?= $product->id ?>" data-text="Add To Cart" class="button add-to-cart my-cart-b">Добавить в корзину</a>
+                                <a href="<?= \yii\helpers\Url::to(['cart/add', 'id' => $product->id])?>" data-qty="<?= $productQty ?>"data-id="<?= $product->id ?>" data-text="Add To Cart" class="button add-to-cart my-cart-b">Добавить в корзину</a>
                             </div>
                         </div>
                         <div class="clearfix"> </div>
@@ -95,7 +98,7 @@ use yii\widgets\LinkPager;
                             <h6><a href="<?= \yii\helpers\Url::to(['product/view', 'id' => $sale['id']])?>"><?= $sale->name ?></a></h6>
                             <p ><?php if((float)($sale->old_price)): ?>
                                     <del> <?= $sale->old_price ?> </del>
-                                    /
+                                    <span>/</span>
                                 <?php endif; ?>
                                 <em class="price"><?= $sale->price?></em>
                                 <em class="rub"> Р</em></p>

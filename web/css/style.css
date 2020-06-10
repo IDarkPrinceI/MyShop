@@ -812,11 +812,9 @@ a.my-cart-b {
 #my_close {
  	opacity: 1;
 }
-#my_cart-sum {
+#my_cart-sum, #my_cart-qty {
 	color: #e1e985;
-}
-#my_cart-qty {
-	color: #e1e985;
+	font-family: 'Times New Roman', sans-serif;
 }
 .middle {
 	text-align: center;
@@ -828,7 +826,12 @@ table.timetable_sub {
 	width: 100%;
 	margin: 1em auto;
 }
-
+#my_text_name {
+	width: 250px;
+}
+#my_text_qty {
+	width: 100px;
+}
 .timetable_sub th, .timetable_sub td {
 	text-align: center;
 	padding: 7px;
@@ -1721,6 +1724,7 @@ section#tables  p {
 #cart-sum, #cart-qty {
 	font-weight:bold;
 	font-size: 1em;
+	width: 130px;
 }
 .checkout-left-basket {
 	float: left;

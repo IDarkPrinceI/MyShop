@@ -11,7 +11,7 @@ class CartController extends AppHomeController
 {
 
 
-    public function actionAdd($id)
+    public function actionAdd($id, $qty)
     {
         $product = Product::findOne($id);
         if(empty($product)) {
@@ -20,7 +20,7 @@ class CartController extends AppHomeController
         $session = \Yii::$app->session;
         $session->open();
         $cart = new Cart();
-        $cart->addToCart($product);
+        $cart->addToCart($product, $qty);
         if (\Yii::$app->request->isAjax){
             return $this->renderPartial('cart-modal', compact('session'));
         }
@@ -65,5 +65,20 @@ class CartController extends AppHomeController
         $session = \Yii::$app->session;
         $session->open();
         return $this->render('checkout', compact('session'));
+    }
+
+    public function actionChangeCart()
+    {
+        $id =\Yii::$app->request->get('id');
+        $qty =\Yii::$app->request->get('qty');
+        $product = Product::findOne($id);
+        if(empty($product)) {
+            return false;
+        }
+        $session = \Yii::$app->session;
+        $session->open();
+        $cart = new Cart();
+        $cart->addToCart($product, $qty);
+        return $this->renderPartial('cart-modal', compact('session'));
     }
 }

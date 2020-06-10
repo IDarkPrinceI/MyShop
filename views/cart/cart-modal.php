@@ -6,7 +6,8 @@
                 <th>Фото</th>
                 <th>Наименование</th>
                 <th>Кол-во</th>
-                <th>Цена</th>
+                <th>Цена за единицу, руб.</th>
+                <th>Общая цена, руб.</th>
                 <th><span class="glyphicon glyphicon-remove" id="not_visible" aria-hidden="false"></span></th>
             </tr>
             </thead>
@@ -14,18 +15,19 @@
             <?php foreach($session['cart'] as $id => $item):?>
                 <tr>
                     <td><?= \yii\helpers\Html::img("@web/product_img/{$item['img']}", ['alt' => $item['name'], 'height' => 50]) ?></td>
-                    <td><?= $item['name']?></td>
-                    <td><?= $item['qty']?></td>
+                    <td id="my_text_name"><?= $item['name']?></td>
+                    <td id="my_text_qty"><?= $item['qty']?></td>
                     <td><?= $item['price']?></td>
+                    <td><?= $item['price'] * $item['qty'] ?></td>
                     <td><span data-id="<?= $id?>" class="glyphicon glyphicon-remove text-danger del-item" aria-hidden="true"></span></td>
                 </tr>
             <?php endforeach?>
             <tr>
-                <td colspan="4">Итого: </td>
+                <td colspan="5">Итого: </td>
                 <td id="cart-qty"><?= $session['cart.qty']?></td>
             </tr>
             <tr>
-                <td colspan="4">На сумму: </td>
+                <td colspan="5">На сумму: </td>
                 <td id="cart-sum"><?= $session['cart.sum']?> руб</td>
             </tr>
             </tbody>
