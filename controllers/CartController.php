@@ -11,7 +11,7 @@ class CartController extends AppHomeController
 {
 
 
-    public function actionAdd($id, $qty)
+    public function actionAdd($id, $qty = 1)
     {
         $product = Product::findOne($id);
         if(empty($product)) {

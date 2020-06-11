@@ -68,7 +68,7 @@ jQuery(document).ready(function($){
 
 	function toggleSearch(type) {
 		if(type=="close") {
-			//close serach 
+			//close serach
 			$('.cd-search').removeClass('is-visible');
 			$('.cd-search-trigger').removeClass('search-is-visible');
 			$('.cd-overlay').removeClass('search-is-visible');
@@ -154,15 +154,15 @@ jQuery(document).ready(function($){
 	});
 
 	// quantity
-	// $('.value-plus1').on('click', function(){
-	// 	var divUpd = $(this).parent().find('.value1'), newVal = parseInt(divUpd.text(), 10)+1;
-	// 	divUpd.text(newVal);
-	// });
-	//
-	// $('.value-minus1').on('click', function(){
-	// 	var divUpd = $(this).parent().find('.value1'), newVal = parseInt(divUpd.text(), 10)-1;
-	// 	if(newVal>=1) divUpd.text(newVal);
-	// });
+	$('.value-plus1').on('click', function(){
+		var divUpd = $(this).parent().find('.value1'), newVal = parseInt(divUpd.text(), 10)+1;
+		divUpd.text(newVal);
+	});
+
+	$('.value-minus1').on('click', function(){
+		var divUpd = $(this).parent().find('.value1'), newVal = parseInt(divUpd.text(), 10)-1;
+		if(newVal>=1) divUpd.text(newVal);
+	});
 
 	if ($(document).height() <= $(window).height())
 		$("my_footer").addClass("navbar-fixed-bottom");
@@ -171,14 +171,32 @@ jQuery(document).ready(function($){
 /* Cart */
 
 $('.add-to-cart').on('click', function () {
+	let id = $(this).data('id');
+	$.ajax({
+		url: '/cart/add',
+		data: {id: id},
+		type: 'GET',
+		success: function (res) {
+			if(!res) alert('Ошибка добавления товара');
+			showCart(res);
+		},
+		error: function () {
+			alert('Error');
+		}
+	});
+	return false;
+});
+
+$('.add-to-cart-single').on('click', function () {
 	let id = $(this).data('id'),
-		qty = $(this).data('qty');
+		qty = document.getElementById("rez").innerText;
 	$.ajax({
 		url: '/cart/add',
 		data: {id: id, qty: qty},
 		type: 'GET',
 		success: function (res) {
 			if(!res) alert('Ошибка добавления товара');
+			document.getElementById("rez").textContent="1";
 			showCart(res);
 		},
 		error: function () {
