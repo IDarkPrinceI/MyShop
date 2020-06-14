@@ -67,9 +67,9 @@ use yii\widgets\Pjax;
                         </div>
                         <div class="women">
                             <h6><a href="<?= \yii\helpers\Url::to(['product/view', 'id' => $new['id']]) ?>"><?=$new->name ?></a></h6>
-                            <p ><?php if((float)($new->old_price)): ?>
+                            <p><?php if(!empty($new->old_price)): ?>
                                     <del> <?= $new->old_price ?> </del>
-                                    /
+                                    <span>/</span>
                                 <?php endif; ?>
                                 <em class="price"><?= $new->price?></em>
                                 <em class="rub"> Р</em></p>
@@ -116,9 +116,10 @@ use yii\widgets\Pjax;
                         </div>
                         <div class="women">
                             <h6><a href="<?= \yii\helpers\Url::to(['product/view', 'id' => $hit['name']])?>"><?= $hit->name?></a></h6>
-                            <p ><?php if((float)($hit->old_price)): ?>
+                            <p ><?php if(!empty($hit->old_price)): ?>
                                     <del> <?= $hit->old_price ?> </del>
-                                    /
+                                    <span>/</span>
+
                                 <?php endif; ?>
                                 <em class="price"><?= $hit->price?></em>
                                 <em class="rub"> Р</em></p>

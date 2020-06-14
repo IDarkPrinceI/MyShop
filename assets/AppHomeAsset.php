@@ -20,7 +20,7 @@ class AppHomeAsset extends AssetBundle
         '//fonts.googleapis.com/css?family=Open+Sans:400,800italic,800,700italic,700,600italic,600,400italic,300italic,300',
     ];
     public $js = [
-        'js/jquery.min.js',
+//        'js/jquery.min.js',
 //        search jQuery
         'js/jquery-ui.js',
         'js/responsiveslides.min.js',

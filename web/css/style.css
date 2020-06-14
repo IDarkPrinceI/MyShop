@@ -1927,7 +1927,6 @@ p.price {
     font-size: 1em;
     color: #000;
     margin: 1em 0;
-    display: block;
 }
 .single-grid1 h3 {
     font-size: 2.5em;
@@ -2141,11 +2140,27 @@ p.quote {
 }
 .mail-grids {
 	float: right;
+	width: 50%;
 }
 .mail-grid h5 {
     font-size: 1.8em;
     color: #1565c0;
     margin-top: .5em;
+}
+.submit_check_out {
+	outline: none;
+	color: #FFFFFF;
+	font-size: 1em;
+	padding: 13px 0;
+	width: 25%;
+	background: #8ebebe;
+	border: none;
+	border-radius: 10px;
+	transition: .5s all;
+	-webkit-transition: .5s all;
+	-moz-transition: .5s all;
+	-o-transition: .5s all;
+	-ms-transition: .5s all;
 }
 .mail-grid p {
     font-size: 1em;

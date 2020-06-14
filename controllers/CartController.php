@@ -5,6 +5,7 @@ namespace app\controllers;
 
 
 use app\models\Cart;
+use app\models\Order;
 use app\models\Product;
 
 class CartController extends AppHomeController
@@ -22,7 +23,8 @@ class CartController extends AppHomeController
         $cart = new Cart();
         $cart->addToCart($product, $qty);
         if (\Yii::$app->request->isAjax){
-            return $this->renderPartial('cart-modal', compact('session'));
+            return $this->renderPartial('cart-modal',
+                                compact('session'));
         }
         return $this->redirect(\Yii::$app->request->referrer);
     }
@@ -32,7 +34,8 @@ class CartController extends AppHomeController
     {
         $session = \Yii::$app->session;
         $session->open();
-        return $this->renderPartial('cart-modal', compact('session'));
+        return $this->renderPartial('cart-modal',
+                            compact('session'));
     }
 
     public function actionDelItem()
@@ -43,7 +46,8 @@ class CartController extends AppHomeController
         $cart = new Cart();
         $cart->recalc($id);
         if(\Yii::$app->request->isAjax){
-            return $this->renderPartial('cart-modal', compact('session'));
+            return $this->renderPartial('cart-modal',
+                                compact('session'));
         }
         return $this->redirect(\Yii::$app->request->referrer);
     }
@@ -55,7 +59,8 @@ class CartController extends AppHomeController
         $session->remove('cart');
         $session->remove('cart.qty');
         $session->remove('cart.sum');
-        return $this->renderPartial('cart-modal', compact('session'));
+        return $this->renderPartial('cart-modal',
+                            compact('session'));
     }
 
     public function actionCheckout()
@@ -64,7 +69,10 @@ class CartController extends AppHomeController
 
         $session = \Yii::$app->session;
         $session->open();
-        return $this->render('checkout', compact('session'));
+        $order = new Order();
+        return $this->render('checkout',
+                     compact('session',
+                                  'order'));
     }
 
     public function actionChangeCart()
@@ -79,6 +87,7 @@ class CartController extends AppHomeController
         $session->open();
         $cart = new Cart();
         $cart->addToCart($product, $qty);
-        return $this->renderPartial('cart-modal', compact('session'));
+        return $this->renderPartial('cart-modal',
+                            compact('session'));
     }
 }

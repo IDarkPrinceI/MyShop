@@ -115,9 +115,9 @@ use yii\widgets\LinkPager;
                                                 <div class="women">
                                                     <h6><a href="<?= \yii\helpers\Url::to(['product/view', 'id' => $product['id']]) ?>"><?= $product->name ?></a></h6>
                                                     <p >
-                                                        <?php if((float)($product->old_price)): ?>
+                                                        <?php if(!empty($product->old_price)): ?>
                                                             <del> <?= $product->old_price ?> </del>
-                                                            /
+                                                            <span>/</span>
                                                             <?php endif; ?>
                                                         <em class="price"><?= $product->price?></em>
                                                         <em class="rub"> Р</em>

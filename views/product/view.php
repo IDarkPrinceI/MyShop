@@ -64,8 +64,8 @@ use yii\widgets\LinkPager;
     <?php if(isset($productSale)): ?>
     <div class="new-arrivals-w3agile">
         <h2 class="tittle">Распродажа</h2>
+        <?php foreach ($productSale as $sale): ?>
         <div class="arrivals-grids">
-            <?php foreach ($productSale as $sale): ?>
             <div class="col-md-3 arrival-grid simpleCart_shelfItem">
                 <div class="grid-arr">
                     <div  class="grid-arrival">
@@ -88,7 +88,7 @@ use yii\widgets\LinkPager;
                     </div>
                     <div class="women">
                             <h6><a href="<?= \yii\helpers\Url::to(['product/view', 'id' => $sale['id']])?>"><?= $sale->name ?></a></h6>
-                            <p ><?php if((float)($sale->old_price)): ?>
+                            <p><?php if(!empty($sale->old_price)): ?>
                                     <del> <?= $sale->old_price ?> </del>
                                     <span>/</span>
                                 <?php endif; ?>

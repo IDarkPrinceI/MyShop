@@ -84,8 +84,11 @@ class ProductController extends AppHomeController
             ->all();
         //pagination search
 
-        return $this->render('search', compact('searchProducts', 'pages', 'search', 'sort'));
+        return $this->render('search',
+            compact(
+                'searchProducts',
+                     'pages',
+                        'search',
+                        'sort'));
     }
-
-
 }

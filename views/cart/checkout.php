@@ -59,16 +59,14 @@
                </div>
                 <div class="mail-grids">
                     <h4>Данные покупателя</h4>
-<!--                            --><?php //$form = yii\widgets\ActiveForm::begin() ?>
-<!--                            --><?//= $form->field($order, 'name') ?>
-<!--                            --><?//= $form->field($order, 'email') ?>
-<!--                            --><?//= $form->field($order, 'phone') ?>
-<!--                            --><?//= $form->field($order, 'address') ?>
-<!--                            --><?//= $form->field($order, 'note')->textarea(['rows' => 5]) ?>
-<!--                            --><?//= \yii\helpers\Html::submitButton('Заказать', ['class' => 'submit check_out']) ?>
-<!--                            --><?php //\yii\widgets\ActiveForm::end() ?>
-<!--                                -->
-<!--                            -->
+                            <?php $form = \yii\widgets\ActiveForm::begin()?>
+                            <?= $form->field($order, 'name') ?>
+                            <?= $form->field($order, 'email') ?>
+                            <?= $form->field($order, 'phone') ?>
+                            <?= $form->field($order, 'address') ?>
+                            <?= $form->field($order, 'note')->textarea(['rows' => 5]) ?>
+                            <?= \yii\helpers\Html::submitButton('Заказать', ['class' => 'submit_check_out']) ?>
+                            <?php \yii\widgets\ActiveForm::end() ?>
                         </div>
                 </div>
             </div>
