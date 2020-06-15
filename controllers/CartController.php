@@ -6,6 +6,7 @@ namespace app\controllers;
 
 use app\models\Cart;
 use app\models\Order;
+use app\models\OrderProduct;
 use app\models\Product;
 
 class CartController extends AppHomeController
@@ -59,6 +60,7 @@ class CartController extends AppHomeController
         $session->remove('cart');
         $session->remove('cart.qty');
         $session->remove('cart.sum');
+
         return $this->renderPartial('cart-modal',
                             compact('session'));
     }
@@ -70,9 +72,36 @@ class CartController extends AppHomeController
         $session = \Yii::$app->session;
         $session->open();
         $order = new Order();
+        $order_product = new OrderProduct();
+        if($order->load(\Yii::$app->request->post())) {
+            $order->qty = $session['cart.qty'];
+            $order->sum = $session['cart.sum'];
+            $transaction = \Yii::$app->getDb()->beginTransaction();
+            if(!$order->save() || !$order_product->
+                saveOrderProducts($session['cart'], $order->id)) {
+                \Yii::$app->session->setFlash('error', 'Ошибка оформления заказа');
+                $transaction->rollBack();
+            }else{
+                $transaction->commit();
+                \Yii::$app->session->setFlash('success', 'Ваш заказ успешно оформлен!');
+                \Yii::$app->mailer->compose('mailText')
+                    ->setFrom(\Yii::$app->params['adminEmail'])
+                    ->setTo($order['email'])
+                    ->setSubject("Заказ №{$order->id} успешно оформлен")
+                    ->setTextBody('Вы успешно оформили заказ на сайте "Instrumental". 
+                                    В скором времени с Вами свяжится администратор для уточнения
+                                     детайле заказа')
+                    ->send();
+                $session->remove('cart');
+                $session->remove('cart.qty');
+                $session->remove('cart.sum');
+                return $this->refresh();
+            }
+        }
         return $this->render('checkout',
                      compact('session',
-                                  'order'));
+                                  'order',
+                                     'order_product'));
     }
 
     public function actionChangeCart()
@@ -87,6 +116,7 @@ class CartController extends AppHomeController
         $session->open();
         $cart = new Cart();
         $cart->addToCart($product, $qty);
+
         return $this->renderPartial('cart-modal',
                             compact('session'));
     }

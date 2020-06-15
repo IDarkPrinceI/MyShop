@@ -28,7 +28,7 @@ $config = [
                 'yii\web\JqueryAsset' => [
                     'sourcePath' => null,   // не опубликовывать комплект
                     'js' => [
-                        'js/jquery.min.js',
+                        'js/jquery-3.5.1.min.js',
                     ]
                 ],
             ],
@@ -54,6 +54,15 @@ $config = [
             // 'useFileTransport' to false and configure a transport
             // for the mailer to send real emails.
             'useFileTransport' => true,
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'smtp.mail.ru', //smtp.mail.ru, smtp.gmail.com
+                'username' => 'gubskiyigor@mail.ru',// Ваш логин для выбранной почты
+                'password' => 'ababkiu54849',//Ваш пароль для выбранной почты
+                'port' => '465',//узнать можно гагуглив smtp.mail.ru настройки
+                //например для mail.ru это 465 порт
+                'encryption' => 'ssl',//тоже в настройках. Для mail.ru это ssl
+            ],
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,

@@ -2,6 +2,12 @@
 <div class="content">
     <div class="cart-items">
         <div class="container">
+
+            <?= \app\widgets\Alert::widget() ?>
+<!--            --><?php
+//            debug($order->errors);  если хотим увидеть ошибки, которые привели к откату транзакции
+//            debug($order_product->errors);
+//            ?>
             <h2 class="tittle">Оформление заказа</h2>
             <?php if(!empty($session['cart'])): ?>
             <div class="cart-table">
@@ -67,7 +73,7 @@
                             <?= $form->field($order, 'note')->textarea(['rows' => 5]) ?>
                             <?= \yii\helpers\Html::submitButton('Заказать', ['class' => 'submit_check_out']) ?>
                             <?php \yii\widgets\ActiveForm::end() ?>
-                        </div>
+                      </div>
                 </div>
             </div>
             <?php else: ?>

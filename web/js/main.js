@@ -9,35 +9,35 @@ jQuery(document).ready(function($){
 		(!window.requestAnimationFrame) ? setTimeout(moveNavigation, 300) : window.requestAnimationFrame(moveNavigation);
 	});
 
-	$(window).load(function(){
-		$( "#slider-range" ).slider({
-			range: true,
-			min: 0,
-			max: 9000,
-			values: [ 1000, 7000 ],
-			slide: function( event, ui ) {  $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
-			}
-		});
-		$( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) + " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+	// $(window).load(function(){
+	// 	$( "#slider-range" ).slider({
+	// 		range: true,
+	// 		min: 0,
+	// 		max: 9000,
+	// 		values: [ 1000, 7000 ],
+	// 		slide: function( event, ui ) {  $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+	// 		}
+	// 	});
+	// 	$( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) + " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+	//
+	// });
 
-	});
-
-	//mobile - open lateral menu clicking on the menu icon
-	$('.cd-nav-trigger').on('click', function(event){
-		event.preventDefault();
-		if( $('.cd-main-content').hasClass('nav-is-visible') ) {
-			closeNav();
-			$('.cd-overlay').removeClass('is-visible');
-		} else {
-			$(this).addClass('nav-is-visible');
-			$('.cd-main-header').addClass('nav-is-visible');
-			$('.cd-main-content').addClass('nav-is-visible').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(){
-				$('body').addClass('overflow-hidden');
-			});
-			toggleSearch('close');
-			$('.cd-overlay').addClass('is-visible');
-		}
-	});
+	// //mobile - open lateral menu clicking on the menu icon
+	// $('.cd-nav-trigger').on('click', function(event){
+	// 	event.preventDefault();
+	// 	if( $('.cd-main-content').hasClass('nav-is-visible') ) {
+	// 		closeNav();
+	// 		$('.cd-overlay').removeClass('is-visible');
+	// 	} else {
+	// 		$(this).addClass('nav-is-visible');
+	// 		$('.cd-main-header').addClass('nav-is-visible');
+	// 		$('.cd-main-content').addClass('nav-is-visible').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(){
+	// 			$('body').addClass('overflow-hidden');
+	// 		});
+	// 		toggleSearch('close');
+	// 		$('.cd-overlay').addClass('is-visible');
+	// 	}
+	// });
 
 	//open search form
 	$('.cd-search-trigger').on('click', function(event){
