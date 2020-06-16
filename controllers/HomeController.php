@@ -4,7 +4,6 @@
 namespace app\controllers;
 
 
-use app\models\Category;
 use app\models\Product;
 use yii\data\Pagination;
 
@@ -13,6 +12,8 @@ class HomeController extends AppHomeController
 
     public function actionIndex()
     {
+        $this->setMeta('Instrumental :: all for you', 'Ремонт', 'Самые низкие цены');
+
         $queryNew = Product::find()->where(['is_new' => 1]);
 
         //pagination productNew

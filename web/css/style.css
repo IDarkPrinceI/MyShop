@@ -374,6 +374,7 @@ ul.multi-column-dropdown h6 {
 	transition: opacity .3s 0s, visibility 0s .3s;
 }
 .cd-search input {
+	margin-top: 50px;
     border-radius: 0;
     border: none;
     background: rgba(0, 0, 0, 0.75);
@@ -1343,14 +1344,14 @@ h3.tittle1 {
 .product-agileinfo-grids {
     margin-top: 4em;
 }
-.categories h3{
-    text-align: center;
-    font-size: 2.5em;
-    padding: .2em;
-    background: #8ebebe;
-    color: #fff;
-    margin-bottom: .5em;
-}
+/*.categories h3{*/
+/*    text-align: center;*/
+/*    font-size: 2.5em;*/
+/*    padding: .2em;*/
+/*    background: #8ebebe;*/
+/*    color: #fff;*/
+/*    margin-bottom: .5em;*/
+/*}*/
 /*-- treeview --*/
 .categories label {
     padding: 5px;
@@ -1485,13 +1486,19 @@ h3.tittle1 {
 .brand-w3l {
 	margin-top: 5em;
 }
-.price h3,.top-rates h3,.brand-w3l h3{
+.brand-w3l li {
+	background: url(../images/icons1.png) no-repeat 10px 9px !important;
+	padding: 7px 0 0 31px;
+	border-radius: 3px;
+	margin: 2px;
+}
+.price h3,.top-rates h3,.brand-w3l h3, .categories h3{
     text-align: center;
-    font-size: 1.25em;
     padding: .2em;
     background: #8ebebe;
     color: #fff;
     margin-bottom: .5em;
+	border-radius: 10px;
 }
 /*-- Slider range --*/
 ul.dropdown-menu6 ,ul.dropdown-menu5{

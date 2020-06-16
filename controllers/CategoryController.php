@@ -60,7 +60,7 @@ class CategoryController extends AppHomeController
             ->all();
         //pagination product
 
-        return $this->render('view', compact(   'catergory','sort', 'renderProducts', 'pages'));
+        return $this->render('view', compact(   'category','sort', 'renderProducts', 'pages'));
     }
 
 }

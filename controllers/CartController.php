@@ -76,6 +76,7 @@ class CartController extends AppHomeController
         if($order->load(\Yii::$app->request->post())) {
             $order->qty = $session['cart.qty'];
             $order->sum = $session['cart.sum'];
+            //transaction
             $transaction = \Yii::$app->getDb()->beginTransaction();
             if(!$order->save() || !$order_product->
                 saveOrderProducts($session['cart'], $order->id)) {
@@ -83,18 +84,29 @@ class CartController extends AppHomeController
                 $transaction->rollBack();
             }else{
                 $transaction->commit();
+                //transaction
                 \Yii::$app->session->setFlash('success', 'Ваш заказ успешно оформлен!');
-                \Yii::$app->mailer->compose('mailText')
-                    ->setFrom(\Yii::$app->params['adminEmail'])
-                    ->setTo($order['email'])
-                    ->setSubject("Заказ №{$order->id} успешно оформлен")
-                    ->setTextBody('Вы успешно оформили заказ на сайте "Instrumental". 
-                                    В скором времени с Вами свяжится администратор для уточнения
-                                     детайле заказа')
-                    ->send();
+
+                try{
+                    //sendMail
+                    \Yii::$app->mailer->compose('orderUser', ['session' => $session,
+                        'orderId' => $order->id])
+//                                                               'imageFileName' => '@product_img/11.png'])
+                        ->setFrom([\Yii::$app->params['senderEmail'] =>
+                            \Yii::$app->params['senderName']])
+                        ->setTo([\Yii::$app->params['adminEmail'], $order['email']])
+                        ->setSubject("Заказ №{$order->id} оформлен")
+                        ->send();
+                    //sendMail
+                }catch (\Swift_TransportException $e) {
+//                    var_dump($e); die;
+                }
+
+                //removeCart
                 $session->remove('cart');
                 $session->remove('cart.qty');
                 $session->remove('cart.sum');
+                //removeCart
                 return $this->refresh();
             }
         }

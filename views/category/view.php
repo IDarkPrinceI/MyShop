@@ -3,7 +3,7 @@
 use yii\widgets\LinkPager;
 
 ?>
-
+<?php //debug($category);?>
 <!--brendcrumbs-->
 <!--<div class="banner1">-->
 <!--    <div class="container">-->
@@ -14,10 +14,8 @@ use yii\widgets\LinkPager;
 <!--content-->
 <div class="content" id="my_content">
     <div class="products-agileinfo">
-<!--        --><?php //foreach ($products as $product) ?>
-<!--        --><?php //foreach ($renderProducts as $product) ?>
-<!--        <h2 class="tittle">--><?//= $category->name ?><!--</h2>-->
         <div class="container">
+            <h2 class="tittle"><?= $category['name'] ?></h2>
             <div class="product-agileinfo-grids w3l">
                 <div class="col-md-3 product-agileinfo-grid">
                     <div class="categories">
@@ -38,7 +36,7 @@ use yii\widgets\LinkPager;
                         </ul>
                     </div>
                     <div class="brand-w3l">
-                        <h3>Brands Filter</h3>
+                        <h3>Фирма</h3>
                         <ul>
                             <li><a href="#">Ralph Lauren</a></li>
                             <li><a href="#">adidas</a></li>
