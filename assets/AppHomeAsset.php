@@ -11,7 +11,7 @@ class AppHomeAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/bootstrap.css',
+//        'css/bootstrap.css',
         'css/style.css',
         'css/font-awesome.css',
         'css/jstarbox.css',
@@ -20,7 +20,7 @@ class AppHomeAsset extends AssetBundle
         '//fonts.googleapis.com/css?family=Open+Sans:400,800italic,800,700italic,700,600italic,600,400italic,300italic,300',
     ];
     public $js = [
-        'js/bootstrap.min.js',
+//        'js/bootstrap.min.js',
 //        search jQuery
         'js/jquery-ui.js',
         'js/responsiveslides.min.js',
@@ -32,11 +32,12 @@ class AppHomeAsset extends AssetBundle
         'js/coreSlider.js',
         'js/main.js',
 
-
     ];
     public $depends = [
         'yii\web\YiiAsset',
+        'yii\bootstrap\BootstrapPluginAsset',
     ];
+
 }
 
 

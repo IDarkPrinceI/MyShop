@@ -3,10 +3,13 @@
 
 
 use app\assets\AppHomeAsset;
+use app\assets\OldIeAsset;
 use yii\helpers\Html;
+use app\components\DropDownWidget;
 
 
 AppHomeAsset::register($this);
+OldIeAsset::register($this);
 ?>
 
 
@@ -68,7 +71,7 @@ AppHomeAsset::register($this);
                         <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
                                 <!-- dropDownWidget -->
                             <ul class="nav navbar-nav">
-                                <?= \app\components\DropDownWidget::widget([
+                                <?= DropDownWidget::widget([
                                     'tpl' => 'dropDown',
 //                'ul_class' => 'nav navbar-nav nav_1'
                                 ])?>

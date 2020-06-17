@@ -1363,13 +1363,15 @@ h3.tittle1 {
     color: #777;
 }
 .categories a{
-    background: url("../images/icons1.png") no-repeat 10px 9px !important;
+    /*background: url("../images/icons1.png") no-repeat 10px 9px !important;*/
     padding: 7px 0 0 31px;
     border-radius: 3px;
     margin: 2px;
     font-size: 15px;
 }
-
+.dropdown-toggle::after {
+	display:none;
+}
 .categories ul,
 .categories li
 {
@@ -1430,7 +1432,7 @@ h3.tittle1 {
 .categories label,
 .categories label::before
 {
-	background:url("../images/icons1.png") no-repeat 15px 9px !important;
+	/*background:url("../images/icons1.png") no-repeat 15px 9px !important;*/
 }
 .categories label,
 .categories a,

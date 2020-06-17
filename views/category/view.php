@@ -3,7 +3,7 @@
 use yii\widgets\LinkPager;
 
 ?>
-<?php //debug($category);?>
+<?php //debug($renderProducts);?>
 <!--brendcrumbs-->
 <!--<div class="banner1">-->
 <!--    <div class="container">-->
@@ -22,7 +22,7 @@ use yii\widgets\LinkPager;
                         <ul class="tree-list-pad">
                             <h3>Категории</h3>
                             <?= \app\components\DropDownWidget::widget([
-                                'tpl' => 'menuCategory'
+                                'tpl' => 'menuCategory',
                             ]) ?>
                         </ul>
                     </div>
@@ -37,17 +37,11 @@ use yii\widgets\LinkPager;
                     </div>
                     <div class="brand-w3l">
                         <h3>Фирма</h3>
+                        <?php foreach ($renderProducts as $product): ?>
                         <ul>
-                            <li><a href="#">Ralph Lauren</a></li>
-                            <li><a href="#">adidas</a></li>
-                            <li><a href="#">Bottega Veneta</a></li>
-                            <li><a href="#">Valentino</a></li>
-                            <li><a href="#">Nike</a></li>
-                            <li><a href="#">Burberry</a></li>
-                            <li><a href="#">Michael Kors</a></li>
-                            <li><a href="#">Louis Vuitton</a></li>
-                            <li><a href="#">Jimmy Choo</a></li>
+<!--                            <li><a href="#">--><?//= $product['brand'] ?><!--</a></li>-->
                         </ul>
+                        <?php endforeach; ?>
                     </div>
 <!--                    <div class="cat-img">-->
 <!--                        <img class="img-responsive " src="/images/45.jpg" alt="">-->
