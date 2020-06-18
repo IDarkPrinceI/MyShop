@@ -4,6 +4,8 @@
 namespace app\models;
 
 
+use yii\data\Pagination;
+use yii\data\Sort;
 use yii\db\ActiveRecord;
 
 class Category extends ActiveRecord
@@ -30,4 +32,5 @@ class Category extends ActiveRecord
     {
         return $this->hasMany(Category::class, ['parent_id' => 'id']);
     }
+
 }

@@ -1,6 +1,7 @@
 <?php
 
 use yii\widgets\LinkPager;
+use yii\helpers\Url;
 
 ?>
 <?php //debug($renderProducts);?>
@@ -39,7 +40,8 @@ use yii\widgets\LinkPager;
                         <h3>Фирма</h3>
                         <?php foreach ($renderProducts as $product): ?>
                         <ul>
-<!--                            <li><a href="#">--><?//= $product['brand'] ?><!--</a></li>-->
+<!--                            <li><a href="--><?//= Url::to(['category/brand-to-sort', 'id' => $product['brand_id'] ])?><!--">--><?//= $product->brand['id']?><!--</a></li>-->
+                            <li><a href="<?= Url::to(['product/brand-sort', 'brand_id' => $product['brand_id'] ])?>">Волма</a></li>
                         </ul>
                         <?php endforeach; ?>
                     </div>
@@ -124,10 +126,10 @@ use yii\widgets\LinkPager;
                             </div>
                     </div>
                     <div class="clearfix"> </div>
-                    <?= LinkPager::widget([
-                        'pagination' => $pages,
-                        'maxButtonCount' => 3,
-                    ])?>
+<!--                    --><?//= LinkPager::widget([
+//                        'pagination' => $pages,
+//                        'maxButtonCount' => 3,
+//                    ])?>
                 </div>
                 <div class="clearfix"> </div>
             </div>

@@ -91,4 +91,26 @@ class ProductController extends AppHomeController
                         'search',
                         'sort'));
     }
+
+    public function actionBrandSort($brand_id)
+    {
+
+        $brand_id = (int)$brand_id;
+        $productsToBrand = (new Product())->getProductsToBrand($brand_id);
+
+        //404
+        if (empty($productsToBrand)) {
+            throw new NotFoundHttpException('Запрашиваемая страница не существует.');
+        }
+        //404
+
+        $sort = (new Product())->getSortParameters();
+        $queryParameters = (new Product())->getQueryParameters($brand_id);
+        $pages = (new Product())->getPaginationParameters($queryParameters);
+        return $this->render('sort', compact(
+            'productsToBrand',
+                 'sort',
+                    'pages'
+        ));
+    }
 }

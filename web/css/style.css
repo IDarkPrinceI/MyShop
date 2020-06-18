@@ -122,9 +122,13 @@ body{
 }
 .logo-nav-left1 ul li a{
 	font-size: 1em;
-    color: #fff;
-    text-decoration: none;
+    color: #5e7a94;
 	font-weight: 600;
+	/*text-decoration: underline;*/
+	line-height: 2;
+}
+#my_dropdown {
+	text-decoration: underline;
 }
 .navbar-default .navbar-nav > li > a {
     color: #fff;
@@ -179,7 +183,8 @@ ul.multi-column-dropdown h6 {
 	font-weight:500 !important;
 }
 .dropdown-menu.columns-3 {
-    padding: 30px 30px;
+    padding: 25px 25px;
+	width: 280px;
 }
 .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
     background: none;
@@ -1376,6 +1381,7 @@ h3.tittle1 {
 .categories li
 {
 	list-style: none;
+
 }
 
 .categories input

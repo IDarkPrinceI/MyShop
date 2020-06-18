@@ -4,6 +4,7 @@
 namespace app\controllers;
 
 
+use app\models\Brand;
 use app\models\Category;
 use app\models\Product;
 use Yii;
@@ -62,5 +63,7 @@ class CategoryController extends AppHomeController
 
         return $this->render('view', compact(   'category','sort', 'renderProducts', 'pages'));
     }
+
+
 
 }
