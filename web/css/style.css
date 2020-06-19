@@ -11,6 +11,7 @@ body a{
 	-moz-transition:0.5s all;
 	-o-transition:0.5s all;
 	-ms-transition:0.5s all;
+
 }
 input[type="button"]{
 	transition:0.5s all;
@@ -1371,7 +1372,7 @@ h3.tittle1 {
     /*background: url("../images/icons1.png") no-repeat 10px 9px !important;*/
     padding: 7px 0 0 31px;
     border-radius: 3px;
-    margin: 2px;
+    /*margin: 2px;*/
     font-size: 15px;
 }
 .dropdown-toggle::after {
@@ -1499,6 +1500,7 @@ h3.tittle1 {
 	padding: 7px 0 0 31px;
 	border-radius: 3px;
 	margin: 2px;
+	list-style-type: none;
 }
 .price h3,.top-rates h3,.brand-w3l h3, .categories h3{
     text-align: center;
@@ -2253,6 +2255,9 @@ p.quote {
 	-moz-box-shadow: 0px 0px 15px 0px #D6D6D6;
 	-webkit-box-shadow: 0px 0px 15px 0px #D6D6D6;
 	padding: 3em ;
+}
+#my_title_link {
+	color: #FFFFFF;
 }
 
 .key  input[type="text"] ,.key  input[type="password"]{

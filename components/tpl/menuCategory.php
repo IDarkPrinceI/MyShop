@@ -5,7 +5,7 @@
 
 <div class="dropdown menu" >
     <a  <?php if($category['parent_id']) : ?>
-            href="<?= \yii\helpers\Url::to(['category/view', 'id' => $category['id']])?>">
+            href="<?= \yii\helpers\Url::to(['category/view', 'category_id' => $category['id']])?>">
     <?php endif; ?>
 
         <?php if(isset($category['children']))

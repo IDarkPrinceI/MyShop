@@ -15,53 +15,43 @@ use yii\web\NotFoundHttpException;
 class CategoryController extends AppHomeController
 {
 
-    public function actionView($id)
-    {
+    public function actionView($category_id)
 //        $id = Yii::$app->request->get($id);
-        //sort
-        $sort = new Sort([
-            'attributes' => [
-                'price' => [
-                    'label' => 'Цена'
-                ],
-                'name' => [
-                    'asc' => ['name' => SORT_ASC],
-                    'desc' => ['name' => SORT_DESC],
-                    'default' => SORT_ASC,
-                    'label' => 'Название',
-                ]
-            ]
-        ]);
-        //sort
+    {
+        $category_id = (int)$category_id;
 
-        $products = Product::find()
-            ->where(['category_id' => $id]);
-
-        //404
-        $category = Category::findOne($id);
-        if (empty($category)) {
-            throw new NotFoundHttpException('Запрашиваемая страница не существует.');
-        }
-        //404
-
-        //set Meta
-        $this->setMeta("{$category->name}", $category->keywords, $category->description);
-        //set Meta
-
-        //pagination product
-        $pages = new Pagination(['totalCount' => $products->count(),
-            'pageSize' => 3,
-            'forcePageParam' => false,
-            'pageSizeParam' => false
-        ]);
-        $renderProducts = $products
+        $baseProducts = (new Category())->getProductsToCategory($category_id);
+        $sort = (new Product())->getSortParameters();
+        $pages = (new Product())->getPaginationParameters($baseProducts);
+        $renderProducts = $baseProducts
             ->offset($pages->offset)
             ->limit($pages->limit)
             ->orderBy($sort->orders)
             ->all();
-        //pagination product
 
-        return $this->render('view', compact(   'category','sort', 'renderProducts', 'pages'));
+        //404
+        if (empty($renderProducts)) {
+            throw new NotFoundHttpException('Запрашиваемая страница не существует.');
+        }
+        //404
+
+
+        //set Meta
+        $category = Category::findOne($category_id);
+        $this->setMeta("{$category->name}", $category->keywords, $category->description);
+        //set Meta
+
+        //test
+        $productBrand = Product::find()->where(['category_id' => $category_id])->select('brand_id')->distinct()->all();
+        //test
+
+        return $this->render('view', compact(
+                          'category',
+                               'sort',
+                                  'renderProducts',
+                                  'pages',
+                                  'productBrand'
+                            ));
     }
 
 

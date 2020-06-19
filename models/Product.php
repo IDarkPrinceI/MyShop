@@ -23,12 +23,26 @@ class Product extends ActiveRecord
 
     public function getBrand()
     {
-        return $this->hasOne(Brand::class, ['brand_id' => 'id']);
+        return $this->hasOne(Brand::class, ['id' => 'brand_id']);
     }
 
-    public function getQueryParameters($id)
+    public function getQuery()
     {
-        $queryParameters = Product::find()
+        $baseQuery = Product::find();
+        return $baseQuery;
+    }
+
+    public function getQueryProductsParameters($id, $baseQuery)
+    {
+        $queryParameters = $baseQuery
+            ->where([
+                'category_id' => $id
+            ]);
+        return $queryParameters;
+    }
+    public function getQueryParameters($id, $baseProductsToBrandQuery)
+    {
+        $queryParameters = $baseProductsToBrandQuery
             ->where([
                 'brand_id' => $id
             ]);
@@ -38,15 +52,9 @@ class Product extends ActiveRecord
     // Возвращает массив товаров нужного бренда
     public function getProductsToBrand($id)
     {
-        $query = $this->getQueryParameters($id);
-        $sort = $this->getSortParameters();
-        $pages = $this->getPaginationParameters($query);
-        $brandProducts = $query
-            ->offset($pages->offset)
-            ->limit($pages->limit)
-            ->orderBy($sort->orders)
-            ->all();
-        return $brandProducts;
+        $baseProductsToBrandQuery = $this->getQuery();
+                                    $this->getQueryParameters($id, $baseProductsToBrandQuery);
+        return $baseProductsToBrandQuery;
     }
 
     public function getSortParameters()
@@ -70,7 +78,7 @@ class Product extends ActiveRecord
     public function getPaginationParameters($query)
     {
         $paginationParameters = new Pagination(['totalCount' => $query->count(),
-            'pageSize' => 3,
+            'pageSize' => 9,
             'forcePageParam' => false,
             'pageSizeParam' => false
         ]);

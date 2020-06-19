@@ -8,7 +8,7 @@ use yii\helpers\Url;
 
     <a  <?php if($category['parent_id']) : ?>
 
-            href="<?= Url::to(['category/view', 'id' => $category['id']])?>"
+            href="<?= Url::to(['category/view', 'category_id' => $category['id']])?>"
         <?php endif; ?>
         <?php if(isset($category['children']))
             echo 'class="dropdown-toogle" data-toggle="dropdown" style="cursor: pointer"' ?>>

@@ -3,6 +3,8 @@
 
 namespace app\controllers;
 
+use app\models\Brand;
+use app\models\Category;
 use Yii;
 use app\models\Product;
 use yii\data\Pagination;
@@ -36,7 +38,16 @@ class ProductController extends AppHomeController
         $productSale = $query->offset($pages->offset)->limit($pages->limit)->all();
         //        pagination productSale
 
-        return $this->render('view', compact('product','productSale', 'pages', 'productQty'));
+        //getbrands
+        $brands = (new Brand())->getBrands();
+        //getbrands
+
+        return $this->render('view', compact(
+                          'product',
+                                'productSale',
+                                   'pages',
+                                   'productQty',
+                                   'brands'));
     }
 
 
@@ -97,6 +108,13 @@ class ProductController extends AppHomeController
 
         $brand_id = (int)$brand_id;
         $productsToBrand = (new Product())->getProductsToBrand($brand_id);
+        $sort = (new Product())->getSortParameters();
+        $pages = (new Product())->getPaginationParameters($productsToBrand);
+        $productsToBrand = $productsToBrand
+            ->offset($pages->offset)
+            ->limit($pages->limit)
+            ->orderBy($sort->orders)
+            ->all();
 
         //404
         if (empty($productsToBrand)) {
@@ -104,9 +122,11 @@ class ProductController extends AppHomeController
         }
         //404
 
-        $sort = (new Product())->getSortParameters();
-        $queryParameters = (new Product())->getQueryParameters($brand_id);
-        $pages = (new Product())->getPaginationParameters($queryParameters);
+        //set Meta
+        $brand = (new Brand())->getBrand($brand_id);
+        $this->setMeta("Instrumental :: {$brand->name}");
+        //set Meta
+
         return $this->render('sort', compact(
             'productsToBrand',
                  'sort',

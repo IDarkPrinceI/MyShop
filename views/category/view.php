@@ -4,7 +4,7 @@ use yii\widgets\LinkPager;
 use yii\helpers\Url;
 
 ?>
-<?php //debug($renderProducts);?>
+<?php //debug($productBrand);?>
 <!--brendcrumbs-->
 <!--<div class="banner1">-->
 <!--    <div class="container">-->
@@ -38,11 +38,10 @@ use yii\helpers\Url;
                     </div>
                     <div class="brand-w3l">
                         <h3>Фирма</h3>
-                        <?php foreach ($renderProducts as $product): ?>
-                        <ul>
-<!--                            <li><a href="--><?//= Url::to(['category/brand-to-sort', 'id' => $product['brand_id'] ])?><!--">--><?//= $product->brand['id']?><!--</a></li>-->
-                            <li><a href="<?= Url::to(['product/brand-sort', 'brand_id' => $product['brand_id'] ])?>">Волма</a></li>
-                        </ul>
+                        <?php foreach ($productBrand as $brand): ?>
+                        <li>
+                             <a href="<?= Url::to(['product/brand-sort', 'brand_id' => $brand->brand->id ])?>"><?= $brand->brand->name?></a>
+                        </li>
                         <?php endforeach; ?>
                     </div>
 <!--                    <div class="cat-img">-->
@@ -126,10 +125,10 @@ use yii\helpers\Url;
                             </div>
                     </div>
                     <div class="clearfix"> </div>
-<!--                    --><?//= LinkPager::widget([
-//                        'pagination' => $pages,
-//                        'maxButtonCount' => 3,
-//                    ])?>
+                    <?= LinkPager::widget([
+                        'pagination' => $pages,
+                        'maxButtonCount' => 3,
+                    ])?>
                 </div>
                 <div class="clearfix"> </div>
             </div>

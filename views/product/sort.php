@@ -13,11 +13,15 @@ use yii\helpers\Url;
 <!--</div>-->
 <!--brendcrumbs-->
 <!--content-->
-<?//= debug($productsToBrand->category)?>
 <div class="content" id="my_content">
     <div class="products-agileinfo">
         <div class="container">
-            <h2 class="tittle"><?= $productsToBrand->category->name ?></h2>
+            <?php foreach ($productsToBrand as $product) ?>
+            <h2 class="tittle">
+                <a id="my_title_link" href="<?= Url::to(['category/view', 'category_id' => $product->category['id']])?>"><?= $product->category->name ?></a>
+                <span> / </span>
+                <?= $product->brand->name ?>
+            </h2>
             <div class="product-agileinfo-grids w3l">
                 <div class="col-md-3 product-agileinfo-grid">
                     <div class="categories">
@@ -36,15 +40,6 @@ use yii\helpers\Url;
                                 <input type="text" id="amount" style="border: 0; color: #ffffff; font-weight: normal;" />
                             </li>
                         </ul>
-                    </div>
-                    <div class="brand-w3l">
-                        <h3>Фирма</h3>
-<!--                        --><?php //foreach ($renderProducts as $product): ?>
-<!--                            <ul>-->
-<!--                                                           <li><a href="-->--><?////= Url::to(['category/brand-to-sort', 'id' => $product['brand_id'] ])?><!--<!--">-->--><?////= $product->brand['id']?><!--<!--</a></li>-->-->
-<!--                                <li><a href="--><?//= Url::to(['category/brand-sort', 'brand_id' => $product['brand_id'] ])?><!--">Волма</a></li>-->
-<!--                            </ul>-->
-<!--                        --><?php //endforeach; ?>
                     </div>
                     <!--                    <div class="cat-img">-->
                     <!--                        <img class="img-responsive " src="/images/45.jpg" alt="">-->
@@ -126,10 +121,10 @@ use yii\helpers\Url;
                             </div>
                     </div>
                     <div class="clearfix"> </div>
-                                        <?= LinkPager::widget([
-                                            'pagination' => $pages,
-                                            'maxButtonCount' => 3,
-                                        ])?>
+                    <?= LinkPager::widget([
+                            'pagination' => $pages,
+                        'maxButtonCount' => 3,
+                    ])?>
                 </div>
                 <div class="clearfix"> </div>
             </div>
