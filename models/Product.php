@@ -26,35 +26,38 @@ class Product extends ActiveRecord
         return $this->hasOne(Brand::class, ['id' => 'brand_id']);
     }
 
-    public function getQuery()
+    public function getQueryProductsToCategory($category_id)
     {
-        $baseQuery = Product::find();
-        return $baseQuery;
+       $query = Product::find()
+           ->where([
+               'category_id' => $category_id
+           ]);
+       return $query;
     }
 
-    public function getQueryProductsParameters($id, $baseQuery)
+    public function getQueryProductsToBrand($brand_id)
     {
-        $queryParameters = $baseQuery
+        $query = Product::find()
             ->where([
-                'category_id' => $id
+                'brand_id' => $brand_id
             ]);
-        return $queryParameters;
-    }
-    public function getQueryParameters($id, $baseProductsToBrandQuery)
-    {
-        $queryParameters = $baseProductsToBrandQuery
-            ->where([
-                'brand_id' => $id
-            ]);
-        return $queryParameters;
+//            ->with('brand')
+//            ->all();
+//            ->innerJoin(
+//                'brand',
+////                'brand_id = id'
+//                'brand.id = product.brand_id'
+//            );
+        return $query;
     }
 
-    // Возвращает массив товаров нужного бренда
-    public function getProductsToBrand($id)
+    public function getQueryProductsToSearch($search)
     {
-        $baseProductsToBrandQuery = $this->getQuery();
-                                    $this->getQueryParameters($id, $baseProductsToBrandQuery);
-        return $baseProductsToBrandQuery;
+        $query = Product::find()
+            ->where([
+                'like', 'name', $search
+            ]);
+        return $query;
     }
 
     public function getSortParameters()
@@ -83,5 +86,15 @@ class Product extends ActiveRecord
             'pageSizeParam' => false
         ]);
         return $paginationParameters;
+    }
+    public function getProductsBrand($id)
+    {
+        $productsBrand = Product::find()
+            ->where(['category_id' => $id])
+            ->select('brand_id')
+            ->distinct()
+            ->all();
+        ksort($productsBrand);
+        return $productsBrand;
     }
 }

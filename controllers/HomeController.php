@@ -12,9 +12,12 @@ class HomeController extends AppHomeController
 
     public function actionIndex()
     {
-        $this->setMeta('Instrumental :: all for you', 'Ремонт', 'Самые низкие цены');
+        $this->setMeta(\Yii::$app->params['shopName'],
+                                'Ремонт',
+                               'Самые низкие цены');
 
-        $queryNew = Product::find()->where(['is_new' => 1]);
+        $queryNew = Product::find()
+            ->where(['is_new' => 1]);
 
         //pagination productNew
         $pagesNew = new Pagination(['totalCount' => $queryNew->count(),
@@ -23,7 +26,10 @@ class HomeController extends AppHomeController
             'forcePageParam' => false,
             'pageSizeParam' => false
         ]);
-        $productNew = $queryNew->offset($pagesNew->offset)->limit($pagesNew->limit)->all();
+        $productNew = $queryNew
+            ->offset($pagesNew->offset)
+            ->limit($pagesNew->limit)
+            ->all();
         //pagination productNew
 
         $queryHit = Product::find()->where(['is_hit' => 1]);
@@ -35,7 +41,10 @@ class HomeController extends AppHomeController
             'forcePageParam' => false,
             'pageSizeParam' => false
         ]);
-        $productHit = $queryHit->offset($pagesHit->offset)->limit($pagesHit->limit)->all();
+        $productHit = $queryHit
+            ->offset($pagesHit->offset)
+            ->limit($pagesHit->limit)
+            ->all();
         //pagination productHit
 
         return $this->render('index', compact(

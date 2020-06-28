@@ -32,13 +32,19 @@ use yii\helpers\Url;
                         <ul class="dropdown-menu6">
                             <li>
                                 <div id="slider-range"></div>
-                                <input type="text" id="amount" style="border: 0; color: #ffffff; font-weight: normal;" />
+                                <input type="text" id="amount" style="border: 0; color: #bb2323; font-weight: normal;" />
                             </li>
+<!--                                <form action="--><?//= \yii\helpers\Url::to(['product/search'])?><!--" method="get">-->
+<!--                                    <input name="search" type="text" placeholder="Цена от...">-->
+<!--                                </form>-->
+<!--                            <form action="--><?//= \yii\helpers\Url::to(['product/search'])?><!--" method="get">-->
+<!--                                <input  type="text" placeholder="Цена до...">-->
+<!--                            </form>-->
                         </ul>
                     </div>
                     <div class="brand-w3l">
                         <h3>Фирма</h3>
-                        <?php foreach ($productBrand as $brand): ?>
+                        <?php foreach ($productsBrand as $brand): ?>
                         <li>
                              <a href="<?= Url::to(['product/brand-sort', 'brand_id' => $brand->brand->id ])?>"><?= $brand->brand->name?></a>
                         </li>

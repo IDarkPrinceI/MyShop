@@ -16,7 +16,7 @@ use yii\helpers\Url;
 <div class="content" id="my_content">
     <div class="products-agileinfo">
         <div class="container">
-            <?php foreach ($productsToBrand as $product) ?>
+            <?php foreach ($renderProductsToBrand as $product) ?>
             <h2 class="tittle">
                 <a id="my_title_link" href="<?= Url::to(['category/view', 'category_id' => $product->category['id']])?>"><?= $product->category->name ?></a>
                 <span> / </span>
@@ -81,7 +81,7 @@ use yii\helpers\Url;
                     <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
                         <ul id="myTab" class="nav1 nav1-tabs left-tab" role="tablist">
                             <div id="myTabContent" class="tab-content">
-                                <?php foreach ($productsToBrand as $product) :?>
+                                <?php foreach ($renderProductsToBrand as $product) :?>
                                     <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
                                         <div class="product-tab">
                                             <div class="col-md-4 product-tab-grid simpleCart_shelfItem">
@@ -123,7 +123,7 @@ use yii\helpers\Url;
                     <div class="clearfix"> </div>
                     <?= LinkPager::widget([
                             'pagination' => $pages,
-                        'maxButtonCount' => 3,
+                            'maxButtonCount' => 3,
                     ])?>
                 </div>
                 <div class="clearfix"> </div>

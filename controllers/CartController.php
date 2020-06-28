@@ -93,7 +93,7 @@ class CartController extends AppHomeController
                         'orderId' => $order->id])
 //                                                               'imageFileName' => '@product_img/11.png'])
                         ->setFrom([\Yii::$app->params['senderEmail'] =>
-                            \Yii::$app->params['senderName']])
+                            \Yii::$app->params['shopName']])
                         ->setTo([\Yii::$app->params['adminEmail'], $order['email']])
                         ->setSubject("Заказ №{$order->id} оформлен")
                         ->send();

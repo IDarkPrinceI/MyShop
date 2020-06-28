@@ -82,9 +82,9 @@ $config = [
             'rules' => [
 //                'new/<pageHit:\d+>' => 'home/index',
 //                'new/<pageNew:\d+>' => 'home/index',
-                'category/<id:\d+>' => 'category/view',
+                'category/<category_id:\d+>' => 'category/view',
                 'product/<id:\d+>' => 'product/view',
-                'category' => 'category/brand-sort',
+                'product' => 'product/brand-sort',
                 'search' => 'product/search'
             ],
         ],

@@ -4,11 +4,9 @@
 namespace app\controllers;
 
 use app\models\Brand;
-use app\models\Category;
 use Yii;
 use app\models\Product;
 use yii\data\Pagination;
-use yii\data\Sort;
 use yii\web\NotFoundHttpException;
 
 class ProductController extends AppHomeController
@@ -16,6 +14,7 @@ class ProductController extends AppHomeController
 
     public function actionView($id)
     {
+        $id = (int)$id;
         $product = Product::findOne($id);
 
         //404
@@ -38,38 +37,55 @@ class ProductController extends AppHomeController
         $productSale = $query->offset($pages->offset)->limit($pages->limit)->all();
         //        pagination productSale
 
-        //getbrands
-        $brands = (new Brand())->getBrands();
-        //getbrands
 
         return $this->render('view', compact(
-                          'product',
-                                'productSale',
-                                   'pages',
-                                   'productQty',
-                                   'brands'));
+              'product',
+                   'productSale',
+                     'pages',
+                     'productQty',
+                     'brands'));
     }
-
 
     public function actionSearch()
     {
-        //sort
-        $sort = new Sort([
-            'attributes' => [
-                'price' => [
-                    'label' => 'Цена'
-                ],
-                'name' => [
-                    'asc' => ['name' => SORT_ASC],
-                    'desc' => ['name' => SORT_DESC],
-                    'default' => SORT_ASC,
-                    'label' => 'Название',
-                ]
-            ]
-        ]);
-        //sort
-
         $search = trim(Yii::$app->request->get('search'));
+        $queryProductsToSearch = (new Product())->getQueryProductsToSearch($search);
+        $sort = (new Product())->getSortParameters();
+        $pages = (new Product())->getPaginationParameters($queryProductsToSearch);
+        $renderProductsToSearch = $queryProductsToSearch
+            ->offset($pages->offset)
+            ->limit($pages->limit)
+            ->orderBy($sort->orders)
+            ->all();
+//        $productsBrand = $queryProductsToSearch
+//            ->with('brand')
+//            ->select('brand_id')
+//            ->joinWith('brand')
+//            ->leftJoin('brand', '`brand`.`id` = `product`.`brand_id`')
+//            ->innerJoin(Brand::tableName(),'brand_id = brand.id'
+//                'brand',
+//                'brand.id = product.brand_id'
+//                'id = brand_id'
+//                'brand_id = id'
+
+//            ->distinct()
+
+//            ->asArray()
+//            ->indexBy('brand_id')
+//            ->all();
+//        return Comments::find()
+//            ->innerJoin(Books::tableName(),'model_id = books.id')
+//            ->where(['books.user_id'=>Yii::$app->user->identity->id])
+//            ->all();
+        $new = Product::find()
+            ->where([
+                'like', 'name', $search
+            ])
+            ->with('brand')
+            ->all();
+
+        debug($new);
+
 
         //set Meta
         $this->setMeta("Поиск: {$search} ");
@@ -81,43 +97,33 @@ class ProductController extends AppHomeController
         }
         //404
 
-        //pagination search
-        $query = Product::find()->where(['like', 'name', $search]);
-        $pages = new Pagination(['totalCount' => $query->count(),
-            'pageSize' => 3,
-            'forcePageParam' => false,
-            'pageSizeParam' => false
-        ]);
-        $searchProducts = $query
-            ->offset($pages->offset)
-            ->limit($pages->limit)
-            ->orderBy($sort->orders)
-            ->all();
-        //pagination search
-
-        return $this->render('search',
-            compact(
-                'searchProducts',
-                     'pages',
-                        'search',
-                        'sort'));
+        return $this->render('search', compact(
+             'renderProductsToSearch',
+                  'productsBrand',
+                    'pages',
+                    'search',
+                    'sort'));
     }
 
     public function actionBrandSort($brand_id)
     {
-
         $brand_id = (int)$brand_id;
-        $productsToBrand = (new Product())->getProductsToBrand($brand_id);
+        $baseProductsToBrand = (new Product())->getQueryProductsToBrand($brand_id);
+
         $sort = (new Product())->getSortParameters();
-        $pages = (new Product())->getPaginationParameters($productsToBrand);
-        $productsToBrand = $productsToBrand
+        $pages = (new Product())->getPaginationParameters($baseProductsToBrand);
+        $renderProductsToBrand = $baseProductsToBrand
+
             ->offset($pages->offset)
             ->limit($pages->limit)
             ->orderBy($sort->orders)
+//            ->with('brand')
+//            ->indexBy('name')
             ->all();
+//        debug($renderProductsToBrand);
 
         //404
-        if (empty($productsToBrand)) {
+        if (empty($baseProductsToBrand)) {
             throw new NotFoundHttpException('Запрашиваемая страница не существует.');
         }
         //404
@@ -128,7 +134,7 @@ class ProductController extends AppHomeController
         //set Meta
 
         return $this->render('sort', compact(
-            'productsToBrand',
+            'renderProductsToBrand',
                  'sort',
                     'pages'
         ));

@@ -1,6 +1,8 @@
 <?php
 
+use yii\helpers\Html;
 use yii\widgets\LinkPager;
+use yii\helpers\Url;
 ?>
 
 <!--brendcrumbs-->
@@ -11,13 +13,13 @@ use yii\widgets\LinkPager;
 <!--</div>-->
 <!--brendcrumbs-->
 <!--content-->
-
-<div class="content" id="my_content">
+<?php //debug($renderProductsToSearch);?>
+<div class="content">
     <div class="products-agileinfo">
         <div class="container">
-        <?php if(!empty($searchProducts)): ?>
-        <?php foreach ($searchProducts as $product) ?>
-        <h2 class="tittle"> Поиск: "<?= \yii\helpers\Html::encode($search)?>"</h2>
+        <?php if(!empty($renderProductsToSearch)): ?>
+<!--        --><?php //foreach ($renderProductsToSearch as $product) ?>
+        <h2 class="tittle"> Поиск: "<?= Html::encode($search)?>"</h2>
             <div class="product-agileinfo-grids w3l">
                 <div class="col-md-3 product-agileinfo-grid">
                     <div class="categories">
@@ -29,7 +31,7 @@ use yii\widgets\LinkPager;
                         </ul>
                     </div>
                     <div class="price">
-                        <h3>Price Range</h3>
+                        <h3>Диапазон цены</h3>
                         <ul class="dropdown-menu6">
                             <li>
                                 <div id="slider-range"></div>
@@ -37,61 +39,14 @@ use yii\widgets\LinkPager;
                             </li>
                         </ul>
                     </div>
-                    <div class="top-rates">
-                        <h3>Top Rates products</h3>
-                        <div class="recent-grids">
-                            <div class="recent-left">
-                                <a href="single.html"><img class="img-responsive " src="/images/r.jpg" alt=""></a>
-                            </div>
-                            <div class="recent-right">
-                                <h6 class="best2"><a href="single.html">Lorem ipsum dolor </a></h6>
-                                <p><del>$100.00</del> <em class="item_price">$09.00</em></p>
-                            </div>
-                            <div class="clearfix"> </div>
-                        </div>
-                        <div class="recent-grids">
-                            <div class="recent-left">
-                                <a href="single.html"><img class="img-responsive " src="/images/r1.jpg" alt=""></a>
-                            </div>
-                            <div class="recent-right">
-                                <h6 class="best2"><a href="single.html">Duis aute irure </a></h6>
-                                <p><del>$100.00</del> <em class="item_price">$19.00</em></p>
-                            </div>
-                            <div class="clearfix"> </div>
-                        </div>
-                        <div class="recent-grids">
-                            <div class="recent-left">
-                                <a href="single.html"><img class="img-responsive " src="/images/r2.jpg" alt=""></a>
-                            </div>
-                            <div class="recent-right">
-                                <h6 class="best2"><a href="single.html">Lorem ipsum dolor </a></h6>
-                                <p><del>$100.00</del> <em class="item_price">$39.00</em></p>
-                            </div>
-                            <div class="clearfix"> </div>
-                        </div>
-                        <div class="recent-grids">
-                            <div class="recent-left">
-                                <a href="single.html"><img class="img-responsive " src="/images/r3.jpg" alt=""></a>
-                            </div>
-                            <div class="recent-right">
-                                <h6 class="best2"><a href="single.html">Ut enim ad minim </a></h6>
-                                <p><em class="item_price">$39.00</em></p>
-                            </div>
-                            <div class="clearfix"> </div>
-                        </div>
-                    </div>
                     <div class="brand-w3l">
-                        <h3>Brands Filter</h3>
+                        <h3>Фирма</h3>
                         <ul>
-                            <li><a href="#">Ralph Lauren</a></li>
-                            <li><a href="#">adidas</a></li>
-                            <li><a href="#">Bottega Veneta</a></li>
-                            <li><a href="#">Valentino</a></li>
-                            <li><a href="#">Nike</a></li>
-                            <li><a href="#">Burberry</a></li>
-                            <li><a href="#">Michael Kors</a></li>
-                            <li><a href="#">Louis Vuitton</a></li>
-                            <li><a href="#">Jimmy Choo</a></li>
+                            <?php foreach ($productsBrand as $brand): ?>
+                                <li>
+                                    <a href="<?= Url::to(['product/brand-sort', 'brand_id' => $brand->brand->id ])?>"><?= $brand->brand->name?></a>
+                                </li>
+                            <?php endforeach; ?>
                         </ul>
                     </div>
                     <!--                    <div class="cat-img">-->
@@ -125,16 +80,16 @@ use yii\widgets\LinkPager;
                     <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
                         <ul id="myTab" class="nav1 nav1-tabs left-tab" role="tablist">
                             <div id="myTabContent" class="tab-content">
-                                <?php foreach ($searchProducts as $product) :?>
+                                <?php foreach ($renderProductsToSearch as $product) :?>
                                     <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
                                         <div class="product-tab">
                                             <div class="col-md-4 product-tab-grid simpleCart_shelfItem">
                                                 <div class="grid-arr">
                                                     <div  class="grid-arrival">
                                                         <figure>
-                                                            <a href="<?= \yii\helpers\Url::to(['product/view', 'id' => $product['id']]) ?>" class="new-gri" >
+                                                            <a href="<?= Url::to(['product/view', 'id' => $product['id']]) ?>" class="new-gri" >
                                                                 <div class="grid-img">
-                                                                    <img  src="<?= \yii\helpers\Url::to(["@web/product_img/{$product->img}", ['alt' => $product->name, ] ]) ?>" class="img-responsive">
+                                                                    <img  src="<?= Url::to(["@web/product_img/{$product->img}", 'alt' => $product->name]) ?>" class="img-responsive">
                                                                 </div>
                                                                 <!--                                                            <div class="grid-img">-->
                                                                 <!--                                                                <img  src="/images/p22.jpg" class="img-responsive"  alt="">-->
@@ -173,7 +128,7 @@ use yii\widgets\LinkPager;
                 <div class="clearfix"> </div>
                 </div>
             <?php else: ?>
-            <h3>По запросу ничего не найдено...</h3>
+            <h3 class="middle">По запросу ничего не найдено...</h3>
         </div>
         <? endif;?>
     </div>
