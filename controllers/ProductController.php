@@ -57,8 +57,18 @@ class ProductController extends AppHomeController
             ->limit($pages->limit)
             ->orderBy($sort->orders)
             ->all();
+
+        $test = Product::find()
+//            ->where(['product.category_id' => 1])
+            ->asArray()
+            ->count('name');
+//            ->joinWith('brand')
+//            ->groupBy('brand.name')
+//            ->all();
+        debug($test);
+
 //        $productsBrand = $queryProductsToSearch
-//            ->with('brand')
+//            ->joinwith('brand')
 //            ->select('brand_id')
 //            ->joinWith('brand')
 //            ->leftJoin('brand', '`brand`.`id` = `product`.`brand_id`')
@@ -67,7 +77,8 @@ class ProductController extends AppHomeController
 //                'brand.id = product.brand_id'
 //                'id = brand_id'
 //                'brand_id = id'
-
+//        $model = app\models\Reports::find()->where(['id'=>$model->id])->joinWith('reportData')->one();
+//        $model = app\models\Reports::find()->where(['tb_reports.id'=>$model->id])->joinWith('reportData')->one();
 //            ->distinct()
 
 //            ->asArray()
@@ -77,14 +88,14 @@ class ProductController extends AppHomeController
 //            ->innerJoin(Books::tableName(),'model_id = books.id')
 //            ->where(['books.user_id'=>Yii::$app->user->identity->id])
 //            ->all();
-        $new = Product::find()
-            ->where([
-                'like', 'name', $search
-            ])
-            ->with('brand')
-            ->all();
-
-        debug($new);
+//        $new = Product::find()
+//            ->where([
+//                'like', 'name', $search
+//            ])
+//            ->with('brand')
+//            ->all();
+//
+//        debug($productsBrand);
 
 
         //set Meta

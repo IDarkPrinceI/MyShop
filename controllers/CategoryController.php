@@ -50,7 +50,4 @@ class CategoryController extends AppHomeController
                                   'productsBrand'
                             ));
     }
-
-
-
 }

@@ -44,7 +44,8 @@ use yii\helpers\Url;
                         <ul>
                             <?php foreach ($productsBrand as $brand): ?>
                                 <li>
-                                    <a href="<?= Url::to(['product/brand-sort', 'brand_id' => $brand->brand->id ])?>"><?= $brand->brand->name?></a>
+                                    <a href="<?= Url::to(['product/brand-sort', 'brand_id' => $brand->name ])?>"><?= $brand->name?></a>
+<!--                                    <a href="--><?//= Url::to(['product/brand-sort', 'brand_id' => $brand->brand->id ])?><!--">--><?//= $brand->brand->name?><!--</a>-->
                                 </li>
                             <?php endforeach; ?>
                         </ul>
