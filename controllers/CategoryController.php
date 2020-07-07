@@ -5,6 +5,7 @@ namespace app\controllers;
 
 
 
+use app\models\Brand;
 use app\models\Category;
 use app\models\Product;
 use Yii;
@@ -39,7 +40,9 @@ class CategoryController extends AppHomeController
         //set Meta
 
         //brands
-        $productsBrand = (new Product())->getProductsBrand($category_id);
+        $productsBrandBase = Product::find()
+            ->where(['product.category_id' => $category_id]);
+        $productsBrand = (new Product())->getProductsBrandParameters($productsBrandBase);
         //brands
 
         return $this->render('view', compact(

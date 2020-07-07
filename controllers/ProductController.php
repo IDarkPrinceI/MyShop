@@ -57,56 +57,21 @@ class ProductController extends AppHomeController
             ->limit($pages->limit)
             ->orderBy($sort->orders)
             ->all();
-
-        $test = Product::find()
-//            ->where(['product.category_id' => 1])
-            ->asArray()
-            ->count('name');
-//            ->joinWith('brand')
-//            ->groupBy('brand.name')
-//            ->all();
-        debug($test);
-
-//        $productsBrand = $queryProductsToSearch
-//            ->joinwith('brand')
-//            ->select('brand_id')
-//            ->joinWith('brand')
-//            ->leftJoin('brand', '`brand`.`id` = `product`.`brand_id`')
-//            ->innerJoin(Brand::tableName(),'brand_id = brand.id'
-//                'brand',
-//                'brand.id = product.brand_id'
-//                'id = brand_id'
-//                'brand_id = id'
-//        $model = app\models\Reports::find()->where(['id'=>$model->id])->joinWith('reportData')->one();
-//        $model = app\models\Reports::find()->where(['tb_reports.id'=>$model->id])->joinWith('reportData')->one();
-//            ->distinct()
-
-//            ->asArray()
-//            ->indexBy('brand_id')
-//            ->all();
-//        return Comments::find()
-//            ->innerJoin(Books::tableName(),'model_id = books.id')
-//            ->where(['books.user_id'=>Yii::$app->user->identity->id])
-//            ->all();
-//        $new = Product::find()
-//            ->where([
-//                'like', 'name', $search
-//            ])
-//            ->with('brand')
-//            ->all();
-//
-//        debug($productsBrand);
-
-
-        //set Meta
-        $this->setMeta("Поиск: {$search} ");
-        //set Meta
-
         //404
         if (empty($search)) {
             return $this->render('search');
         }
         //404
+
+        //set Meta
+        $this->setMeta("Поиск: {$search} ");
+        //set Meta
+
+        //brands
+        $productsBrandBase = Product::find()
+            ->where(['like', 'product.name', $search]);
+        $productsBrand = (new Product())->getProductsBrandParameters($productsBrandBase);
+        //brands
 
         return $this->render('search', compact(
              'renderProductsToSearch',
@@ -128,10 +93,7 @@ class ProductController extends AppHomeController
             ->offset($pages->offset)
             ->limit($pages->limit)
             ->orderBy($sort->orders)
-//            ->with('brand')
-//            ->indexBy('name')
             ->all();
-//        debug($renderProductsToBrand);
 
         //404
         if (empty($baseProductsToBrand)) {

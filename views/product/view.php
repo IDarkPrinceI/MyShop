@@ -27,6 +27,9 @@ use yii\widgets\LinkPager;
                         </div>
                         <div class="single-right simpleCart_shelfItem">
                             <h4><?= $product->name ?></h4>
+                            <div class="color-quality">
+                                <h6>Фирма: <?= $product->brand->name?></h6>
+                            </div>
                             <div class="block">
                                 <div class="starbox small ghosting"> </div>
                             </div>

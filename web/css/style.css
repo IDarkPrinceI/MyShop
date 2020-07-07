@@ -636,7 +636,7 @@ h2.tittle {
 	line-height: 8px;
 	display: inline-block;
 	width: 0.6em;
-	font-family: 'Cagliostro', sans-serif;
+	font-family: 'Georgia', sans-serif;
 }
 .price {
 	font-size: 22px;
@@ -644,7 +644,7 @@ h2.tittle {
 	color: #211f1f;
 	position: relative;
 	text-align: center;
-	font-family: 'Cagliostro', sans-serif;
+	font-family: 'Georgia', sans-serif;
 }
 
 
@@ -1384,6 +1384,9 @@ h3.tittle1 {
 	list-style: none;
 
 }
+.price em {
+	font-style: normal;
+}
 
 .categories input
 {
@@ -1933,7 +1936,7 @@ p.price {
     margin: 0.5em 0;
     color: #0c0c0c;
     font-weight: bold;
-    font-family: 'Cagliostro', sans-serif;
+    font-family: 'Georgia', sans-serif;
 }
 .color-quality h6 {
     font-size: 1.2em;

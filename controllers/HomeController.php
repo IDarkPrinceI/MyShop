@@ -18,7 +18,6 @@ class HomeController extends AppHomeController
 
         $queryNew = Product::find()
             ->where(['is_new' => 1]);
-
         //pagination productNew
         $pagesNew = new Pagination(['totalCount' => $queryNew->count(),
             'pageSize' => 4,
@@ -32,7 +31,8 @@ class HomeController extends AppHomeController
             ->all();
         //pagination productNew
 
-        $queryHit = Product::find()->where(['is_hit' => 1]);
+        $queryHit = Product::find()
+            ->where(['is_hit' => 1]);
 
         //pagination productHit
         $pagesHit = new Pagination(['totalCount' => $queryHit->count(),

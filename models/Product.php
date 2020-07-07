@@ -41,13 +41,6 @@ class Product extends ActiveRecord
             ->where([
                 'brand_id' => $brand_id
             ]);
-//            ->with('brand')
-//            ->all();
-//            ->innerJoin(
-//                'brand',
-////                'brand_id = id'
-//                'brand.id = product.brand_id'
-//            );
         return $query;
     }
 
@@ -87,14 +80,16 @@ class Product extends ActiveRecord
         ]);
         return $paginationParameters;
     }
-    public function getProductsBrand($id)
+    public function getProductsBrandParameters($productsBrandBase)
     {
-        $productsBrand = Product::find()
-            ->where(['category_id' => $id])
-            ->select('brand_id')
-            ->distinct()
-            ->all();
-        ksort($productsBrand);
+        $productsBrand = $productsBrandBase
+        ->asArray()
+        ->joinWith('brand')
+        ->select([Brand::tableName() . '.name'])
+        ->addselect([Brand::tableName() . '.id'])
+        ->distinct()
+        ->orderBy('name')
+        ->all();
         return $productsBrand;
     }
 }
