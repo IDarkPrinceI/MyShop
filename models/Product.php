@@ -34,13 +34,19 @@ class Product extends ActiveRecord
            ]);
        return $query;
     }
-
-    public function getQueryProductsToBrand($brand_id)
+    public function getQueryProductsToCategoryToRange($category_id, $range)
     {
         $query = Product::find()
-            ->where([
-                'brand_id' => $brand_id
-            ]);
+            ->where(['category_id' => $category_id])
+            ->andWhere(['<=', 'price', $range]);
+        return $query;
+    }
+
+    public function getQueryProductsToCategoryToBrand($category_id, $brand_id)
+    {
+        $query = Product::find()
+            ->where(['category_id' => $category_id])
+            ->andwhere(['brand_id' => $brand_id]);
         return $query;
     }
 

@@ -83,10 +83,10 @@ use yii\widgets\Pjax;
         </div>
     <div class="clearfix"></div>
 
-        <?=  LinkPager::widget([
-            'pagination' => $pagesNew,
-            'maxButtonCount' => 3,
-        ]); ?>
+<!--        --><?//=  LinkPager::widget([
+//            'pagination' => $pagesNew,
+//            'maxButtonCount' => 3,
+//        ]); ?>
 
     <?php if(!empty($productHit)): ?>
     <div class="new-arrivals-w3agile">
@@ -133,9 +133,9 @@ use yii\widgets\Pjax;
         </div>
     <div class="clearfix"></div>
 
-                <?= LinkPager::widget([
-                        'pagination' => $pagesHit,
-                        'maxButtonCount' => 3,
-                ])?>
+<!--                --><?//= LinkPager::widget([
+//                        'pagination' => $pagesHit,
+//                        'maxButtonCount' => 3,
+//                ])?>
 
 </div>

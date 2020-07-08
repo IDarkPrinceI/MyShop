@@ -35,10 +35,12 @@ use yii\helpers\Url;
                     <div class="price">
                         <h3>Диапазон цены</h3>
                         <ul class="dropdown-menu6">
-                            <li>
-                                <div id="slider-range"></div>
-                                <input type="text" id="amount" style="border: 0; color: #ffffff; font-weight: normal;" />
-                            </li>
+                            <div >
+                                <form action="<?= Url::to(['category/view', 'category_id' => $category['id']])?>" method="get">
+                                    <input id="my_range" name="range" type="text" placeholder="Цена от...">
+                                    <!--                                        --><?//= Html::a('Создать', ['category/view', 'category_id' => $category['id']], ['class' => 'btn btn-success']) ?>
+                                </form>
+                            </div>
                         </ul>
                     </div>
                     <!--                    <div class="cat-img">-->

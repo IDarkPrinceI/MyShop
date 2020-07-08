@@ -13,20 +13,43 @@ use yii\web\NotFoundHttpException;
 
 class CategoryController extends AppHomeController
 {
+    public function actionView($category_id, $brand_id = null)
 
-    public function actionView($category_id)
 //        $id = Yii::$app->request->get($id);
     {
         $category_id = (int)$category_id;
+        $range = Yii::$app->request->get('range');
 
-        $baseProductsToCategory = (new Product())->getQueryProductsToCategory($category_id);
-        $sort = (new Product())->getSortParameters();
-        $pages = (new Product())->getPaginationParameters($baseProductsToCategory);
-        $renderProducts = $baseProductsToCategory
-            ->offset($pages->offset)
-            ->limit($pages->limit)
-            ->orderBy($sort->orders)
-            ->all();
+        if( isset($range) )
+        {
+            $range = (int)$range;
+            $baseProductsToCategory = (new Product())->getQueryProductsToCategoryToRange($category_id, $range);
+            $pages = (new Product())->getPaginationParameters($baseProductsToCategory);
+            $renderProducts = $baseProductsToCategory
+                ->offset($pages->offset)
+                ->limit($pages->limit)
+                ->orderBy(['name' => SORT_ASC])
+                ->all();
+
+        }elseif( isset($brand_id) ) {
+            $brand_id =(int)$brand_id;
+            $baseProductsToCategory = (new Product())->getQueryProductsToCategoryToBrand($category_id, $brand_id);
+            $pages = (new Product())->getPaginationParameters($baseProductsToCategory);
+            $renderProducts = $baseProductsToCategory
+                ->offset($pages->offset)
+                ->limit($pages->limit)
+                ->all();
+
+        }else{
+            $baseProductsToCategory = (new Product())->getQueryProductsToCategory($category_id);
+            $sort = (new Product())->getSortParameters();
+            $pages = (new Product())->getPaginationParameters($baseProductsToCategory);
+            $renderProducts = $baseProductsToCategory
+                ->offset($pages->offset)
+                ->limit($pages->limit)
+                ->orderBy($sort->orders)
+                ->all();
+        }
 
         //404
         if (empty($renderProducts)) {

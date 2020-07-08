@@ -103,10 +103,12 @@ use yii\widgets\LinkPager;
             </div>
             <?php endforeach; ?>
             <div class="clearfix"></div>
-            <?= LinkPager::widget([
-                'pagination' => $pages,
-                'maxButtonCount' => 3,
-            ])?>
+
+<!--            --><?//= LinkPager::widget([
+//                'pagination' => $pages,
+//                'maxButtonCount' => 3,
+//            ])?>
+
         </div>
         <div class="clearfix"></div>
     </div>

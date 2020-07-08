@@ -1,5 +1,6 @@
 <?php
 
+use yii\helpers\Html;
 use yii\widgets\LinkPager;
 use yii\helpers\Url;
 
@@ -30,13 +31,16 @@ use yii\helpers\Url;
                     <div class="price">
                         <h3>Диапазон цены</h3>
                         <ul class="dropdown-menu6">
-                            <li>
-                                <div id="slider-range"></div>
-                                <input type="text" id="amount" style="border: 0; color: #bb2323; font-weight: normal;" />
-                            </li>
-<!--                                <form action="--><?//= \yii\helpers\Url::to(['product/search'])?><!--" method="get">-->
-<!--                                    <input name="search" type="text" placeholder="Цена от...">-->
-<!--                                </form>-->
+                                <div>
+                                    <form action="<?= Url::to(['category/view', 'category_id' => $category['id']])?>" method="get">
+                                        <input id="my_range" name="range" type="text" placeholder="Цена до...">
+                                        <input type="submit" value=" "
+<!--                                        --><?//= Html::a('Создать', ['category/view', 'category_id' => $category['id']], ['class' => 'btn btn-success']) ?>
+                                    </form>
+                                </div>
+<!--                                <input type="text" id="amount" style="border: 0; color: #000; font-weight: normal;" />-->
+<!--                                <input type="text" id="amount" style="border: 0; color: #000; font-weight: normal;" />-->
+
 <!--                            <form action="--><?//= \yii\helpers\Url::to(['product/search'])?><!--" method="get">-->
 <!--                                <input  type="text" placeholder="Цена до...">-->
 <!--                            </form>-->
@@ -46,7 +50,10 @@ use yii\helpers\Url;
                         <h3>Фирма</h3>
                         <?php foreach ($productsBrand as $brand): ?>
                         <li>
-                             <a href="<?= Url::to(['product/brand-sort', 'brand_id' => $brand['id'] ])?>"><?= $brand['name']?></a>
+                             <a href="<?= Url::to(['category/view', 'category_id' => $category['id'],
+                                                                    'brand_id' => $brand['id'] ])?>" >
+                                                                    <?= $brand['name']?>
+                             </a>
                         </li>
                         <?php endforeach; ?>
                     </div>
@@ -65,10 +72,11 @@ use yii\helpers\Url;
 <!--                        <div class="clearfix"></div>-->
 <!--                    </div>-->
                     <div class="mens-toolbar">
-                        <p >Showing 1–9 of 21 results</p>
+<!--                        <p >Showing 1–9 of 21 results</p>-->
 <!--                        --><?php //echo $sort->link('name')  . '|' . $sort->link('price')?>
-                        <p class="showing">Сортировать:
-                            <?php echo $sort->link('name')  . '|' . $sort->link('price')?>
+                        <?php if(isset($sort)) : ?>
+                            <p class="showing">Сортировать:
+                                <?php echo $sort->link('name')  . '|' . $sort->link('price')?>
 <!--                            <form method="get" id="MyForm">-->
 <!--                            <select name="val" onchange="document.getElementById('MyForm').submit()">-->
 <!--                            <select name="sort" id="sort">-->
@@ -76,7 +84,8 @@ use yii\helpers\Url;
 <!--                                <option value="--><?// $sort->link('price') ?><!--">Имя</option>-->
 <!--                            </select>-->
 <!--                        </form>-->
-                        </p>
+                            </p>
+                        <?php endif; ?>
                         <p>Show
                             <select>
                                 <option value=""> 9</option>

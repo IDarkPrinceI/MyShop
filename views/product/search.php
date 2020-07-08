@@ -31,25 +31,27 @@ use yii\helpers\Url;
                             ]) ?>
                         </ul>
                     </div>
-                    <div class="price">
-                        <h3>Диапазон цены</h3>
-                        <ul class="dropdown-menu6">
-                            <li>
-                                <div id="slider-range"></div>
-                                <input type="text" id="amount" style="border: 0; color: #ffffff; font-weight: normal;" />
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="brand-w3l">
-                        <h3>Фирма</h3>
-                        <ul>
-                            <?php foreach ($productsBrand as $brand): ?>
-                                <li>
-                                    <a href="<?= Url::to(['product/brand-sort', 'brand_id' => $brand['id'] ])?>"><?= $brand['name']?></a>
-                                </li>
-                            <?php endforeach; ?>
-                        </ul>
-                    </div>
+<!--                    <div class="price">-->
+<!--                        <h3>Диапазон цены</h3>-->
+<!--                        <ul class="dropdown-menu6">-->
+<!--                            <div>-->
+<!--                                <form action="--><?//= Url::to(['category/view', 'category_id' => $category['id']])?><!--" method="get">-->
+<!--                                    <input id="my_range" name="range" type="text" placeholder="Цена от...">-->
+                                    <!--                                        --><?//= Html::a('Создать', ['category/view', 'category_id' => $category['id']], ['class' => 'btn btn-success']) ?>
+<!--                                </form>-->
+<!--                            </div>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                    <div class="brand-w3l">-->
+<!--                        <h3>Фирма</h3>-->
+<!--                        <ul>-->
+<!--                            --><?php //foreach ($productsBrand as $brand): ?>
+<!--                                <li>-->
+<!--                                    <a href="--><?//= Url::to(['category/view', 'brand_id' => $brand['id'] ])?><!--">--><?//= $brand['name']?><!--</a>-->
+<!--                                </li>-->
+<!--                            --><?php //endforeach; ?>
+<!--                        </ul>-->
+<!--                    </div>-->
                     <!--                    <div class="cat-img">-->
                     <!--                        <img class="img-responsive " src="/images/45.jpg" alt="">-->
                     <!--                    </div>-->

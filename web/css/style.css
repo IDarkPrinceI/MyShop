@@ -1056,6 +1056,7 @@ h3.tittle1 {
 /*	min-height: 1700px;*/
 /*}*/
 .footer-w3l {
+	margin-top: 3em;
     background: #8ebebe;;
     padding: 4em 0;
 	height: 250px;
@@ -1531,15 +1532,19 @@ span.amount{
 .price input#amount,.price input#amount1 {
     font-size: 18px;
     outline: none;
-    background: none;
+    background: #798ca2;
+    /*background: none;*/
     word-spacing: 1em;
-    color: #000 !important;
+    /*color: #000 !important;*/
     position: absolute;
     left: 0%;
     top: 10px;
     text-align: center;
     width: 100%;
     padding: 4px 0;
+}
+#my_range {
+	font: caption;
 }
 ul.dropdown-menu6 li a {
 	text-decoration: none;
