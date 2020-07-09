@@ -14,10 +14,20 @@ use yii\helpers\Url;
 <!--</div>-->
 <!--brendcrumbs-->
 <!--content-->
+<?php //debug($range) ?>
 <div class="content" id="my_content">
     <div class="products-agileinfo">
         <div class="container">
-            <h2 class="tittle"><?= $category['name'] ?></h2>
+            <h2 class="tittle"><?= $category['name'] ?>
+                <?php if( isset($brandName) ) : ?>
+                <span>/</span>
+                    <?= $brandName->name ?>
+                <?php endif; ?>
+                <?php if( (isset($range) )) : ?>
+                <span>/ цена до: </span>
+                    <?= $range ?>
+                <?php endif; ?>
+            </h2>
             <div class="product-agileinfo-grids w3l">
                 <div class="col-md-3 product-agileinfo-grid">
                     <div class="categories">
@@ -34,7 +44,7 @@ use yii\helpers\Url;
                                 <div>
                                     <form action="<?= Url::to(['category/view', 'category_id' => $category['id']])?>" method="get">
                                         <input id="my_range" name="range" type="text" placeholder="Цена до...">
-                                        <input type="submit" value=" "
+                                        <input id="my_range_button"type="submit" value="Отфильтровать"
 <!--                                        --><?//= Html::a('Создать', ['category/view', 'category_id' => $category['id']], ['class' => 'btn btn-success']) ?>
                                     </form>
                                 </div>
@@ -107,15 +117,27 @@ use yii\helpers\Url;
                                             <div class="grid-arr">
                                                 <div  class="grid-arrival">
                                                     <figure>
-                                                        <a href="<?= \yii\helpers\Url::to(['product/view', 'id' => $product['id']]) ?>" class="new-gri" >
+                                                         <button onclick="getModalProduct()" data-id="<?= $product->id ?>" type="button" class="new-gri" data-toggle="modal" tabindex="-1" data-target="#myModalSingle">
+<!--                                                         <a onclick="getModalProduct()" data-id="--><?//= $product->id ?><!--" class="new-gri" data-toggle="modal" tabindex="-1" data-target="#myModalSingle">-->
                                                             <div class="grid-img">
-                                                                <img  src="<?= \yii\helpers\Url::to(["@web/product_img/{$product->img}", ['alt' => $product->name, ] ]) ?>" class="img-responsive">
+                                                                <img src="<?= Url::to(["@web/product_img/{$product->img}", ['alt' => $product->name, ] ]) ?>" class="img-responsive">
                                                             </div>
 <!--                                                            <div class="grid-img">-->
 <!--                                                                <img  src="/images/p22.jpg" class="img-responsive"  alt="">-->
 <!--                                                            </div>-->
-                                                        </a>
+                                                        </button>
                                                     </figure>
+                                                    <div class="modal fade" id="myModalSingle" role="dialog">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content modal-info">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                                 <div class="block">
                                                     <div class="starbox small ghosting"> </div>

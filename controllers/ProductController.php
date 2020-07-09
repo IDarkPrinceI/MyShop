@@ -89,35 +89,11 @@ class ProductController extends AppHomeController
                     'sort'));
     }
 
-//    public function actionBrandSort($brand_id)
-//    {
-//        $brand_id = (int)$brand_id;
-//        $baseProductsToBrand = (new Product())->getQueryProductsToBrand($brand_id);
-//
-//        $sort = (new Product())->getSortParameters();
-//        $pages = (new Product())->getPaginationParameters($baseProductsToBrand);
-//        $renderProductsToBrand = $baseProductsToBrand
-//
-//            ->offset($pages->offset)
-//            ->limit($pages->limit)
-//            ->orderBy($sort->orders)
-//            ->all();
-//
-//        //404
-//        if (empty($baseProductsToBrand)) {
-//            throw new NotFoundHttpException('Запрашиваемая страница не существует.');
-//        }
-//        //404
-//
-//        //set Meta
-//        $brand = (new Brand())->getBrand($brand_id);
-//        $this->setMeta("Instrumental :: {$brand->name}");
-//        //set Meta
-//
-//        return $this->render('sort', compact(
-//            'renderProductsToBrand',
-//                 'sort',
-//                    'pages'
-//        ));
-//    }
+    public function actionShow()
+    {
+        debug($id);
+        return $this->renderPartial('product-modal', compact(
+
+        ));
+    }
 }

@@ -68,12 +68,18 @@ class CategoryController extends AppHomeController
         $productsBrand = (new Product())->getProductsBrandParameters($productsBrandBase);
         //brands
 
+        //brand
+        $brandName = (new Brand())->getBrand($brand_id);
+        //brand
+
         return $this->render('view', compact(
                           'category',
                                'sort',
                                   'renderProducts',
                                   'pages',
-                                  'productsBrand'
+                                  'productsBrand',
+                                  'brandName',
+                                  'range'
                             ));
     }
 }

@@ -1545,6 +1545,11 @@ span.amount{
 }
 #my_range {
 	font: caption;
+	margin: 1em;
+	/*width: 60%;*/
+}
+#my_range_button {
+	font: caption;
 }
 ul.dropdown-menu6 li a {
 	text-decoration: none;

@@ -19,7 +19,6 @@ use yii\helpers\Url;
     <div class="products-agileinfo">
         <div class="container">
         <?php if(!empty($renderProductsToSearch)): ?>
-<!--        --><?php //foreach ($renderProductsToSearch as $product) ?>
         <h2 class="tittle"> Поиск: "<?= Html::encode($search)?>"</h2>
             <div class="product-agileinfo-grids w3l">
                 <div class="col-md-3 product-agileinfo-grid">
@@ -67,7 +66,7 @@ use yii\helpers\Url;
                     <!--                        <div class="clearfix"></div>-->
                     <!--                    </div>-->
                     <div class="mens-toolbar">
-                        <p >Showing 1–9 of 21 results</p>
+<!--                        <p >Showing 1–9 of 21 results</p>-->
                         <p class="showing">Сортировать:
                             <?php echo $sort->link('name')  . '|' . $sort->link('price')?>
                         <p>Show

@@ -218,6 +218,34 @@ function showCart(cart) {
 		$('.cart-qty').text(cartQty);
 	}
 }
+function getModalProduct() {
+	let id = $(this).data('id');
+	$.ajax({
+		url: '/product/show',
+		type: 'GET',
+		data: {id: id},
+		success: function (res) {
+			if(!res) alert('Ошибка модального окна');
+			showProduct(res);
+		},
+		error: function () {
+			alert('Ошибочка!')
+		}
+	});
+}
+function showProduct(product) {
+	$('#myModalSingle .modal-body').html(product);
+	$('#myModalSingle').modal();
+	// let cartSum = $('#cart-sum').text() ? $('#cart-sum').text() : '0 руб';
+	// if(cartSum) {
+	// 	$('.cart-sum').text(cartSum);
+	// }
+	// let cartQty = $('#cart-qty').text() ? $('#cart-qty').text() : '0';
+	// if(cartQty) {
+	// 	$('.cart-qty').text(cartQty);
+	// }
+}
+
 
 
 function getCart() {
@@ -247,6 +275,8 @@ function clearCart() {
 		}
 	});
 }
+
+
 
 $('#modal-cart .modal-body').on('click', '.del-item', function () {
 	let id = $(this).data('id');
