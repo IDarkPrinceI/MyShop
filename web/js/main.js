@@ -218,33 +218,27 @@ function showCart(cart) {
 		$('.cart-qty').text(cartQty);
 	}
 }
-function getModalProduct() {
-	let id = $(this).data('id');
-	$.ajax({
-		url: '/product/show',
-		type: 'GET',
-		data: {id: id},
-		success: function (res) {
-			if(!res) alert('Ошибка модального окна');
-			showProduct(res);
-		},
-		error: function () {
-			alert('Ошибочка!')
-		}
-	});
-}
-function showProduct(product) {
-	$('#myModalSingle .modal-body').html(product);
-	$('#myModalSingle').modal();
-	// let cartSum = $('#cart-sum').text() ? $('#cart-sum').text() : '0 руб';
-	// if(cartSum) {
-	// 	$('.cart-sum').text(cartSum);
-	// }
-	// let cartQty = $('#cart-qty').text() ? $('#cart-qty').text() : '0';
-	// if(cartQty) {
-	// 	$('.cart-qty').text(cartQty);
-	// }
-}
+
+
+// function getModalProduct() {
+// 	let id = $(this).data('id');
+// 	console.log('id')
+// 	$.ajax({
+// 		url: '/product/show',
+// 		type: 'GET',
+// 		data: {id: id},
+// 		success:
+// 		// console.log(1)
+// 			function (res) {
+// 			if(!res) alert('Ошибка модального окна');
+// 			showProduct(res);
+// 		},
+// 		error: function () {
+// 			alert('Ошибочка!')
+// 		}
+// 	});
+// }
+
 
 
 
@@ -315,6 +309,31 @@ $('#plus, #minus').on('click', function () {
 		}
 	});
 });
+
+//modalProduct
+
+$('.get-modal-product').on('click', function () {
+	let id = $(this).data('id');
+	$.ajax({
+		url: '/product/show',
+		type: 'GET',
+		data: {id: id},
+		success:
+			function (res) {
+				if(!res) alert('Ошибка модального окна');
+				showProduct(res);
+			},
+		error: function () {
+			alert('Ошибочка!')
+		}
+	})
+});
+
+function showProduct(product) {
+	$('#myModalSingle .modal-body').html(product);
+	$('#myModalSingle').modal();
+}
+
 
 // $('#product_plus').on('click', function () {
 // 	var divUpd = $(this).parent().find('.value1'), newVal = parseInt(divUpd.text(), 10)+1;

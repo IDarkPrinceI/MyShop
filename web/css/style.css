@@ -1204,6 +1204,7 @@ h3.tittle1 {
     font-size: 1em;
     color: #777;
     line-height: 2em;
+	text-align: right;
 }
 .modal-header {
     min-height: 16.42857143px;
@@ -1216,9 +1217,13 @@ h3.tittle1 {
 .color-quality-left{
 	float:left;
 }
+.my_modal_price {
+	margin-top: 2em;
+}
 .color-quality-right {
 	float: left;
     margin-left: 8em;
+	margin-top: 2em;
 }
 .color-quality ul li {
     display: inline-block;
@@ -1551,6 +1556,11 @@ span.amount{
 #my_range_button {
 	font: caption;
 }
+#my_modal_product {
+	float: left;
+	width: 325px;
+	margin-left: 2.5em;
+}
 ul.dropdown-menu6 li a {
 	text-decoration: none;
 }
@@ -1605,6 +1615,9 @@ ul.dropdown-menu6 li a {
 }
 .product-agileinfon-grid1 {
     text-align: center;
+}
+#myModalSingle {
+	text-align: justify;
 }
 .prod1 {
     margin: 3em 0;

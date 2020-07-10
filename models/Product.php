@@ -98,4 +98,11 @@ class Product extends ActiveRecord
         ->all();
         return $productsBrand;
     }
+
+    public function getProduct($id)
+    {
+        $product = Product::findone($id);
+        return $product;
+    }
+
 }

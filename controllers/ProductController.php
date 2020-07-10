@@ -91,9 +91,10 @@ class ProductController extends AppHomeController
 
     public function actionShow()
     {
-        debug($id);
+        $id =\Yii::$app->request->get('id');
+        $modalProduct = (new Product())->getProduct($id);
         return $this->renderPartial('product-modal', compact(
-
+                                 'modalProduct'
         ));
     }
 }

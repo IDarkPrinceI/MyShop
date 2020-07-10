@@ -3,43 +3,35 @@
 use yii\helpers\Url;
 
 ?>
-<div class="news-gr">
-    <div class="col-md-5 new-grid1">
-        <img  src="<?= Url::to(["@web/product_img/{$product->img}", ['alt' => $product->name, ] ]) ?>" class="img-responsive">
-    </div>
-    <div class="col-md-7 new-grid">
-        <h5><?= $product->name ?></h5>
-        <h6>Quick Overview</h6>
-        <span>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
-        <div class="color-quality">
-            <div class="color-quality-left">
-                <h6>Color : </h6>
-                <ul>
-                    <li><a href="#"><span></span>Red</a></li>
-                    <li><a href="#" class="brown"><span></span>Yellow</a></li>
-                    <li><a href="#" class="purple"><span></span>Purple</a></li>
-                    <li><a href="#" class="gray"><span></span>Violet</a></li>
-                </ul>
+<div id="my_modal_product" class=" new-grid1">
+        <img  src="<?= Url::to(["@web/product_img/{$modalProduct->img}", ['alt' => $modalProduct->name, ] ]) ?>" class="img-responsive">
+</div>
+<div class="new-grid">
+    <h5><?= $modalProduct->name ?></h5>
+    <span id="my_modal_content"><?= $modalProduct->content ?></span>
+    <div class="color-quality-right">
+        <h6>Количество :</h6>
+        <div class="quantity">
+            <div class="quantity-select">
+                <div class="entry value-minus1">&nbsp;</div>
+                <div class="entry value1"><span>1</span></div>
+                <div class="entry value-plus1 active">&nbsp;</div>
             </div>
-            <div class="color-quality-right">
-                <h6>Quality :</h6>
-                <div class="quantity">
-                    <div class="quantity-select">
-                        <div class="entry value-minus1">&nbsp;</div>
-                        <div class="entry value1"><span>1</span></div>
-                        <div class="entry value-plus1 active">&nbsp;</div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="clearfix"> </div>
         </div>
-        <div class="women">
-            <span class="size">XL / XXL / S </span>
-            <p ><del>$100.00</del><em class="item_price"> $70.00 </em></p>
-            <div class="add">
-                <button class="btn btn-danger my-cart-btn my-cart-b" data-id="3" data-name="Kabuli Chana" data-summary="summary 3" data-price="2.00" data-quantity="1" data-image="images/of2.png">Add to Cart</button>
-            </div>
+        <div class="my_modal_price">
+            <p>
+                <?php if(!empty($modalProduct->old_price)): ?>
+                    <del> <?= $modalProduct->old_price ?> </del>
+                    <span>/</span>
+                <?php endif; ?>
+                <em class="price"><?= $modalProduct->price?></em>
+                <em class="rub"> Р</em>
+            </p>
         </div>
     </div>
 </div>
+<div class="clearfix"> </div>
+<div class="add">
+    <button class="btn btn-danger my-cart-btn my-cart-b" data-id="3" data-name="Kabuli Chana" data-summary="summary 3" data-price="2.00" data-quantity="1" data-image="images/of2.png">Добавить в корзину</button>
+</div>
+
