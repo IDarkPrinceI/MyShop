@@ -645,6 +645,7 @@ h2.tittle {
 	position: relative;
 	text-align: center;
 	font-family: 'Georgia', sans-serif;
+	font-style: normal;
 }
 
 
@@ -675,9 +676,10 @@ h2.tittle {
     text-decoration: none;
 }
 .women p {
-    font-size: 1em;
+    font-size: 22px;
     color: #070707;
     margin: 0.9em 0;
+	font-family: 'Georgia', sans-serif;
 }
 em.item_price {
     font-style: normal;
@@ -778,7 +780,7 @@ a:focus {
 }
 a.my-cart-b {
     text-decoration: none;
-	border-radius: 5px;
+	/*border-radius: 5px;*/
 }
 .my-cart-b {
     background: none;
@@ -789,8 +791,15 @@ a.my-cart-b {
     padding: 0.5em 1em;
     outline: none;
 }
+hr {
+	border: none; /* Убираем границу */
+	background-color: #798ca2; /* Цвет линии */
+	color: #798ca2; /* Цвет линии для IE6-7 */
+	height: 2px; /* Толщина линии */
+}
 /* Sweep To Bottom */
 .my-cart-b{
+	border-radius: 5px;
   display: inline-block;
   vertical-align: middle;
   -webkit-transform: translateZ(0);
@@ -1186,6 +1195,10 @@ h3.tittle1 {
     width: 90%;
     margin: 0 auto 1em;
 }
+#my_modal_content {
+	margin: 1em;
+	/*margin-top: 1em;*/
+}
 .news-gr h4 {
     text-align: center;
     font-size: 1.5em;
@@ -1194,9 +1207,14 @@ h3.tittle1 {
 .new-grid h5 {
     font-size: 1.7em;
     color: #222;
+	font-weight: bold;
+	/*padding: 1em;*/
+}
+#my_modal_add_to_cart {
+	float: right;
 }
 .new-grid h6 {
-    font-size: 1.2em;
+    font-size: 22px;
     margin: 1em 0;
     font-weight: 600;
 }
@@ -1208,7 +1226,7 @@ h3.tittle1 {
 }
 .modal-header {
     min-height: 16.42857143px;
-    padding: 6px;
+    /*padding: 6px;*/
     border-bottom: 1px solid #FFFFFF;
 }
 .modal-dialog {
@@ -1221,7 +1239,7 @@ h3.tittle1 {
 	margin-top: 2em;
 }
 .color-quality-right {
-	float: left;
+	float: right;
     margin-left: 8em;
 	margin-top: 2em;
 }
@@ -1559,7 +1577,8 @@ span.amount{
 #my_modal_product {
 	float: left;
 	width: 325px;
-	margin-left: 2.5em;
+	margin: 2em;
+	min-height: 500px;
 }
 ul.dropdown-menu6 li a {
 	text-decoration: none;
@@ -2927,6 +2946,9 @@ h3.tittle1,h3.tittle {
 .new-grid {
     float: left;
     width: 60%;
+}
+#my_modal_new-grid {
+	float: right;
 }
 .modal-dialog {
     width: 669px;

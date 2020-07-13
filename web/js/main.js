@@ -164,6 +164,7 @@ jQuery(document).ready(function($){
 		if(newVal>=1) divUpd.text(newVal);
 	});
 
+
 	if ($(document).height() <= $(window).height())
 		$("my_footer").addClass("navbar-fixed-bottom");
 	});
@@ -218,29 +219,6 @@ function showCart(cart) {
 		$('.cart-qty').text(cartQty);
 	}
 }
-
-
-// function getModalProduct() {
-// 	let id = $(this).data('id');
-// 	console.log('id')
-// 	$.ajax({
-// 		url: '/product/show',
-// 		type: 'GET',
-// 		data: {id: id},
-// 		success:
-// 		// console.log(1)
-// 			function (res) {
-// 			if(!res) alert('Ошибка модального окна');
-// 			showProduct(res);
-// 		},
-// 		error: function () {
-// 			alert('Ошибочка!')
-// 		}
-// 	});
-// }
-
-
-
 
 function getCart() {
 	$.ajax({
@@ -333,6 +311,20 @@ function showProduct(product) {
 	$('#myModalSingle .modal-body').html(product);
 	$('#myModalSingle').modal();
 }
+
+// modalQuantity
+$('#myModalSingle .modal-body').on('click', '.value-plus1', function(){
+	var divUpd = $(this).parent().find('.value1'), newVal = parseInt(divUpd.text(), 10)+1;
+	divUpd.text(newVal);
+});
+$('#myModalSingle .modal-body').on('click', '.value-minus1', function(){
+	var divUpd = $(this).parent().find('.value1'), newVal = parseInt(divUpd.text(), 10)-1;
+	if(newVal>=1) divUpd.text(newVal);
+});
+// modalQuantity
+
+//modalProduct
+
 
 
 // $('#product_plus').on('click', function () {

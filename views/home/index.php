@@ -116,7 +116,7 @@ use yii\widgets\Pjax;
                         </div>
                         <div class="women">
                             <h6><a href="<?= \yii\helpers\Url::to(['product/view', 'id' => $hit['id']])?>"><?= $hit->name?></a></h6>
-                            <p ><?php if(!empty($hit->old_price)): ?>
+                            <p><?php if(!empty($hit->old_price)): ?>
                                     <del> <?= $hit->old_price ?> </del>
                                     <span>/</span>
 
