@@ -764,7 +764,7 @@ a:focus {
     left: -3%;
     padding: 0.5em;
     background: #0D59AF;
-    width: 42%;
+    width: 25%;
 }
 .ribben2:after {
     content: '';
@@ -1218,9 +1218,12 @@ h3.tittle1 {
     margin: 1em 0;
     font-weight: 600;
 }
+.new-grid h6 span {
+	color: #8ebebe;
+}
 .new-grid span {
     font-size: 1em;
-    color: #777;
+    color: #8ebebe;
     line-height: 2em;
 	text-align: right;
 }
@@ -1578,7 +1581,7 @@ span.amount{
 	float: left;
 	width: 325px;
 	margin: 2em;
-	min-height: 500px;
+	min-height: 550px;
 }
 ul.dropdown-menu6 li a {
 	text-decoration: none;
@@ -1970,20 +1973,28 @@ h2.typoh2{
 }
 .description span {
     font-size: 1.2em;
-    color: #f19e1f;
+    color: #8ebebe;
     font-weight: bold;
-	font-family: 'Cagliostro', sans-serif;
+	font-family: 'Georgia', sans-serif;
+}
+p span {
+	color: #8ebebe;
 }
 p.price {
     margin: 0.5em 0;
     color: #0c0c0c;
     font-weight: bold;
     font-family: 'Georgia', sans-serif;
+	text-align: left;
+}
+h6 span {
+	color: #8ebebe;
 }
 .color-quality h6 {
     font-size: 1.2em;
     margin: 1em 0;
     font-weight: 600;
+	/*color: #8ebebe;*/
 }
 .women span {
     font-size: 1em;

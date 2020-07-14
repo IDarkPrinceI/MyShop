@@ -13,8 +13,8 @@ class HomeController extends AppHomeController
     public function actionIndex()
     {
         $this->setMeta(\Yii::$app->params['shopName'],
-                                'Ремонт',
-                               'Самые низкие цены');
+                        \Yii::$app->params['defaultKeywords'],
+                        \Yii::$app->params['defaultDescription']);
 
         $productNew = Product::find()
             ->where(['is_new' => 1])

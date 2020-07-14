@@ -60,10 +60,7 @@ use yii\helpers\Url;
                         <h3>Фирма</h3>
                         <?php foreach ($productsBrand as $brand): ?>
                         <li>
-                             <a href="<?= Url::to(['category/view', 'category_id' => $category['id'],
-                                                                    'brand_id' => $brand['id'] ])?>" >
-                                                                    <?= $brand['name']?>
-                             </a>
+                             <a href="<?= Url::to(['category/view', 'category_id' => $category['id'], 'brand_id' => $brand['id'] ])?>" ><?= $brand['name']?></a>
                         </li>
                         <?php endforeach; ?>
                     </div>
@@ -86,7 +83,7 @@ use yii\helpers\Url;
 <!--                        --><?php //echo $sort->link('name')  . '|' . $sort->link('price')?>
                         <?php if(isset($sort)) : ?>
                             <p class="showing">Сортировать:
-                                <?php echo $sort->link('name')  . '|' . $sort->link('price')?>
+                                <?php echo $sort->link('name')  . '  |  ' . $sort->link('price')?>
 <!--                            <form method="get" id="MyForm">-->
 <!--                            <select name="val" onchange="document.getElementById('MyForm').submit()">-->
 <!--                            <select name="sort" id="sort">-->
@@ -96,21 +93,20 @@ use yii\helpers\Url;
 <!--                        </form>-->
                             </p>
                         <?php endif; ?>
-                        <p>Show
-                            <select>
-                                <option value=""> 9</option>
-                                <option value="">  10</option>
-                                <option value=""> 11 </option>
-                                <option value=""> 12 </option>
-                            </select>
-                        </p>
+<!--                        <p>Show-->
+<!--                            <select>-->
+<!--                                <option value=""> 9</option>-->
+<!--                                <option value="">  10</option>-->
+<!--                                <option value=""> 11 </option>-->
+<!--                                <option value=""> 12 </option>-->
+<!--                            </select>-->
+<!--                        </p>-->
                         <div class="clearfix"></div>
                     </div>
                     <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
 
                         <ul id="myTab" class="nav1 nav1-tabs left-tab" role="tablist">
                             <div id="myTabContent" class="tab-content">
-<!--                                --><?php //foreach ($products as $product) :?>
                                 <?php foreach ($renderProducts as $product) :?>
                                 <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
                                     <div class="product-tab">
@@ -118,32 +114,31 @@ use yii\helpers\Url;
                                             <div class="grid-arr">
                                                 <div  class="grid-arrival">
                                                     <figure>
-<!--                                                         <button onclick="getModalProduct()" data-id="--><?//= $product->id ?><!--" type="button" class="new-gri" data-toggle="modal" data-target="#myModalSingle">-->
                                                          <a data-id="<?= $product->id ?>" type="button" class="get-modal-product new-gri" data-toggle="modal" data-target="#myModalSingle">
-<!--                                                         <a onclick="getModalProduct()" data-id="--><?//= $product->id ?><!--" class="new-gri" data-toggle="modal" tabindex="-1" data-target="#myModalSingle">-->
                                                             <div class="grid-img">
-                                                                <img src="<?= Url::to(["@web/product_img/{$product->img}", ['alt' => $product->name, ] ]) ?>" class="img-responsive">
+                                                                <img src="<?= Url::to(["@web/product_img/{$product->img}", ['alt' => $product->name ] ]) ?>" class="img-responsive">
                                                             </div>
 <!--                                                            <div class="grid-img">-->
 <!--                                                                <img  src="/images/p22.jpg" class="img-responsive"  alt="">-->
 <!--                                                            </div>-->
                                                         </a>
                                                     </figure>
-<!--                                                    modal-->
-                                                    <div class="modal fade" id="myModalSingle" tabindex="-1" role="dialog">
-                                                        <div class="modal-dialog" role="document">
-                                                            <div class="modal-content modal-info">
-                                                                <div class="modal-header">
-                                                                    <h4>Быстрый просмотр</h4>
-                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-<!--                                                    modal-->
                                                 </div>
+                                                <?php if( !empty($product['is_new']) ) :?>
+                                                <div class="ribben">
+                                                    <p>NEW</p>
+                                                </div>
+                                                <?php endif; ?>
+                                                <?php if( !empty($product['is_hit']) ) :?>
+                                                <div class="ribben2">
+                                                    <p>HIT</p>
+                                                </div>
+                                                <?php endif; ?>
+                                                <?php if( !empty($product['is_sale']) ) :?>
+                                                <div class="ribben1">
+                                                    <p>SALE</p>
+                                                </div>
+                                                <?php endif; ?>
                                                 <div class="block">
                                                     <div class="starbox small ghosting"> </div>
                                                 </div>

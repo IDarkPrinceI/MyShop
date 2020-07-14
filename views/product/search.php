@@ -68,15 +68,15 @@ use yii\helpers\Url;
                     <div class="mens-toolbar">
 <!--                        <p >Showing 1–9 of 21 results</p>-->
                         <p class="showing">Сортировать:
-                            <?php echo $sort->link('name')  . '|' . $sort->link('price')?>
-                        <p>Show
-                            <select>
-                                <option value=""> 9</option>
-                                <option value="">  10</option>
-                                <option value=""> 11 </option>
-                                <option value=""> 12 </option>
-                            </select>
-                        </p>
+                            <?php echo $sort->link('name')  . '  |  ' . $sort->link('price')?>
+<!--                        <p>Show-->
+<!--                            <select>-->
+<!--                                <option value=""> 9</option>-->
+<!--                                <option value="">  10</option>-->
+<!--                                <option value=""> 11 </option>-->
+<!--                                <option value=""> 12 </option>-->
+<!--                            </select>-->
+<!--                        </p>-->
                         <div class="clearfix"></div>
                     </div>
                     <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
@@ -89,7 +89,7 @@ use yii\helpers\Url;
                                                 <div class="grid-arr">
                                                     <div  class="grid-arrival">
                                                         <figure>
-                                                            <a href="<?= Url::to(['product/view', 'id' => $product['id']]) ?>" class="new-gri" >
+                                                            <a data-id="<?= $product->id ?>" type="button" class="get-modal-product new-gri" data-toggle="modal" data-target="#myModalSingle">
                                                                 <div class="grid-img">
                                                                     <img  src="<?= Url::to(["@web/product_img/{$product->img}", 'alt' => $product->name]) ?>" class="img-responsive">
                                                                 </div>

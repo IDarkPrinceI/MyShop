@@ -49,7 +49,7 @@ use yii\widgets\Pjax;
                     <div class="grid-arr">
                         <div  class="grid-arrival">
                             <figure>
-                                <a href="<?= \yii\helpers\Url::to(['/product/view', 'id' => $new['id']]) ?>" class="new-gri">
+                                <a data-id="<?= $new->id ?>" type="button" class="get-modal-product new-gri" data-toggle="modal" data-target="#myModalSingle">
                                     <div class="grid-img">
                                         <img  src="<?= \yii\helpers\Url::to(["@web/product_img/{$new->img}"]) ?>" class="img-responsive" alt="">
                                     </div>
@@ -98,7 +98,7 @@ use yii\widgets\Pjax;
                     <div class="grid-arr">
                         <div  class="grid-arrival">
                             <figure>
-                                <a href="<?= \yii\helpers\Url::to(['product/view', 'id' => $hit['id']])?>">
+                                <a data-id="<?= $hit->id ?>" type="button" class="get-modal-product new-gri" data-toggle="modal" data-target="#myModalSingle">
                                     <div class="grid-img">
                                         <img  src="<?= \yii\helpers\Url::to(["@web/product_img/{$hit->img}"])?>" class="img-responsive" alt="">
                                     </div>

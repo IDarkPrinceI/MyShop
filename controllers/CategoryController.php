@@ -34,10 +34,12 @@ class CategoryController extends AppHomeController
         }elseif( isset($brand_id) ) {
             $brand_id =(int)$brand_id;
             $baseProductsToCategory = (new Product())->getQueryProductsToCategoryToBrand($category_id, $brand_id);
+            $sort = (new Product())->getSortParameters();
             $pages = (new Product())->getPaginationParameters($baseProductsToCategory);
             $renderProducts = $baseProductsToCategory
                 ->offset($pages->offset)
                 ->limit($pages->limit)
+                ->orderBy($sort->orders)
                 ->all();
 
         }else{

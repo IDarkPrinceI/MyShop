@@ -313,7 +313,7 @@ function showProduct(product) {
 }
 
 // modalQuantity
-$('#myModalSingle .modal-body').on('click', '.value-plus1', function(){
+$('#myModalSingle .modal-body').on('click', '.value-plus1', function() {
 	var divUpd = $(this).parent().find('.value1'), newVal = parseInt(divUpd.text(), 10)+1;
 	divUpd.text(newVal);
 });
@@ -323,36 +323,26 @@ $('#myModalSingle .modal-body').on('click', '.value-minus1', function(){
 });
 // modalQuantity
 
+$('#myModalSingle .modal-body').on('click', '.add-to-cart-single', function () {
+	let id = $(this).data('id'),
+		qty = document.getElementById("rez").innerText;
+	$.ajax({
+		url: '/cart/add',
+		data: {id: id, qty: qty},
+		type: 'GET',
+		success: function (res) {
+			if(!res) alert('Ошибка добавления товара');
+			$('#myModalSingle').modal('hide');
+			showCart(res);
+		},
+		error: function () {
+			alert('Error');
+		}
+	});
+	return false;
+});
 //modalProduct
 
-
-
-// $('#product_plus').on('click', function () {
-// 	var divUpd = $(this).parent().find('.value1'), newVal = parseInt(divUpd.text(), 10)+1;
-// 	divUpd.text(newVal);
-// });
-// $('#product_minus').on('click', function(){
-// 	var divUpd = $(this).parent().find('.value1'), newVal = parseInt(divUpd.text(), 10)-1;
-// 	if(newVal>=1) divUpd.text(newVal);
-// });
-
-// $('.value-plus1').on('click', function(){
-// 	var divUpd = $(this).parent().find('.value1'), newVal = parseInt(divUpd.text(), 0)+1;
-// 	divUpd.text(newVal);
-// });
-//
-// $('.value-minus1').on('click', function(){
-// 	var divUpd = $(this).parent().find('.value1'), newVal = parseInt(divUpd.text(), 0)-1;
-// 	if(newVal>=1) divUpd.text(newVal);
-// });
-/* Cart */
-// $(document).ready(function(c) {
-// 	$('.close3').on('click', function(c){
-// 		$('.cart-header3').fadeOut('slow', function(c){
-// 			$('.cart-header3').remove();
-// 		});
-// 	});
-// });
 
 
 

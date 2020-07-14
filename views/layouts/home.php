@@ -6,6 +6,7 @@ use app\assets\AppHomeAsset;
 use app\assets\OldIeAsset;
 use yii\helpers\Html;
 use app\components\DropDownWidget;
+use yii\helpers\Url;
 
 
 AppHomeAsset::register($this);
@@ -23,11 +24,6 @@ OldIeAsset::register($this);
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
-<!--    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />-->
-<!--    <meta name="keywords" content="New Shop Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,-->
-<!--Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />-->
 
 <?php $this->head() ?>
 </head>
@@ -55,11 +51,10 @@ OldIeAsset::register($this);
         <div class="container">
             <div class="logo-nav">
                 <div class="logo-nav-left">
-                    <h1><a href="<?= \yii\helpers\Url::home()?>">Instrumental<span>All for you</span></a></h1>
+                    <h1><a href="<?= Url::home()?>">Instrumental<span>All for you</span></a></h1>
                 </div>
                 <div class="logo-nav-left1">
                     <nav class="navbar navbar-default">
-                        <!-- Brand and toggle get grouped for better mobile display -->
                         <div class="navbar-header nav_2">
                             <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
                                 <span class="sr-only">Toggle navigation</span>
@@ -73,7 +68,6 @@ OldIeAsset::register($this);
                             <ul class="nav navbar-nav">
                                 <?= DropDownWidget::widget([
                                     'tpl' => 'dropDown',
-//                'ul_class' => 'nav navbar-nav nav_1'
                                 ])?>
                             </ul>
                                 <!-- dropDownWidget -->
@@ -132,6 +126,21 @@ OldIeAsset::register($this);
     </div>
 </div>
 <!--header-->
+
+<!--modalProduct-->
+<div class="modal fade" id="myModalSingle" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content modal-info">
+            <div class="modal-header">
+                <h4>Быстрый просмотр</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+            </div>
+        </div>
+    </div>
+</div>
+<!--modalProduct-->
 
 <?= $content ?>
 
