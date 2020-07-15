@@ -758,6 +758,12 @@ a:focus {
 	font-size:1em;
 	color:#fff;
 }
+.my_ribben{
+	width: 20%;
+	height: 5%;
+	padding: 0.25em;
+
+}
 .ribben2 {
     position: absolute;
     top: 15%;

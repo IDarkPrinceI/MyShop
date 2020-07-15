@@ -99,6 +99,21 @@ use yii\helpers\Url;
                                                             </a>
                                                         </figure>
                                                     </div>
+                                                    <?php if( !empty($product['is_new']) ) :?>
+                                                        <div class="ribben">
+                                                            <p>NEW</p>
+                                                        </div>
+                                                    <?php endif; ?>
+                                                    <?php if( !empty($product['is_hit']) ) :?>
+                                                        <div class="ribben2">
+                                                            <p>HIT</p>
+                                                        </div>
+                                                    <?php endif; ?>
+                                                    <?php if( !empty($product['is_sale']) ) :?>
+                                                        <div class="ribben1">
+                                                            <p>SALE</p>
+                                                        </div>
+                                                    <?php endif; ?>
                                                     <div class="block">
                                                         <div class="starbox small ghosting"> </div>
                                                     </div>

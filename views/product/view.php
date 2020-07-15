@@ -25,6 +25,21 @@ use yii\widgets\LinkPager;
 <!--                                    </li>-->
                                 </ul>
                             </div>
+                            <?php if( !empty($product['is_new']) ) :?>
+                                <div class="ribben my_ribben">
+                                    <p>NEW</p>
+                                </div>
+                            <?php endif; ?>
+                            <?php if( !empty($product['is_hit']) ) :?>
+                                <div class="ribben2 my_ribben">
+                                    <p>HIT</p>
+                                </div>
+                            <?php endif; ?>
+                            <?php if( !empty($product['is_sale']) ) :?>
+                                <div class="ribben1 my_ribben">
+                                    <p>SALE</p>
+                                </div>
+                            <?php endif; ?>
                         </div>
                         <div class="single-right simpleCart_shelfItem">
                             <h4><?= $product->name ?></h4>

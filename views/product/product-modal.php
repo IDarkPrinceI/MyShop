@@ -7,6 +7,21 @@ use yii\helpers\Url;
 <div id="my_modal_product" class=" new-grid1">
 <!--        <img  src="--><?//= Url::to(["@web/product_img/{$modalProduct->img}", ['alt' => $modalProduct->name, ] ]) ?><!--" class="img-responsive">-->
         <img  src="<?= Url::to(["@web/product_img/{$modalProduct->img}", ['alt' => Html::encode($modalProduct->name), ] ]) ?>" class="img-responsive">
+    <?php if( !empty($modalProduct['is_new']) ) :?>
+        <div class="ribben my_ribben">
+            <p>NEW</p>
+        </div>
+    <?php endif; ?>
+    <?php if( !empty($modalProduct['is_hit']) ) :?>
+        <div class="ribben2 my_ribben">
+            <p>HIT</p>
+        </div>
+    <?php endif; ?>
+    <?php if( !empty($modalProduct['is_sale']) ) :?>
+        <div class="ribben1 my_ribben">
+            <p>SALE</p>
+        </div>
+    <?php endif; ?>
 </div>
 <div id="my_modal_new-grid" class="new-grid">
     <h5><?= $modalProduct->name ?></h5>

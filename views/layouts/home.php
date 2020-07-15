@@ -90,11 +90,14 @@ OldIeAsset::register($this);
 <!--                                button cart-->
                                 <div class="total">
                                     <button onclick="getCart()" id="my_cart" type="button"  data-toggle="modal" data-target="#modal-cart">
-                                        <span class="cart-qty" id="my_cart-qty"><?= $_SESSION['cart.qty'] ?? '' ?></span> на сумму:
-                                        <span class="cart-sum" id="my_cart-sum"><?= $_SESSION['cart.sum'] ?? '0' ?> руб</span>
+                                        <span class="cart-qty" id="my_cart-qty"><?= $_SESSION['cart.qty'] ?? '0' ?> </span><span> шт. на сумму:</span>
+<!--                                        <span class="cart-qty" id="my_cart-qty">--><?//= isset($_SESSION['cart.qty']) ? $_SESSION['cart.qty'] : 'Корзина пуста' ?><!-- </span>-->
+                                        <span class="cart-sum" id="my_cart-sum"><?= $_SESSION['cart.sum'] ?? '0' ?> </span><span> руб.</span>
+<!--                                        <span class="cart-sum" id="my_cart-sum">--><?//= isset($_SESSION['cart.sum']) ? print('на сумму: ') . $_SESSION['cart.sum']  : '' ?><!--</span>-->
+                                        <!--$--><?/*= isset($_SESSION['cart-sum']) ?
+                    $_SESSION['cart-sum'] : '0' */?>
                                     </button>
 <!--                                button cart-->
-<!--                                    <span class="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> items)</div>-->
                                 <img id="my_bag" src="/images/bag.png" alt="" />
                             </h3>
                         </a>

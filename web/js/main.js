@@ -210,7 +210,7 @@ $('.add-to-cart-single').on('click', function () {
 function showCart(cart) {
 	$('#modal-cart .modal-body').html(cart);
 	$('#modal-cart').modal();
-	let cartSum = $('#cart-sum').text() ? $('#cart-sum').text() : '0 руб';
+	let cartSum = $('#cart-sum').text() ? $('#cart-sum').text() : '0';
 	if(cartSum) {
 		$('.cart-sum').text(cartSum);
 	}

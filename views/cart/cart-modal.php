@@ -23,12 +23,12 @@
                 </tr>
             <?php endforeach?>
             <tr>
-                <td colspan="5">Итого: </td>
+                <td colspan="5">Итого, шт: </td>
                 <td id="cart-qty"><?= $session['cart.qty']?></td>
             </tr>
             <tr>
-                <td colspan="5">На сумму: </td>
-                <td id="cart-sum"><?= $session['cart.sum']?> руб</td>
+                <td colspan="5">На сумму, руб: </td>
+                <td id="cart-sum"><?= $session['cart.sum']?></td>
             </tr>
             </tbody>
         </table>
