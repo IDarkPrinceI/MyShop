@@ -758,11 +758,13 @@ a:focus {
 	font-size:1em;
 	color:#fff;
 }
-.my_ribben{
+.my_ribben {
 	width: 20%;
 	height: 5%;
 	padding: 0.25em;
-
+}
+.banner-w3 {
+	padding: 1em;
 }
 .ribben2 {
     position: absolute;

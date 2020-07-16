@@ -84,7 +84,7 @@ jQuery(document).ready(function($){
 
 	function checkWindowWidth() {
 		//check window width (scrollbar included)
-		var e = window, 
+		var e = window,
             a = 'inner';
         if (!('innerWidth' in window )) {
             a = 'client';
@@ -110,35 +110,35 @@ jQuery(document).ready(function($){
 	}
 
 
-	$(function () {
-		$("#slider").responsiveSlides({
-			auto: true,
-			nav: true,
-			speed: 500,
-			namespace: "callbacks",
-			pager: true,
-		});
-	});
+	// $(function () {
+	// 	$("#slider").responsiveSlides({
+	// 		auto: true,
+	// 		nav: true,
+	// 		speed: 500,
+	// 		namespace: "callbacks",
+	// 		pager: true,
+	// 	});
+	// });
 
-	jQuery(function() {
-		jQuery('.starbox').each(function() {
-			var starbox = jQuery(this);
-			starbox.starbox({
-				average: starbox.attr('data-start-value'),
-				changeable: starbox.hasClass('unchangeable') ? false : starbox.hasClass('clickonce') ? 'once' : true,
-				ghosting: starbox.hasClass('ghosting'),
-				autoUpdateAverage: starbox.hasClass('autoupdate'),
-				buttons: starbox.hasClass('smooth') ? false : starbox.attr('data-button-count') || 5,
-				stars: starbox.attr('data-star-count') || 5
-			}).bind('starbox-value-changed', function(event, value) {
-				if(starbox.hasClass('random')) {
-					var val = Math.random();
-					starbox.next().text(' '+val);
-					return val;
-				}
-			})
-		});
-	});
+	// jQuery(function() {
+	// 	jQuery('.starbox').each(function() {
+	// 		var starbox = jQuery(this);
+	// 		starbox.starbox({
+	// 			average: starbox.attr('data-start-value'),
+	// 			changeable: starbox.hasClass('unchangeable') ? false : starbox.hasClass('clickonce') ? 'once' : true,
+	// 			ghosting: starbox.hasClass('ghosting'),
+	// 			autoUpdateAverage: starbox.hasClass('autoupdate'),
+	// 			buttons: starbox.hasClass('smooth') ? false : starbox.attr('data-button-count') || 5,
+	// 			stars: starbox.attr('data-star-count') || 5
+	// 		}).bind('starbox-value-changed', function(event, value) {
+	// 			if(starbox.hasClass('random')) {
+	// 				var val = Math.random();
+	// 				starbox.next().text(' '+val);
+	// 				return val;
+	// 			}
+	// 		})
+	// 	});
+	// });
 
 	// $('.sort').on('click', function(){
 	// var file = $('select[@name=sort] option:selected').val();
@@ -149,8 +149,39 @@ jQuery(document).ready(function($){
 	$('#example1').coreSlider({
 		// Пауза при наведении мыши
 		pauseOnHover: false,
+		startOnHover: true,
 		interval: 4000,
-		controlNavEnabled: true
+		controlNavEnabled: true,
+		controlNavSelector : '.core-slider_control-nav',
+		clone: true
+		// interval: 5000,                                         // Interval of time between slide changes
+		// loop: true,                                             // When slider finish, should it loop again from first slide?
+		// slideshow: true,                                        // Enable/Disable automatic slideshow
+		// resize: true,                                           // Should be slider responsive on screen resize
+		// pauseOnHover: true,                                     // Pause the slideshow when hovering over slider
+		// startOnHover: false,                                    // Start the slideshow when hovering over slider
+		// sliderSelector: '.core-slider_list',                    // List selector (all items are inside this container)
+		// viewportSelector: '.core-slider_viewport',              // Viewport selector
+		// itemSelector: '.core-slider_item',                      // Slider items selector
+		// navEnabled: true,                                       // Enable/Disable navigation arrows
+		// navSelector: '.core-slider_nav',                        // Selector for navigation arrows container
+		// navItemNextSelector: '.core-slider_arrow__right',       // 'Next' arrow selector
+		// navItemPrevSelector: '.core-slider_arrow__left',        // 'Prev' arrow selector
+		// controlNavEnabled: false,                               // Enable/Disable control navigation (dots)
+		// controlNavSelector: '.core-slider_control-nav',         // Control navigation container selector (inside will be created dots items)
+		// controlNavItemSelector: 'core-slider_control-nav-item', // Single control nav dot (created dynamically. Write without dot. If you need more that one class - add them with space separator)
+		// loadedClass: 'is-loaded',                               // Classname, that will be added when slider is fully loaded
+		// clonedClass: 'is-cloned',                               // Classname, that will be added to cloned slides (see option 'clone')
+		// hiddenClass: 'is-hidden',                               // Classname, indicates hidden things
+		// disabledClass: 'is-disabled',                           // Classname, that will be added it item is disabled (in most of cases - item will be display: noned)
+		// activeClass: 'is-active',                               // Classname, that will be added to active items (for example control navs, etc.)
+		// reloadGif: false,                                       // Reload gif's on slide change for replaying cycled animation inside current slide
+		// clone: false,                                           // Indicates, that at begin and at end of slider carousel items will be cloned to create 'infitite' carousel illusion
+		// items: 1,                                               // How mutch items will be placed inside viewport. Leave 1 if this is slider, 2 ot more - it will look like a carousel
+		// itemsPerSlide: 1,                                       // How many items must be slided by one action (NOTE: Must be less than 'items' option)
+		// cloneItems: 0                                           // How mutch items will be cloned at begin and at end of slider
+
+
 	});
 
 	// quantity

@@ -43,14 +43,21 @@ class CategoryController extends AppHomeController
                 ->all();
 
         }else{
-            $baseProductsToCategory = (new Product())->getQueryProductsToCategory($category_id);
-            $sort = (new Product())->getSortParameters();
-            $pages = (new Product())->getPaginationParameters($baseProductsToCategory);
-            $renderProducts = $baseProductsToCategory
-                ->offset($pages->offset)
-                ->limit($pages->limit)
-                ->orderBy($sort->orders)
-                ->all();
+            $data = Yii::$app->cache->get('category-' . $category_id);
+            if ($data === false) {
+                $baseProductsToCategory = (new Product())->getQueryProductsToCategory($category_id);
+                $sort = (new Product())->getSortParameters();
+                $pages = (new Product())->getPaginationParameters($baseProductsToCategory);
+                $renderProducts = $baseProductsToCategory
+                    ->offset($pages->offset)
+                    ->limit($pages->limit)
+                    ->orderBy($sort->orders)
+                    ->all();
+                $data = [$renderProducts, $pages, $sort];
+                Yii::$app->cache->set('category-' . $category_id, $data);
+            }
+//            debug($data);
+            list($renderProducts, $pages, $sort) = $data;
         }
 
         //404

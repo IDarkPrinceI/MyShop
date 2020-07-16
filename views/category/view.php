@@ -14,7 +14,7 @@ use yii\helpers\Url;
 <!--</div>-->
 <!--brendcrumbs-->
 <!--content-->
-<?php //debug($range) ?>
+<?php //debug($data) ?>
 <div class="content" id="my_content">
     <div class="products-agileinfo">
         <div class="container">
@@ -143,7 +143,7 @@ use yii\helpers\Url;
                                                     <div class="starbox small ghosting"> </div>
                                                 </div>
                                                 <div class="women">
-                                                    <h6><a href="<?= \yii\helpers\Url::to(['product/view', 'id' => $product['id']]) ?>"><?= $product->name ?></a></h6>
+                                                    <h6><a href="<?= \yii\helpers\Url::to(['product/view', 'id' => $product->id]) ?>"><?= $product->name ?></a></h6>
                                                     <p>
                                                         <?php if(!empty($product->old_price)): ?>
                                                             <del> <?= $product->old_price ?> </del>
@@ -162,10 +162,10 @@ use yii\helpers\Url;
                             </div>
                     </div>
                     <div class="clearfix"> </div>
-                    <?= LinkPager::widget([
-                        'pagination' => $pages,
-                        'maxButtonCount' => 3,
-                    ])?>
+<!--                    --><?//= LinkPager::widget([
+//                        'pagination' => $pages,
+//                        'maxButtonCount' => 3,
+//                    ])?>
                 </div>
                 <div class="clearfix"> </div>
             </div>
