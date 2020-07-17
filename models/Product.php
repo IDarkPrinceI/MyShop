@@ -59,23 +59,23 @@ class Product extends ActiveRecord
         return $query;
     }
 
-    public function getSortParameters()
-    {
-        $sortParameters = new Sort([
-            'attributes' => [
-                'price' => [
-                    'label' => 'Цена'
-                ],
-                'name' => [
-                    'asc' => ['name' => SORT_ASC],
-                    'desc' => ['name' => SORT_DESC],
-                    'default' => SORT_ASC,
-                    'label' => 'Название',
-                ]
-            ]
-        ]);
-        return $sortParameters;
-    }
+//    public function getSortParameters()
+//    {
+//        $sortParameters = new Sort([
+//            'attributes' => [
+//                'price' => [
+//                    'label' => 'Цена'
+//                ],
+//                'name' => [
+//                    'asc' => ['name' => SORT_ASC],
+//                    'desc' => ['name' => SORT_DESC],
+//                    'default' => SORT_ASC,
+//                    'label' => 'Название',
+//                ]
+//            ]
+//        ]);
+//        return $sortParameters;
+//    }
 
     public function getPaginationParameters($query)
     {
@@ -103,6 +103,17 @@ class Product extends ActiveRecord
     {
         $product = Product::findone($id);
         return $product;
+    }
+
+    public function getRenderProducts($baseProductsToCategory, $pages)
+    {
+        $renderProducts = $baseProductsToCategory
+            ->offset($pages->offset)
+            ->limit($pages->limit)
+            ->orderBy('price')
+            ->all();
+        $data = [$renderProducts, $pages];
+        return $data;
     }
 
 }

@@ -3,19 +3,23 @@
 
 namespace app\controllers;
 
-use app\models\Brand;
 use Yii;
 use app\models\Product;
-use yii\data\Pagination;
 use yii\web\NotFoundHttpException;
 
 class ProductController extends AppHomeController
 {
+    private $cache_time = 3600;
 
     public function actionView($id)
     {
         $id = (int)$id;
-        $product = Product::findOne($id);
+        $product = Yii::$app->cache->get('$product-' . $id);
+        if($product === false) {
+            $product = Product::findOne($id);
+            Yii::$app->cache->set('$product-' . $id, $product, $this->cache_time);
+        }
+
 
         //404
         if (empty($product)) {
@@ -48,23 +52,21 @@ class ProductController extends AppHomeController
 
         return $this->render('view', compact(
               'product',
-                   'productSale',
-                     'pages',
-                     'productQty',
-                     'brands'));
+                   'productSale'));
     }
 
     public function actionSearch()
     {
+
         $search = trim(Yii::$app->request->get('search'));
         $queryProductsToSearch = (new Product())->getQueryProductsToSearch($search);
-        $sort = (new Product())->getSortParameters();
         $pages = (new Product())->getPaginationParameters($queryProductsToSearch);
         $renderProductsToSearch = $queryProductsToSearch
             ->offset($pages->offset)
             ->limit($pages->limit)
-            ->orderBy($sort->orders)
+            ->orderBy('price')
             ->all();
+
         //404
         if (empty($search)) {
             return $this->render('search');
@@ -76,23 +78,27 @@ class ProductController extends AppHomeController
         //set Meta
 
         //brands
-        $productsBrandBase = Product::find()
-            ->where(['like', 'product.name', $search]);
-        $productsBrand = (new Product())->getProductsBrandParameters($productsBrandBase);
+//        $productsBrandBase = Product::find()
+//            ->where(['like', 'product.name', $search]);
+//        $productsBrand = (new Product())->getProductsBrandParameters($productsBrandBase);
         //brands
 
         return $this->render('search', compact(
              'renderProductsToSearch',
-                  'productsBrand',
+//                  'productsBrand',
                     'pages',
-                    'search',
-                    'sort'));
+                    'search'));
     }
 
     public function actionShow()
     {
         $id =\Yii::$app->request->get('id');
-        $modalProduct = (new Product())->getProduct($id);
+        $modalProduct = Yii::$app->cache->get('modalProduct-' . $id);
+        if ($modalProduct === false) {
+            $modalProduct = (new Product())->getProduct($id);
+            Yii::$app->cache->set('modalProduct-' . $id, $modalProduct, $this->cache_time);
+        }
+
         return $this->renderPartial('product-modal', compact(
                                  'modalProduct'
         ));

@@ -758,11 +758,7 @@ a:focus {
 	font-size:1em;
 	color:#fff;
 }
-.my_ribben {
-	width: 20%;
-	height: 5%;
-	padding: 0.25em;
-}
+
 .banner-w3 {
 	padding: 1em;
 }
@@ -773,6 +769,7 @@ a:focus {
     padding: 0.5em;
     background: #0D59AF;
     width: 25%;
+	margin-top: 3.5em;
 }
 .ribben2:after {
     content: '';
@@ -2682,7 +2679,7 @@ li.bt-nn h6 {
 }
 @media(max-width:1280px){
 .ribben2 {
-    top: 15%;	
+    top: 15%;
 }
 .main-agileits {
     width: 33%;
@@ -3527,6 +3524,13 @@ h3.tittle1, h3.tittle {
     float: left;
     width: 100%;
 }
+
+}
+.my_ribben {
+	width: 8%;
+	height: 5%;
+	padding: 0.25em;
+	/*float: right;*/
 }
 @media(max-width:384px){
 	.navbar-header.nav_2 {

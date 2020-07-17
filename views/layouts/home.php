@@ -79,7 +79,7 @@ OldIeAsset::register($this);
                         <li><a class="cd-search-trigger" href="#cd-search"> <span></span></a></li>
                     </ul> <!-- cd-header-buttons -->
                     <div id="cd-search" class="cd-search">
-                        <form action="<?= \yii\helpers\Url::to(['product/search'])?>" method="get">
+                        <form action="<?= Url::to(['product/search'])?>" method="get">
                             <input name="search" type="text" placeholder="Поиск...">
                         </form>
                     </div>

@@ -78,12 +78,12 @@ use yii\helpers\Url;
 <!--                        </div>-->
 <!--                        <div class="clearfix"></div>-->
 <!--                    </div>-->
-                    <div class="mens-toolbar">
+<!--                    <div class="mens-toolbar">-->
 <!--                        <p >Showing 1–9 of 21 results</p>-->
 <!--                        --><?php //echo $sort->link('name')  . '|' . $sort->link('price')?>
-                        <?php if(isset($sort)) : ?>
-                            <p class="showing">Сортировать:
-                                <?php echo $sort->link('name')  . '  |  ' . $sort->link('price')?>
+<!--                        --><?php //if(isset($sort)) : ?>
+<!--                            <p class="showing">Сортировать:-->
+<!--                                --><?php //echo $sort->link('name')  . '  |  ' . $sort->link('price')?>
 <!--                            <form method="get" id="MyForm">-->
 <!--                            <select name="val" onchange="document.getElementById('MyForm').submit()">-->
 <!--                            <select name="sort" id="sort">-->
@@ -92,7 +92,7 @@ use yii\helpers\Url;
 <!--                            </select>-->
 <!--                        </form>-->
                             </p>
-                        <?php endif; ?>
+<!--                        --><?php //endif; ?>
 <!--                        <p>Show-->
 <!--                            <select>-->
 <!--                                <option value=""> 9</option>-->
@@ -101,8 +101,8 @@ use yii\helpers\Url;
 <!--                                <option value=""> 12 </option>-->
 <!--                            </select>-->
 <!--                        </p>-->
-                        <div class="clearfix"></div>
-                    </div>
+<!--                        <div class="clearfix"></div>-->
+<!--                    </div>-->
                     <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
 
                         <ul id="myTab" class="nav1 nav1-tabs left-tab" role="tablist">
@@ -162,10 +162,10 @@ use yii\helpers\Url;
                             </div>
                     </div>
                     <div class="clearfix"> </div>
-<!--                    --><?//= LinkPager::widget([
-//                        'pagination' => $pages,
-//                        'maxButtonCount' => 3,
-//                    ])?>
+                    <?= LinkPager::widget([
+                        'pagination' => $pages,
+                        'maxButtonCount' => 3,
+                    ])?>
                 </div>
                 <div class="clearfix"> </div>
             </div>

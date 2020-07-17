@@ -65,10 +65,10 @@ use yii\helpers\Url;
                     <!--                        </div>-->
                     <!--                        <div class="clearfix"></div>-->
                     <!--                    </div>-->
-                    <div class="mens-toolbar">
+<!--                    <div class="mens-toolbar">-->
 <!--                        <p >Showing 1–9 of 21 results</p>-->
-                        <p class="showing">Сортировать:
-                            <?php echo $sort->link('name')  . '  |  ' . $sort->link('price')?>
+<!--                        <p class="showing">Сортировать:-->
+<!--                            --><?php //echo $sort->link('name')  . '  |  ' . $sort->link('price')?>
 <!--                        <p>Show-->
 <!--                            <select>-->
 <!--                                <option value=""> 9</option>-->
@@ -77,8 +77,8 @@ use yii\helpers\Url;
 <!--                                <option value=""> 12 </option>-->
 <!--                            </select>-->
 <!--                        </p>-->
-                        <div class="clearfix"></div>
-                    </div>
+<!--                        <div class="clearfix"></div>-->
+<!--                    </div>-->
                     <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
                         <ul id="myTab" class="nav1 nav1-tabs left-tab" role="tablist">
                             <div id="myTabContent" class="tab-content">
