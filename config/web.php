@@ -21,6 +21,9 @@ $config = [
             'class' => 'yii\debug\Module', //
             'allowedIPs' => ['*'] //
         ],
+        'far' => [
+            'class' => 'app\modules\far\Module',//подключили модуль админки
+        ],
     ],
     'components' => [
 //        'assetManager' => [
