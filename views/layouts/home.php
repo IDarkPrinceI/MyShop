@@ -14,7 +14,6 @@ OldIeAsset::register($this);
 ?>
 
 
-
 <?php $this->beginPage() ?>
 <!DOCTYPE HTML>
 <html lang="<?= Yii::$app->language ?>">
@@ -23,7 +22,7 @@ OldIeAsset::register($this);
     <meta charset="<?= Yii::$app->charset ?>">
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
 <?php $this->head() ?>
 </head>

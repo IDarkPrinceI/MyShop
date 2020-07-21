@@ -23,6 +23,7 @@ $config = [
         ],
         'far' => [
             'class' => 'app\modules\far\Module',//подключили модуль админки
+            'layout' => 'far',
         ],
     ],
     'components' => [
