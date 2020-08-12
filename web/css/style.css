@@ -254,6 +254,7 @@ ul.multi-column-dropdown h6 {
 	white-space: nowrap;
 	color: transparent;
 	z-index: 3;
+	cursor: pointer;
 }
 
 .cd-search-trigger::before, .cd-search-trigger::after {
@@ -380,12 +381,11 @@ ul.multi-column-dropdown h6 {
 	transition: opacity .3s 0s, visibility 0s .3s;
 }
 .cd-search input {
-	margin-top: 50px;
+	text-align: center;
     border-radius: 0;
     border: none;
-    background: rgba(0, 0, 0, 0.75);
+    background: rgba(142, 190, 190, 0.75);
     width: 100%;
-    padding: 0 5%;
 	-webkit-box-shadow: inset 0 1px 0 #e2e3df, 0 3px 6px rgba(0, 0, 0, 0.05);
 	-moz-box-shadow: inset 0 1px 0 #e2e3df, 0 3px 6px rgba(0, 0, 0, 0.05);
     box-shadow: inset 0 1px 0 #e2e3df, 0 3px 6px rgba(0, 0, 0, 0.05);
@@ -588,7 +588,7 @@ h2.tittle {
 	text-align:center;
 }
 .arrivals-grids {
-    margin-top: 4em;
+    /*margin-top: 4em;*/
 }
 .grid-arr {
     border: 1px solid #E2E2E2;
@@ -599,6 +599,21 @@ h2.tittle {
     padding: 0em;
 	margin-top: 20px;
 	background: #ffffff;
+}
+.filter {
+	margin-top: 1em;
+	/*position: absolute;*/
+	/*float: top;*/
+}
+.brandName {
+	cursor: pointer;
+	border-radius: 5px;
+}
+.brandNamePointer {
+	background: #e3b714;
+}
+.readyButton {
+	background: #e3b714;
 }
 .grid-arr .grid-arrival figure {
   position: relative;
@@ -1975,6 +1990,7 @@ h2.typoh2{
     font-size: 1em;
     line-height: 1.8em;
     color: #777;
+	text-align: justify;
 }
 .description span {
     font-size: 1.2em;
@@ -2660,6 +2676,9 @@ li.bt-nn h6 {
   text-align: r;
   color: #621622;
   margin: 1em 0;
+}
+.move {
+	margin-top: 9em;
 }
 /**responsive**/
 @media(max-width:1440px){

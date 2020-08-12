@@ -1,6 +1,5 @@
 <?php
 
-use yii\helpers\Html;
 use yii\widgets\LinkPager;
 use yii\helpers\Url;
 
@@ -45,122 +44,27 @@ use yii\helpers\Url;
                                     <form action="<?= Url::to(['category/view', 'category_id' => $category['id']])?>" method="get">
                                         <input id="my_range" name="range" type="text" placeholder="Цена до...">
                                         <input id="my_range_button"type="submit" value="Отфильтровать"
-<!--                                        --><?//= Html::a('Создать', ['category/view', 'category_id' => $category['id']], ['class' => 'btn btn-success']) ?>
                                     </form>
                                 </div>
-<!--                                <input type="text" id="amount" style="border: 0; color: #000; font-weight: normal;" />-->
-<!--                                <input type="text" id="amount" style="border: 0; color: #000; font-weight: normal;" />-->
-
-<!--                            <form action="--><?//= \yii\helpers\Url::to(['product/search'])?><!--" method="get">-->
-<!--                                <input  type="text" placeholder="Цена до...">-->
-<!--                            </form>-->
                         </ul>
                     </div>
-                    <div class="brand-w3l">
+                    <div id="filterForm" class="brand-w3l">
                         <h3>Фирма</h3>
                         <?php foreach ($productsBrand as $brand): ?>
-                        <li>
-                             <a href="<?= Url::to(['category/view', 'category_id' => $category['id'], 'brand_id' => $brand['id'] ])?>" ><?= $brand['name']?></a>
-                        </li>
+                            <li>
+                                <ul class="brandName" data-id="<?= $brand['id'] ?>"><?= $brand['name']?></ul>
+                            </li>
                         <?php endforeach; ?>
+                        <button id="filterButton" class="button my-cart-b filter" value="<?= $category['id'] ?>">Отфильтровать</button>
                     </div>
 <!--                    <div class="cat-img">-->
 <!--                        <img class="img-responsive " src="/images/45.jpg" alt="">-->
 <!--                    </div>-->
                 </div>
                 <div class="col-md-9 product-agileinfon-grid1 w3l">
-<!--                    <div class="product-agileinfon-top">-->
-<!--                        <div class="col-md-6 product-agileinfon-top-left">-->
-<!--                            <img class="img-responsive " src="/images/img1.jpg" alt="">-->
-<!--                        </div>-->
-<!--                        <div class="col-md-6 product-agileinfon-top-left">-->
-<!--                            <img class="img-responsive " src="/images/img2.jpg" alt="">-->
-<!--                        </div>-->
-<!--                        <div class="clearfix"></div>-->
-<!--                    </div>-->
-<!--                    <div class="mens-toolbar">-->
-<!--                        <p >Showing 1–9 of 21 results</p>-->
-<!--                        --><?php //echo $sort->link('name')  . '|' . $sort->link('price')?>
-<!--                        --><?php //if(isset($sort)) : ?>
-<!--                            <p class="showing">Сортировать:-->
-<!--                                --><?php //echo $sort->link('name')  . '  |  ' . $sort->link('price')?>
-<!--                            <form method="get" id="MyForm">-->
-<!--                            <select name="val" onchange="document.getElementById('MyForm').submit()">-->
-<!--                            <select name="sort" id="sort">-->
-<!--                                <option value="--><?// $sort->link('name') ?><!--">Цена</option>-->
-<!--                                <option value="--><?// $sort->link('price') ?><!--">Имя</option>-->
-<!--                            </select>-->
-<!--                        </form>-->
-                            </p>
-<!--                        --><?php //endif; ?>
-<!--                        <p>Show-->
-<!--                            <select>-->
-<!--                                <option value=""> 9</option>-->
-<!--                                <option value="">  10</option>-->
-<!--                                <option value=""> 11 </option>-->
-<!--                                <option value=""> 12 </option>-->
-<!--                            </select>-->
-<!--                        </p>-->
-<!--                        <div class="clearfix"></div>-->
-<!--                    </div>-->
-                    <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
 
-                        <ul id="myTab" class="nav1 nav1-tabs left-tab" role="tablist">
-                            <div id="myTabContent" class="tab-content">
-                                <?php foreach ($renderProducts as $product) :?>
-                                <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
-                                    <div class="product-tab">
-                                        <div class="col-md-4 product-tab-grid simpleCart_shelfItem">
-                                            <div class="grid-arr">
-                                                <div  class="grid-arrival">
-                                                    <figure>
-                                                         <a data-id="<?= $product->id ?>" type="button" class="get-modal-product new-gri" data-toggle="modal" data-target="#myModalSingle">
-                                                            <div class="grid-img">
-                                                                <img src="<?= Url::to(["@web/product_img/{$product->img}", ['alt' => $product->name ] ]) ?>" class="img-responsive">
-                                                            </div>
-<!--                                                            <div class="grid-img">-->
-<!--                                                                <img  src="/images/p22.jpg" class="img-responsive"  alt="">-->
-<!--                                                            </div>-->
-                                                        </a>
-                                                    </figure>
-                                                </div>
-                                                <?php if( !empty($product['is_new']) ) :?>
-                                                <div class="ribben">
-                                                    <p>NEW</p>
-                                                </div>
-                                                <?php endif; ?>
-                                                <?php if( !empty($product['is_hit']) ) :?>
-                                                <div class="ribben2">
-                                                    <p>HIT</p>
-                                                </div>
-                                                <?php endif; ?>
-                                                <?php if( !empty($product['is_sale']) ) :?>
-                                                <div class="ribben1">
-                                                    <p>SALE</p>
-                                                </div>
-                                                <?php endif; ?>
-                                                <div class="block">
-                                                    <div class="starbox small ghosting"> </div>
-                                                </div>
-                                                <div class="women">
-                                                    <h6><a href="<?= \yii\helpers\Url::to(['product/view', 'id' => $product->id]) ?>"><?= $product->name ?></a></h6>
-                                                    <p>
-                                                        <?php if(!empty($product->old_price)): ?>
-                                                            <del> <?= $product->old_price ?> </del>
-                                                            <span>/</span>
-                                                            <?php endif; ?>
-                                                        <em class="price"><?= $product->price?></em>
-                                                        <em class="rub"> Р</em>
-                                                    </p>
-                                                    <a href="<?= \yii\helpers\Url::to(['cart/add', 'id' => $product->id])?>" data-id="<?= $product->id ?>" data-text="Add To Cart" class="button add-to-cart my-cart-b">Добавить в корзину</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <?php endforeach; ?>
-                            </div>
-                    </div>
+                        <?= $this->render('include', compact('renderProducts'))?>
+
                     <div class="clearfix"> </div>
                     <?= LinkPager::widget([
                         'pagination' => $pages,

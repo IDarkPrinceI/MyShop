@@ -75,11 +75,12 @@ OldIeAsset::register($this);
                 </div>
                 <div class="logo-nav-right">
                     <ul class="cd-header-buttons">
-                        <li><a class="cd-search-trigger" href="#cd-search"> <span></span></a></li>
+<!--                        <li><a class="cd-search-trigger" href="#cd-search"> <span></span></a></li>-->
+                        <li><a class="cd-search-trigger"><span></span></a></li>
                     </ul> <!-- cd-header-buttons -->
                     <div id="cd-search" class="cd-search">
                         <form action="<?= Url::to(['product/search'])?>" method="get">
-                            <input name="search" type="text" placeholder="Поиск...">
+                            <input autocomplete="off" name="search" type="text" placeholder="Поиск...">
                         </form>
                     </div>
                 </div>
@@ -143,8 +144,10 @@ OldIeAsset::register($this);
     </div>
 </div>
 <!--modalProduct-->
+<div id="content">
+    <?= $content ?>
+</div>
 
-<?= $content ?>
 
 <!---footer--->
 

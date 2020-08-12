@@ -25,4 +25,11 @@ class Brand extends ActiveRecord
         return Brand::findOne($id);
     }
 
+    public function getNameBrand($brand)
+    {
+        return Brand::find()
+            ->select('id')
+            ->where(['name' => $brand])
+            ->one();
+    }
 }

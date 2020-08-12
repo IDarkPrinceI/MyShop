@@ -13,7 +13,9 @@ use yii\widgets\Pjax;
                 <div class="core-slider_viewport">
                     <div class="core-slider_list">
                         <div class="core-slider_item">
+<!--                            <a href="https://google.com">-->
                             <img src="<?= Url::to(["/images/slider/1.jpg"]) ?>" class="img-responsive" alt="">
+
                         </div>
                         <div class="core-slider_item">
                             <img src="<?= Url::to(["/images/slider/2.jpg"]) ?>" class="img-responsive" alt="">
