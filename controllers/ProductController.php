@@ -9,16 +9,16 @@ use yii\web\NotFoundHttpException;
 
 class ProductController extends AppHomeController
 {
-    private $cache_time = 3600;
+//    private $cache_time = 3600;
 
     public function actionView($id)
     {
         $id = (int)$id;
-        $product = Yii::$app->cache->get('$product-' . $id);
-        if($product === false) {
+//        $product = Yii::$app->cache->get('$product-' . $id);
+//        if($product === false) {
             $product = Product::findOne($id);
-            Yii::$app->cache->set('$product-' . $id, $product, $this->cache_time);
-        }
+//            Yii::$app->cache->set('$product-' . $id, $product, $this->cache_time);
+//        }
 
 
         //404
@@ -93,11 +93,11 @@ class ProductController extends AppHomeController
     public function actionShow()
     {
         $id =\Yii::$app->request->get('id');
-        $modalProduct = Yii::$app->cache->get('modalProduct-' . $id);
-        if ($modalProduct === false) {
+//        $modalProduct = Yii::$app->cache->get('modalProduct-' . $id);
+//        if ($modalProduct === false) {
             $modalProduct = (new Product())->getProduct($id);
-            Yii::$app->cache->set('modalProduct-' . $id, $modalProduct, $this->cache_time);
-        }
+//            Yii::$app->cache->set('modalProduct-' . $id, $modalProduct, $this->cache_time);
+//        }
 
         return $this->renderPartial('product-modal', compact(
                                  'modalProduct'

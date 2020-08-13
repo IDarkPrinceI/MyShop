@@ -17,13 +17,44 @@ class CategoryController extends AppHomeController
 
     public function actionFilter() {
 //        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $categoryId = Yii::$app->request->get('categoryId');
         $brandId = Yii::$app->request->get('brandId');
-        $category_id = Yii::$app->request->get('categoryId');
+//        $rangePrice = Yii::$app->request->get('rangePrice');
 
-        $renderProducts = Product::find()
-            ->where(['category_id' => $category_id])
-            ->andWhere(['brand_id' => $brandId])
-            ->all();
+        $categoryId = (int)$categoryId;
+        $brandId = (int)$brandId;
+//        $rangePrice = (int)$rangePrice;
+
+        $baseProductsToCategory = (new Product())->getQueryProductsToCategoryToBrand($categoryId, $brandId);
+        $pages = (new Product())->getPaginationParameters($baseProductsToCategory);
+        $renderProducts = (new Product())->getTestRenderProducts($baseProductsToCategory, $pages);
+//        if ($brandId || $rangePrice) {
+//            $baseProductsToCategory = (new Product())->getQueryProductsToCategoryToBrandToRange($categoryId, $brandId, $rangePrice);
+//            $pages = (new Product())->getPaginationParameters($baseProductsToCategory);
+//            $renderProducts = (new Product())->getTestRenderProducts($baseProductsToCategory, $pages);
+//
+//        } else if (!empty($brandId)) {
+//            $baseProductsToCategory = (new Product())->getQueryProductsToCategoryToBrand($categoryId, $brandId);
+//            $pages = (new Product())->getPaginationParameters($baseProductsToCategory);
+//            $renderProducts = (new Product())->getTestRenderProducts($baseProductsToCategory, $pages);
+//        } else {
+//            $baseProductsToCategory = (new Product())->getQueryProductsToCategoryToRange($categoryId, $rangePrice);
+//            $pages = (new Product())->getPaginationParameters($baseProductsToCategory);
+//            $renderProducts = (new Product())->getTestRenderProducts($baseProductsToCategory, $pages);
+//        }
+//        $pages = (new Product())->getPaginationParameters($baseProductsToCategory);
+//        $renderProducts = (new Product())->getTestRenderProducts($baseProductsToCategory, $pages);
+
+
+        return $this->asJson(['html' => $this->renderPartial('include',
+                                                compact(
+                                                    'renderProducts',
+                                                         'pages'))]);
+
+//        $renderProducts = Product::find()
+//            ->where(['category_id' => $categoryId])
+//            ->andWhere(['brand_id' => $brandId])
+//            ->all();
 //        $baseProductsToCategory = (new Product())->getQueryProductsToCategoryToBrand($category_id, $brandId);
 //        $pages = (new Product())->getPaginationParameters($baseProductsToCategory);
 //        $data = (new Product())->getRenderProducts($baseProductsToCategory, $pages);
@@ -34,49 +65,40 @@ class CategoryController extends AppHomeController
 //        $test = '1';
 ////        if (\Yii::$app->request->isAjax) {
 ////        }
-        return $this->asJson(['html' => $this->renderPartial('include', compact('renderProducts'))]);
     }
 
     public function actionView($category_id, $brand = null, $brand_id = null)
     {
-        $brand = Yii::$app->request->get('brand');
-//        debug($selectBrand);
-//        echo ( $_GET['brand'] );
-//        print_r($selectBrand);
-//        console.log($selectBrand);
-//        if($selectBrand) {
-//            debug($selectBrand);
-//        }
         $category_id = (int)$category_id;
         $range = Yii::$app->request->get('range');
         $cache_time = 3600;
 
-        if( isset($range) )
-        {
-//            $data = Yii::$app->cache->get('category-' . $category_id . '/' . 'range-' . $range);
-//            if ($data === false) {
-                $range = (int)$range;
-                $baseProductsToCategory = (new Product())->getQueryProductsToCategoryToRange($category_id, $range);
-                $pages = (new Product())->getPaginationParameters($baseProductsToCategory);
-                $data = (new Product())->getRenderProducts($baseProductsToCategory, $pages);
-//                Yii::$app->cache->set('category-' . $category_id . '/' . 'range-' . $brand_id, $data, $this->cache_time);
-//            }
-            $renderProducts = $data['0'];
-            $pages = $data['1'];
-
-        }elseif( isset($brand_id) ) {
-//            $data = Yii::$app->cache->get('category-' . $category_id . '/' . 'brand-' . $brand_id);
-//            if ($data === false) {
-                $brand_id = (int)$brand_id;
-                $baseProductsToCategory = (new Product())->getQueryProductsToCategoryToBrand($category_id, $brand_id);
-                $pages = (new Product())->getPaginationParameters($baseProductsToCategory);
-                $data = (new Product())->getRenderProducts($baseProductsToCategory, $pages);
-//                Yii::$app->cache->set('category-' . $category_id . '/' . 'brand-' . $brand_id, $data, $this->cache_time);
-//            }
-            $renderProducts = $data['0'];
-            $pages = $data['1'];
-
-        }else{
+//        if( isset($range) )
+//        {
+////            $data = Yii::$app->cache->get('category-' . $category_id . '/' . 'range-' . $range);
+////            if ($data === false) {
+//                $range = (int)$range;
+//                $baseProductsToCategory = (new Product())->getQueryProductsToCategoryToRange($category_id, $range);
+//                $pages = (new Product())->getPaginationParameters($baseProductsToCategory);
+//                $data = (new Product())->getRenderProducts($baseProductsToCategory, $pages);
+////                Yii::$app->cache->set('category-' . $category_id . '/' . 'range-' . $brand_id, $data, $this->cache_time);
+////            }
+//            $renderProducts = $data['0'];
+//            $pages = $data['1'];
+//
+//        }elseif( isset($brand_id) ) {
+////            $data = Yii::$app->cache->get('category-' . $category_id . '/' . 'brand-' . $brand_id);
+////            if ($data === false) {
+//                $brand_id = (int)$brand_id;
+//                $baseProductsToCategory = (new Product())->getQueryProductsToCategoryToBrand($category_id, $brand_id);
+//                $pages = (new Product())->getPaginationParameters($baseProductsToCategory);
+//                $data = (new Product())->getRenderProducts($baseProductsToCategory, $pages);
+////                Yii::$app->cache->set('category-' . $category_id . '/' . 'brand-' . $brand_id, $data, $this->cache_time);
+////            }
+//            $renderProducts = $data['0'];
+//            $pages = $data['1'];
+//
+//        }else{
 //            $data = Yii::$app->cache->get('category-' . $category_id);
 //            if ($data === false) {
                 $baseProductsToCategory = (new Product())->getQueryProductsToCategory($category_id);
@@ -86,7 +108,7 @@ class CategoryController extends AppHomeController
 //            }
             $renderProducts = $data['0'];
             $pages = $data['1'];
-        }
+//        }
 
         //404
         if (empty($renderProducts)) {

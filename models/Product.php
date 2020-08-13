@@ -26,27 +26,39 @@ class Product extends ActiveRecord
         return $this->hasOne(Brand::class, ['id' => 'brand_id']);
     }
 
-    public function getQueryProductsToCategory($category_id)
+    public function getQueryProductsToCategory($categoryId)
     {
        $query = Product::find()
            ->where([
-               'category_id' => $category_id
+               'category_id' => $categoryId
            ]);
        return $query;
     }
-    public function getQueryProductsToCategoryToRange($category_id, $range)
+//test
+
+//test
+    public function getQueryProductsToCategoryToBrand($categoryId, $brandId)
     {
         $query = Product::find()
-            ->where(['category_id' => $category_id])
-            ->andWhere(['<=', 'price', $range]);
+            ->where(['category_id' => $categoryId])
+            ->andWhere(['brand_id' => $brandId]);
         return $query;
     }
 
-    public function getQueryProductsToCategoryToBrand($category_id, $brand_id)
+    public function getQueryProductsToCategoryToRange($categoryId, $rangePrice)
     {
         $query = Product::find()
-            ->where(['category_id' => $category_id])
-            ->andwhere(['brand_id' => $brand_id]);
+            ->where(['category_id' => $categoryId])
+            ->andWhere(['<=', 'price', $rangePrice]);
+        return $query;
+    }
+
+    public function getQueryProductsToCategoryToBrandToRange($categoryId, $brandId, $rangePrice)
+    {
+        $query = Product::find()
+            ->where(['category_id' => $categoryId])
+            ->andWhere(['brand_id' => $brandId])
+            ->andWhere(['<=', 'price', $rangePrice]);
         return $query;
     }
 
@@ -116,4 +128,13 @@ class Product extends ActiveRecord
         return $data;
     }
 
+    public function getTestRenderProducts($baseProductsToCategory, $pages)
+    {
+        $renderProducts = $baseProductsToCategory
+            ->offset($pages->offset)
+            ->limit($pages->limit)
+            ->orderBy('price')
+            ->all();
+        return $renderProducts;
+    }
 }

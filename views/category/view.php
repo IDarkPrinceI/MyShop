@@ -41,9 +41,9 @@ use yii\helpers\Url;
                         <h3>Диапазон цены</h3>
                         <ul class="dropdown-menu6">
                                 <div>
-                                    <form action="<?= Url::to(['category/view', 'category_id' => $category['id']])?>" method="get">
+<!--                                    <form action="--><?//= Url::to(['category/view', 'category_id' => $category['id']])?><!--" method="get">-->
                                         <input id="my_range" name="range" type="text" placeholder="Цена до...">
-                                        <input id="my_range_button"type="submit" value="Отфильтровать"
+<!--                                        <input id="my_range_button"type="submit" value="Отфильтровать"-->
                                     </form>
                                 </div>
                         </ul>

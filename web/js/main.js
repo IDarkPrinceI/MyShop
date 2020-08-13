@@ -386,46 +386,8 @@ function itemMinus() {
 	}
 }
 //itemPlus & minus
-
 //modalProduct
 
-$('#mySelect').on('click', function(event) {
-
-	if (event.target.classList.contains('class')) {
-		let allOption = document.querySelectorAll('.class')
-		allOption.forEach(function(elem) {
-			elem.removeAttribute('selected')
-			elem.classList.remove('select')
-		})
-		event.target.setAttribute('selected', 'selected')
-		event.target.classList.add('select')
-		// console.log(event.target)
-	}
-})
-
-//productFilter
-$('.test').on('click', function () {
-	let selectBrand = document.querySelector('.select').value,
-		id = document.querySelector('#test').getAttribute('data-id')
-		newDataId = document.querySelector('.test').setAttribute('data-id', selectBrand)
-		brand = document.querySelector('.test').getAttribute('data-id')
-		 // id = $(this).data('id');
-	$.ajax({
-		url:'/category/filter',
-		data: {brand: brand, id: id},
-		// data: {brand: brand},
-		// data: {id: id, selectBrand: selectBrand},
-		type: 'GET',
-		success: function (res) {
-			if(!res) alert('Ошибка фильтра бренда');
-			$('#myIncludeProductList').html(res.html);
-		},
-		error: function () {
-			alert('Error');
-		}
-	});
-	return false;
-});
 //productFilter
 
 $('#filterForm').on('click', function (event) {
@@ -455,7 +417,7 @@ $('#filterButton').on('click', function () {
 			success: function (res) {
 				if (!res) alert('Ошибка фильтра')
 				$('#myIncludeProductList').html(res.html);
-				},
+			},
 			error: function () {
 				alert('Error!')
 			}
@@ -463,6 +425,7 @@ $('#filterButton').on('click', function () {
 		return false;
 	}
 });
+//productFilter
 
 
 
