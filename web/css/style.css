@@ -381,6 +381,7 @@ ul.multi-column-dropdown h6 {
 	transition: opacity .3s 0s, visibility 0s .3s;
 }
 .cd-search input {
+	/*margin-top: 1.5em;*/
 	text-align: center;
     border-radius: 0;
     border: none;

@@ -314,13 +314,30 @@ $('#plus, #minus').on('click', function () {
 });
 
 //modalProduct
-
+$('body').on('click', '.get-modal-product', function () {
+	let id = $(this).data('id');
+	$.ajax({
+		url: '/product/show',
+		type: 'GET',
+		data: {id: id},
+		cache: false,
+		success:
+			function (res) {
+				if(!res) alert('Ошибка модального окна');
+				showProduct(res);
+			},
+		error: function () {
+			alert('Ошибочка!')
+		}
+	})
+});
 $('.get-modal-product').on('click', function () {
 	let id = $(this).data('id');
 	$.ajax({
 		url: '/product/show',
 		type: 'GET',
 		data: {id: id},
+		cache: false,
 		success:
 			function (res) {
 				if(!res) alert('Ошибка модального окна');
@@ -416,7 +433,8 @@ $('#filterButton').on('click', function () {
 			type: 'GET',
 			success: function (res) {
 				if (!res) alert('Ошибка фильтра')
-				$('#myIncludeProductList').html(res.html);
+				$('#myIncludeProductList').html(res);
+				// $('#myIncludeProductList').html(res.html);
 			},
 			error: function () {
 				alert('Error!')

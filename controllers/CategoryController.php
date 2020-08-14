@@ -16,7 +16,7 @@ class CategoryController extends AppHomeController
     private $cache_time = 3600;
 
     public function actionFilter() {
-//        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         $categoryId = Yii::$app->request->get('categoryId');
         $brandId = Yii::$app->request->get('brandId');
 //        $rangePrice = Yii::$app->request->get('rangePrice');
@@ -46,10 +46,14 @@ class CategoryController extends AppHomeController
 //        $renderProducts = (new Product())->getTestRenderProducts($baseProductsToCategory, $pages);
 
 
-        return $this->asJson(['html' => $this->renderPartial('include',
+//        return $this->asJson(['html' => $this->renderPartial('include',
+//                                                compact(
+//                                                    'renderProducts',
+//                                                         'pages'))]);
+        return $this->renderPartial('include',
                                                 compact(
                                                     'renderProducts',
-                                                         'pages'))]);
+                                                         'pages'));
 
 //        $renderProducts = Product::find()
 //            ->where(['category_id' => $categoryId])

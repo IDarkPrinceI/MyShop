@@ -59,17 +59,17 @@
         </div>
 
         <!--modalProduct-->
-        <div class="modal fade" id="myModalSingle" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content modal-info">
-                    <div class="modal-header">
-                        <h4>Быстрый просмотр</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    </div>
-                    <div class="modal-body">
-                    </div>
-                </div>
-            </div>
-        </div>
+<!--        <div class="modal fade" id="myModalSingle" tabindex="-1" role="dialog">-->
+<!--            <div class="modal-dialog" role="document">-->
+<!--                <div class="modal-content modal-info">-->
+<!--                    <div class="modal-header">-->
+<!--                        <h4>Быстрый просмотр</h4>-->
+<!--                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+<!--                    </div>-->
+<!--                    <div class="modal-body">-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
         <!--modalProduct-->
 </div>
