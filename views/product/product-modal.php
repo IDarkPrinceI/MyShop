@@ -32,9 +32,10 @@ use yii\helpers\Url;
         <h6><span>Количество :</span></h6>
         <div class="quantity">
             <div class="quantity-select">
-                <div class="entry value-minus1"><span></span></div>
+<!--                <div class="entry value-minus1"><span></span></div>-->
+                <button onclick="itemMinus()" class="entry value-minus1"><span></span></button>
                 <div id="rez" class="entry value1"><span>1</span></div>
-                <div class="entry value-plus1 active"><span></span></div>
+                <button onclick="itemPlus()" class="entry value-plus1 active"><span></span></button>
             </div>
         </div>
     <hr>
