@@ -336,42 +336,38 @@ $('#filterForm').on('click', function (event) {
 $('#filterButton').on('click', function () {
 	let target = document.querySelector('#filterButton'),
 		rangePrice = document.querySelector('#my_range').value,
-		categoryId = target.value
+		categoryId = target.value,
+		params = {
+			url: '/category/filter',
+			type: 'GET',
+			success: function (res) {
+				if (!res) alert('Ошибка фильтра')
+				$('#myIncludeProductList').html(res);
+			},
+			error: function () {
+				alert('Error!')
+			}
+		}
 
 	if (!target.classList.contains('readyButton') && rangePrice === '') {
 		return alert('Выберите параметры фильтрации')
 
-	} else if (target.classList.contains('readyButton')) {
+	} else if (target.classList.contains('readyButton') && rangePrice !== '') {
 		let brandId = document.querySelector('.brandNamePointer').getAttribute('data-id')
-		$.ajax({
-			url: '/category/filter',
-			data: {brandId: brandId,
-				   categoryId: categoryId},
-			type: 'GET',
-			success: function (res) {
-				if (!res) alert('Ошибка фильтра')
-				$('#myIncludeProductList').html(res);
-			},
-			error: function () {
-				alert('Error!')
-			}
-		});
-
+		params.data = {categoryId: categoryId,
+			           range: rangePrice,
+					   brandId: brandId}
+	} else if (!target.classList.contains('readyButton')) {
+		params.data = {categoryId: categoryId,
+					   range: rangePrice}
 	} else {
-		$.ajax({
-			url: '/category/filter',
-			data: {categoryId: categoryId,
-				   range: rangePrice},
-			type: 'GET',
-			success: function (res) {
-				if (!res) alert('Ошибка фильтра')
-				$('#myIncludeProductList').html(res);
-			},
-			error: function () {
-				alert('Error!')
-			}
-		});
+		let brandId = document.querySelector('.brandNamePointer').getAttribute('data-id')
+		params.data = {brandId: brandId,
+					   categoryId: categoryId}
+			// rangePrice = document.querySelector('#my_range').value
+
 	}
+	$.ajax(params);
 	return false;
 });
 

@@ -29,26 +29,34 @@ class CategoryController extends AppHomeController
         $baseProductsToCategory = (new Product())->getQueryProductsToCategoryToBrand($categoryId, $brandId);
         $pages = (new Product())->getPaginationParameters($baseProductsToCategory);
         $renderProducts = (new Product())->getTestRenderProducts($baseProductsToCategory, $pages);
-        if ($brandId && $rangePrice) {
-            print_r('есть brandId и rangePrice');
+        if (isset($brandId) && !isset($rangePrice)) {
+            print_r('Есть только бренд');
+        } elseif (empty($brandId) && isset($rangePrice)) {
+            print_r('Есть только цена');
+        } else {
+            print_r('Есть оба параметра');
+        }
+
+        //        if ($brandId && $rangePrice) {
+//            print_r('есть brandId и rangePrice');
 
 //            $baseProductsToCategory = (new Product())->getQueryProductsToCategoryToBrandToRange($categoryId, $brandId, $rangePrice);
 //            $pages = (new Product())->getPaginationParameters($baseProductsToCategory);
 //            $renderProducts = (new Product())->getTestRenderProducts($baseProductsToCategory, $pages);
 //
-        } else if (empty($brandId)) {
-            print_r('есть только rangePrice');
+//        } else if ($brandId && empty($rangePrice)) {
+//            print_r('есть только brandId');
 
 //            $baseProductsToCategory = (new Product())->getQueryProductsToCategoryToBrand($categoryId, $brandId);
 //            $pages = (new Product())->getPaginationParameters($baseProductsToCategory);
 //            $renderProducts = (new Product())->getTestRenderProducts($baseProductsToCategory, $pages);
-        } else {
-            print_r('есть только brandId');
+//        } else {
+//            print_r('есть только rangePrice');
 
 //            $baseProductsToCategory = (new Product())->getQueryProductsToCategoryToRange($categoryId, $rangePrice);
 //            $pages = (new Product())->getPaginationParameters($baseProductsToCategory);
 //            $renderProducts = (new Product())->getTestRenderProducts($baseProductsToCategory, $pages);
-        }
+//        }
 //        $pages = (new Product())->getPaginationParameters($baseProductsToCategory);
 //        $renderProducts = (new Product())->getTestRenderProducts($baseProductsToCategory, $pages);
 
