@@ -322,15 +322,21 @@ function itemMinus() {
 
 $('#filterForm').on('click', function (event) {
 	let target = event.target,
-		filterButton = document.querySelector('#filterButton'),
-		allFilterFormTarget = document.querySelectorAll('.brandName')
-		allFilterFormTarget.forEach(function (elem) {
-			elem.classList.remove('brandNamePointer')
-		})
-	if (target.tagName === 'UL') {
-		target.classList.add('brandNamePointer')
-		filterButton.classList.add('readyButton')
-	}
+		button = document.querySelector('#filterButton')
+		if (target.classList.contains('brandNamePointer')) {
+			target.classList.remove('brandNamePointer')
+			button.classList.remove('readyButton')
+		} else {
+			let filterButton = document.querySelector('#filterButton'),
+				allFilterFormTarget = document.querySelectorAll('.brandName')
+				allFilterFormTarget.forEach(function (elem) {
+				elem.classList.remove('brandNamePointer')
+			})
+			if (target.tagName === 'UL') {
+				target.classList.add('brandNamePointer')
+				filterButton.classList.add('readyButton')
+			}
+		}
 });
 
 $('#filterButton').on('click', function () {
@@ -354,52 +360,24 @@ $('#filterButton').on('click', function () {
 
 	} else if (target.classList.contains('readyButton') && rangePrice !== '') {
 		let brandId = document.querySelector('.brandNamePointer').getAttribute('data-id')
-		params.data = {categoryId: categoryId,
-			           range: rangePrice,
+			params.data = {categoryId: categoryId,
+			           rangePrice: rangePrice,
 					   brandId: brandId}
 	} else if (!target.classList.contains('readyButton')) {
-		params.data = {categoryId: categoryId,
-					   range: rangePrice}
+			params.data = {categoryId: categoryId,
+					   rangePrice: rangePrice}
 	} else {
 		let brandId = document.querySelector('.brandNamePointer').getAttribute('data-id')
-		params.data = {brandId: brandId,
+			params.data = {brandId: brandId,
 					   categoryId: categoryId}
-			// rangePrice = document.querySelector('#my_range').value
-
 	}
+
 	$.ajax(params);
 	return false;
 });
 
 //productFilter
 
-
-// $('#filterButton').on('click', function () {
-// 	let target = document.querySelector('#filterButton')
-// 	rangePrice = document.querySelector('#my_range').value
-// 	if (!target.classList.contains('readyButton') && rangePrice === '') {
-// 		return alert('Выберите параметры фильтрации')
-// 	} else {
-// 		let brandId = document.querySelector('.brandNamePointer').getAttribute('data-id'),
-// 			categoryId = target.value
-// 		rangePrice = document.querySelector('#my_range').value
-// 		$.ajax({
-// 			url: '/category/filter',
-// 			data: {brandId: brandId,
-// 				categoryId: categoryId,
-// 				range: rangePrice},
-// 			type: 'GET',
-// 			success: function (res) {
-// 				if (!res) alert('Ошибка фильтра')
-// 				$('#myIncludeProductList').html(res);
-// 			},
-// 			error: function () {
-// 				alert('Error!')
-// 			}
-// 		});
-// 		return false;
-// 	}
-// });
 
 
 

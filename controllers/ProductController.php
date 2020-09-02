@@ -9,17 +9,16 @@ use yii\web\NotFoundHttpException;
 
 class ProductController extends AppHomeController
 {
-//    private $cache_time = 3600;
+    private $cache_time = 30;
 
     public function actionView($id)
     {
         $id = (int)$id;
-//        $product = Yii::$app->cache->get('$product-' . $id);
-//        if($product === false) {
+        $product = Yii::$app->cache->get('$product-' . $id);
+        if($product === false) {
             $product = Product::findOne($id);
-//            Yii::$app->cache->set('$product-' . $id, $product, $this->cache_time);
-//        }
-
+            Yii::$app->cache->set('$product-' . $id, $product, $this->cache_time);
+        }
 
         //404
         if (empty($product)) {
@@ -31,24 +30,14 @@ class ProductController extends AppHomeController
         $this->setMeta("{$product->name}", $product->keywords, $product->description);
         //set Meta
 
-        //        pagination productSale
+        //productSale
         $productSale = Product::find()
             ->where(['is_sale' => 1])
             ->orderBy('RAND()')
             ->limit(4)
             ->all();
 
-//        $pages = new Pagination(['totalCount' => $query->count(),
-//            'pageSize' => 4,
-//            'forcePageParam' => false,
-//            'pageSizeParam' => false
-//        ]);
-//        $productSale = $query
-//            ->offset($pages->offset)
-//            ->limit($pages->limit)
-//            ->all();
-        //        pagination productSale
-
+        //productSale
 
         return $this->render('view', compact(
               'product',
@@ -57,7 +46,6 @@ class ProductController extends AppHomeController
 
     public function actionSearch()
     {
-
         $search = trim(Yii::$app->request->get('search'));
         $queryProductsToSearch = (new Product())->getQueryProductsToSearch($search);
         $pages = (new Product())->getPaginationParameters($queryProductsToSearch);
@@ -77,15 +65,9 @@ class ProductController extends AppHomeController
         $this->setMeta("Поиск: {$search} ");
         //set Meta
 
-        //brands
-//        $productsBrandBase = Product::find()
-//            ->where(['like', 'product.name', $search]);
-//        $productsBrand = (new Product())->getProductsBrandParameters($productsBrandBase);
-        //brands
-
         return $this->render('search', compact(
              'renderProductsToSearch',
-//                  'productsBrand',
+
                     'pages',
                     'search'));
     }
@@ -98,7 +80,6 @@ class ProductController extends AppHomeController
             $modalProduct = (new Product())->getProduct($id);
 //            Yii::$app->cache->set('modalProduct-' . $id, $modalProduct, $this->cache_time);
 //        }
-
         return $this->renderPartial('product-modal', compact(
                                  'modalProduct'
         ));

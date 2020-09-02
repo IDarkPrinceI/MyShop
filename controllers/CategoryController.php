@@ -20,70 +20,34 @@ class CategoryController extends AppHomeController
         Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         $categoryId = Yii::$app->request->get('categoryId');
         $brandId = Yii::$app->request->get('brandId');
-        $rangePrice = Yii::$app->request->get('rangePrice');
+        $rangePrice = trim(Yii::$app->request->get('rangePrice'));
 
         $categoryId = (int)$categoryId;
         $brandId = (int)$brandId;
         $rangePrice = (int)$rangePrice;
 
-        $baseProductsToCategory = (new Product())->getQueryProductsToCategoryToBrand($categoryId, $brandId);
-        $pages = (new Product())->getPaginationParameters($baseProductsToCategory);
-        $renderProducts = (new Product())->getTestRenderProducts($baseProductsToCategory, $pages);
-        if (isset($brandId) && !isset($rangePrice)) {
-            print_r('Есть только бренд');
-        } elseif (empty($brandId) && isset($rangePrice)) {
-            print_r('Есть только цена');
+        if ($brandId && $rangePrice) {
+//            print_r('Есть оба параметра');
+            $baseProductsToCategory = (new Product())->getQueryProductsToCategoryToBrandToRange($categoryId, $brandId, $rangePrice);
+            $pages = (new Product())->getPaginationParameters($baseProductsToCategory);
+            $renderProducts = (new Product())->getFilterRenderProducts($baseProductsToCategory, $pages);
+
+        } elseif (empty($brandId) && $rangePrice) {
+//            print_r('Есть только цена');
+            $baseProductsToCategory = (new Product())->getQueryProductsToCategoryToRange($categoryId, $rangePrice);
+            $pages = (new Product())->getPaginationParameters($baseProductsToCategory);
+            $renderProducts = (new Product())->getFilterRenderProducts($baseProductsToCategory, $pages);
+
         } else {
-            print_r('Есть оба параметра');
+//            print_r('Есть только бренд');
+            $baseProductsToCategory = (new Product())->getQueryProductsToCategoryToBrand($categoryId, $brandId);
+            $pages = (new Product())->getPaginationParameters($baseProductsToCategory);
+            $renderProducts = (new Product())->getFilterRenderProducts($baseProductsToCategory, $pages);
         }
 
-        //        if ($brandId && $rangePrice) {
-//            print_r('есть brandId и rangePrice');
-
-//            $baseProductsToCategory = (new Product())->getQueryProductsToCategoryToBrandToRange($categoryId, $brandId, $rangePrice);
-//            $pages = (new Product())->getPaginationParameters($baseProductsToCategory);
-//            $renderProducts = (new Product())->getTestRenderProducts($baseProductsToCategory, $pages);
-//
-//        } else if ($brandId && empty($rangePrice)) {
-//            print_r('есть только brandId');
-
-//            $baseProductsToCategory = (new Product())->getQueryProductsToCategoryToBrand($categoryId, $brandId);
-//            $pages = (new Product())->getPaginationParameters($baseProductsToCategory);
-//            $renderProducts = (new Product())->getTestRenderProducts($baseProductsToCategory, $pages);
-//        } else {
-//            print_r('есть только rangePrice');
-
-//            $baseProductsToCategory = (new Product())->getQueryProductsToCategoryToRange($categoryId, $rangePrice);
-//            $pages = (new Product())->getPaginationParameters($baseProductsToCategory);
-//            $renderProducts = (new Product())->getTestRenderProducts($baseProductsToCategory, $pages);
-//        }
-//        $pages = (new Product())->getPaginationParameters($baseProductsToCategory);
-//        $renderProducts = (new Product())->getTestRenderProducts($baseProductsToCategory, $pages);
-
-
-//        return $this->asJson(['html' => $this->renderPartial('include',
-//                                                compact(
-//                                                    'renderProducts',
-//                                                         'pages'))]);
-        return $this->renderPartial('include',
-                                                compact(
-                                                    'renderProducts',
-                                                         'pages'));
-
-//        $renderProducts = Product::find()
-//            ->where(['category_id' => $categoryId])
-//            ->andWhere(['brand_id' => $brandId])
-//            ->all();
-//        $baseProductsToCategory = (new Product())->getQueryProductsToCategoryToBrand($category_id, $brandId);
-//        $pages = (new Product())->getPaginationParameters($baseProductsToCategory);
-//        $data = (new Product())->getRenderProducts($baseProductsToCategory, $pages);
-//////                Yii::$app->cache->set('category-' . $category_id . '/' . 'brand-' . $brand_id, $data, $this->cache_time);
-//////            }
-//        $baseProductsToCategory = $data['0'];
-//        $pages = $data['1'];
-//        $test = '1';
-////        if (\Yii::$app->request->isAjax) {
-////        }
+        return $this->renderPartial('include', compact(
+                                 'renderProducts',
+                                      'pages'));
     }
 
     public function actionView($category_id)

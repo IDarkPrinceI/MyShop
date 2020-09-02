@@ -4,6 +4,7 @@
 <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
     <ul id="myIncludeProductList" class="nav1 nav1-tabs left-tab" role="tablist">
         <div id="myTabContent" class="tab-content">
+            <?php if(!empty($renderProducts)): ?>
             <?php foreach ($renderProducts as $product) :?>
                 <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
                     <div class="product-tab">
@@ -56,6 +57,9 @@
                     </div>
                 </div>
             <?php endforeach; ?>
+            <?php else: ?>
+            <h2>По результатам фильтрации - товаров не найдено</h2>
+            <?php endif; ?>
         </div>
     </ul>
 </div>

@@ -5,7 +5,6 @@ namespace app\models;
 
 
 use yii\data\Pagination;
-use yii\data\Sort;
 use yii\db\ActiveRecord;
 
 class Product extends ActiveRecord
@@ -71,24 +70,6 @@ class Product extends ActiveRecord
         return $query;
     }
 
-//    public function getSortParameters()
-//    {
-//        $sortParameters = new Sort([
-//            'attributes' => [
-//                'price' => [
-//                    'label' => 'Цена'
-//                ],
-//                'name' => [
-//                    'asc' => ['name' => SORT_ASC],
-//                    'desc' => ['name' => SORT_DESC],
-//                    'default' => SORT_ASC,
-//                    'label' => 'Название',
-//                ]
-//            ]
-//        ]);
-//        return $sortParameters;
-//    }
-
     public function getPaginationParameters($query)
     {
         $paginationParameters = new Pagination(['totalCount' => $query->count(),
@@ -128,7 +109,7 @@ class Product extends ActiveRecord
         return $data;
     }
 
-    public function getTestRenderProducts($baseProductsToCategory, $pages)
+    public function getFilterRenderProducts($baseProductsToCategory, $pages)
     {
         $renderProducts = $baseProductsToCategory
             ->offset($pages->offset)
