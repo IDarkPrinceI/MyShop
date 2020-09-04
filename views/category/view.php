@@ -18,14 +18,15 @@ use yii\helpers\Url;
     <div class="products-agileinfo">
         <div class="container">
             <h2 class="tittle"><?= $category['name'] ?>
-                <?php if( isset($brandName) ) : ?>
-                <span>/</span>
-                    <?= $brandName->name ?>
-                <?php endif; ?>
-                <?php if( (isset($range) )) : ?>
-                <span>/ цена до: </span>
-                    <?= $range ?>
-                <?php endif; ?>
+<!--            <h2 class="tittle">--><?//= app\components\BreadWidget::widget() ?>
+<!--                --><?php //if( isset($brandName) ) : ?>
+<!--                <span>/</span>-->
+<!--                    --><?//= $brandName->name ?>
+<!--                --><?php //endif; ?>
+<!--                --><?php //if( (isset($range) )) : ?>
+<!--                <span>/ цена до: </span>-->
+<!--                    --><?//= $range ?>
+<!--                --><?php //endif; ?>
             </h2>
             <div class="product-agileinfo-grids w3l">
                 <div class="col-md-3 product-agileinfo-grid">
@@ -40,12 +41,9 @@ use yii\helpers\Url;
                     <div class="price">
                         <h3>Диапазон цены</h3>
                         <ul class="dropdown-menu6">
-                                <div>
-<!--                                    <form action="--><?//= Url::to(['category/view', 'category_id' => $category['id']])?><!--" method="get">-->
-                                        <input id="my_range" name="range" type="text" placeholder="Цена до...">
-<!--                                        <input id="my_range_button"type="submit" value="Отфильтровать"-->
-                                    </form>
-                                </div>
+                            <div>
+                                <input id="my_range" name="range" type="text" placeholder="Цена до...">
+                            </div>
                         </ul>
                     </div>
                     <div id="filterForm" class="brand-w3l">

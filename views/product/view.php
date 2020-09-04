@@ -1,61 +1,16 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\LinkPager;
 
 ?>
 
 <div class="content">
     <div class="container">
-        <?php if(isset($productSale)): ?>
-            <div class="new-arrivals-w3agile">
-                <h2 class="tittle">Распродажа</h2>
-                <?php foreach ($productSale as $sale): ?>
-                <div class="arrivals-grids">
-                    <div class="col-md-3 arrival-grid simpleCart_shelfItem">
-                        <div class="grid-arr">
-                            <div  class="grid-arrival">
-                                <figure>
-                                    <a data-id="<?= $sale->id ?>" type="button" class="get-modal-product new-gri" data-toggle="modal" data-target="#myModalSingle">
-                                        <div class="grid-img">
-                                            <img  src="<?= \yii\helpers\Url::to(["@web/product_img/{$sale->img}", ['alt' => Html::encode($sale->name)]]) ?>" class="img-responsive">
-                                        </div>
-                                        <!--                                    <div class="grid-img">-->
-                                        <!--                                        <img  src="images/p27.jpg" class="img-responsive"  alt="">-->
-                                        <!--                                    </div>-->
-                                    </a>
-                                </figure>
-                            </div>
-                            <div class="ribben1">
-                                <p>SALE</p>
-                            </div>
-                            <div class="block">
-                                <div class="starbox small ghosting"> </div>
-                            </div>
-                            <div class="women">
-                                <h6><a href="<?= \yii\helpers\Url::to(['product/view', 'id' => $sale['id']])?>"><?= $sale->name ?></a></h6>
-                                <p><?php if(!empty($sale->old_price)): ?>
-                                        <del> <?= $sale->old_price ?> </del>
-                                        <span>/</span>
-                                    <?php endif; ?>
-                                    <em class="price"><?= $sale->price?></em>
-                                    <em class="rub"> Р</em></p>
-                                <a href="<?= \yii\helpers\Url::to(['cart/add', 'id' => $sale->id])?>" data-id="<?= $sale->id ?>" data-text="Add To Cart" class="button add-to-cart my-cart-b">Добавить в корзину</a>
-                            </div>
-                        </div>
-                    </div>
-                    <?php endforeach; ?>
-                    <div class="clearfix"></div>
-
-                    <!--            --><?//= LinkPager::widget([
-                    //                'pagination' => $pages,
-                    //                'maxButtonCount' => 3,
-                    //            ])?>
-
-                </div>
-                <div class="clearfix"></div>
-            </div>
-        <?php endif; ?>
+        <h2 class="tittle tittleBread">
+            <a class="link" href="<?= Url::to(['category/view', 'category_id' => $product['category_id']])?>"><?= $product->category->name ?></a>
+        </h2>
         <div class="single-wl3">
             <div class="single-grids">
                 <div class="col-md-9 single-grid">
@@ -132,7 +87,55 @@ use yii\widgets\LinkPager;
             </div>
         </div>
     <!--single-->
+        <?php if(isset($productSale)): ?>
+            <div class="new-arrivals-w3agile">
+                <h2 class="tittle">Распродажа</h2>
+                <?php foreach ($productSale as $sale): ?>
+                <div class="arrivals-grids">
+                    <div class="col-md-3 arrival-grid simpleCart_shelfItem">
+                        <div class="grid-arr">
+                            <div  class="grid-arrival">
+                                <figure>
+                                    <a data-id="<?= $sale->id ?>" type="button" class="get-modal-product new-gri" data-toggle="modal" data-target="#myModalSingle">
+                                        <div class="grid-img">
+                                            <img  src="<?= \yii\helpers\Url::to(["@web/product_img/{$sale->img}", ['alt' => Html::encode($sale->name)]]) ?>" class="img-responsive">
+                                        </div>
+                                        <!--                                    <div class="grid-img">-->
+                                        <!--                                        <img  src="images/p27.jpg" class="img-responsive"  alt="">-->
+                                        <!--                                    </div>-->
+                                    </a>
+                                </figure>
+                            </div>
+                            <div class="ribben1">
+                                <p>SALE</p>
+                            </div>
+                            <div class="block">
+                                <div class="starbox small ghosting"> </div>
+                            </div>
+                            <div class="women">
+                                <h6><a href="<?= \yii\helpers\Url::to(['product/view', 'id' => $sale['id']])?>"><?= $sale->name ?></a></h6>
+                                <p><?php if(!empty($sale->old_price)): ?>
+                                        <del> <?= $sale->old_price ?> </del>
+                                        <span>/</span>
+                                    <?php endif; ?>
+                                    <em class="price"><?= $sale->price?></em>
+                                    <em class="rub"> Р</em></p>
+                                <a href="<?= \yii\helpers\Url::to(['cart/add', 'id' => $sale->id])?>" data-id="<?= $sale->id ?>" data-text="Add To Cart" class="button add-to-cart my-cart-b">Добавить в корзину</a>
+                            </div>
+                        </div>
+                    </div>
+                    <?php endforeach; ?>
+                    <div class="clearfix"></div>
 
+                    <!--            --><?//= LinkPager::widget([
+                    //                'pagination' => $pages,
+                    //                'maxButtonCount' => 3,
+                    //            ])?>
+
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        <?php endif; ?>
 </div>
 </div>
 

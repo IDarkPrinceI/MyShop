@@ -185,7 +185,8 @@ ul.multi-column-dropdown h6 {
 }
 .dropdown-menu.columns-3 {
     padding: 25px 25px;
-	width: 280px;
+	width: 250px;
+	height: 250px;
 }
 .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
     background: none;
@@ -3490,6 +3491,7 @@ h3.tittle1, h3.tittle {
     float: none;
     text-align: center;
 }
+
 .top-right {
     float: none;
     text-align: center;
@@ -3551,6 +3553,9 @@ h3.tittle1, h3.tittle {
 	height: 5%;
 	padding: 0.25em;
 	/*float: right;*/
+}
+.tittleBread {
+	margin-top: 1em;
 }
 @media(max-width:384px){
 	.navbar-header.nav_2 {
@@ -3737,6 +3742,5 @@ h3.tittle1, h3.tittle {
 	.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
 	background-color:#798ca2
 }
-
-
 }
+

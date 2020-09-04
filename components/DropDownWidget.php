@@ -14,15 +14,13 @@ class DropDownWidget extends Widget
     public $data;
     public $tree;
     public $menuHtml;
-    public $cache_time = 60;
+    public $cache_time = 5;
 
 
     public function init()
     {
         parent::init();
-//        if ($this->ul_class === null) {
-//            $this->ul_class = 'dropDown';
-//        }
+
         if ($this->tpl === null) {
             $this->tpl = 'dropDown';
         }
@@ -43,7 +41,6 @@ class DropDownWidget extends Widget
             ->indexBy('id')->asArray()->all();
         $this->tree = $this->getTree();
         $this->menuHtml = $this->getMenuHtml($this->tree);
-//        debug($this->data);
 
         //set cache
         if($this->cache_time) {
