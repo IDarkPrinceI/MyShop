@@ -10,6 +10,7 @@ use app\models\Category;
 use app\models\Product;
 use app\widgets\Alert;
 use Yii;
+use yii\web\HttpException;
 use yii\web\NotFoundHttpException;
 
 class CategoryController extends AppHomeController
@@ -64,10 +65,16 @@ class CategoryController extends AppHomeController
             $renderProducts = $data['0'];
             $pages = $data['1'];
 
+            if (empty($renderProducts)) {
+                throw new HttpException(
+                    404,
+                    'Запрашиваемая категория не существует'
+                );
+            }
         //404
-        if (empty($renderProducts)) {
-            throw new NotFoundHttpException('Запрашиваемая страница не существует.');
-        }
+//        if (empty($renderProducts)) {
+//            throw new NotFoundHttpException('Запрашиваемая страница не существует.');
+//        }
         //404
 
         //set Meta

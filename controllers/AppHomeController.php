@@ -16,13 +16,13 @@ class AppHomeController extends Controller
         $this->view->registerMetaTag(['name' => 'description', 'content' => "$description"]);
     }
 
-//    public function error() {
-//        return [
-//            'error' => [
-//                'class' => 'yii\web\ErrorAction',
-//            ],
-//        ];
-//    }
+    public function actions() {
+        return [
+            'error' => [
+                'class' => 'yii\web\ErrorAction',
+            ],
+        ];
+    }
 
 
 }

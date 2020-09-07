@@ -186,7 +186,7 @@ ul.multi-column-dropdown h6 {
 .dropdown-menu.columns-3 {
     padding: 25px 25px;
 	width: 250px;
-	height: 250px;
+	/*height: 250px;*/
 }
 .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
     background: none;
@@ -1848,7 +1848,7 @@ section#tables  p {
 	margin-bottom: 3em;
 }
 .alert {
-	font-size: 0.85em;
+	font-size: 1em;
 	margin-top: 15px;
 	text-align: center;
 }
@@ -2018,6 +2018,11 @@ h6 span {
     margin: 1em 0;
     font-weight: 600;
 	/*color: #8ebebe;*/
+}
+.error {
+	text-align: center;
+	/*margin-top: 1em;*/
+	padding: 1em;
 }
 .women span {
     font-size: 1em;
@@ -3743,4 +3748,5 @@ h3.tittle1, h3.tittle {
 	background-color:#798ca2
 }
 }
+
 

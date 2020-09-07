@@ -13,7 +13,7 @@ use yii\helpers\Url;
 <!--</div>-->
 <!--brendcrumbs-->
 <!--content-->
-<?php //debug($renderProductsToSearch);?>
+<?php //debug($pages);?>
 <?//= debug($productsBrand) ?>
 <div class="content">
     <div class="products-agileinfo">

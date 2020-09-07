@@ -5,7 +5,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Product;
-use yii\web\NotFoundHttpException;
+use yii\web\HttpException;
 
 class ProductController extends AppHomeController
 {
@@ -22,7 +22,7 @@ class ProductController extends AppHomeController
 
         //404
         if (empty($product)) {
-            throw new NotFoundHttpException('Запрашиваемая страница не существует.');
+            throw new HttpException(404,'Запрашиваемый продукт не существует.');
         }
         //404
 
@@ -44,22 +44,33 @@ class ProductController extends AppHomeController
                    'productSale'));
     }
 
-    public function actionSearch()
+    public function actionSearch($page = 1)
     {
         $search = trim(Yii::$app->request->get('search'));
-        $queryProductsToSearch = (new Product())->getQueryProductsToSearch($search);
-        $pages = (new Product())->getPaginationParameters($queryProductsToSearch);
-        $renderProductsToSearch = $queryProductsToSearch
-            ->offset($pages->offset)
-            ->limit($pages->limit)
-            ->orderBy('price')
-            ->all();
 
         //404
         if (empty($search)) {
             return $this->render('search');
         }
         //404
+        $key = 'search-' . md5($search) . '-page-' . $page;
+
+        //getCache
+        $data = Yii::$app->cache->get($key);
+            if ($data === false) {
+                $queryProductsToSearch = (new Product())->getQueryProductsToSearch($search);
+                $pages = (new Product())->getPaginationParameters($queryProductsToSearch);
+                $renderProductsToSearch = $queryProductsToSearch
+                    ->offset($pages->offset)
+                    ->limit($pages->limit)
+                    ->orderBy('price')
+                    ->all();
+                $data = [$renderProductsToSearch, $pages];
+                //setCache
+                Yii::$app->cache->set($key, $data, $this->cache_time);
+            }
+        $renderProductsToSearch = $data[0];
+        $pages = $data[1];
 
         //set Meta
         $this->setMeta("Поиск: {$search} ");
@@ -67,7 +78,6 @@ class ProductController extends AppHomeController
 
         return $this->render('search', compact(
              'renderProductsToSearch',
-
                     'pages',
                     'search'));
     }

@@ -72,7 +72,8 @@ class Product extends ActiveRecord
 
     public function getPaginationParameters($query)
     {
-        $paginationParameters = new Pagination(['totalCount' => $query->count(),
+        $paginationParameters = new Pagination([
+            'totalCount' => $query->count(),
             'pageSize' => 9,
             'forcePageParam' => false,
             'pageSizeParam' => false

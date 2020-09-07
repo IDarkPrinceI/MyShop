@@ -50,7 +50,8 @@ $config = [
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
-            'errorAction' => 'site/error',
+//            'errorAction' => 'site/error',
+            'errorAction' => 'home/error',
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
@@ -89,7 +90,9 @@ $config = [
 //                'category/<category_id:\d+>/brand_id:\d+>' => 'category/view',
                 'category/<category_id:\d+>' => 'category/view',
                 'product/<id:\d+>' => 'product/view',
-                'search' => 'product/search'
+//                'search/page/<page:\d+>' => 'catalog/search',
+                'search' => 'product/search',
+
 
 //                 'category/<id:\d+>/page/<page:\d+>' => 'category/view',
             ],
