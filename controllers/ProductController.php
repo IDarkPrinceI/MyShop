@@ -24,11 +24,9 @@ class ProductController extends AppHomeController
         if (empty($product)) {
             throw new HttpException(404,'Запрашиваемый продукт не существует.');
         }
-        //404
 
         //set Meta
         $this->setMeta("{$product->name}", $product->keywords, $product->description);
-        //set Meta
 
         //productSale
         $productSale = Product::find()
@@ -36,7 +34,6 @@ class ProductController extends AppHomeController
             ->orderBy('RAND()')
             ->limit(4)
             ->all();
-
         //productSale
 
         return $this->render('view', compact(
@@ -46,40 +43,25 @@ class ProductController extends AppHomeController
 
     public function actionSearch($page = 1)
     {
-        $search = trim(Yii::$app->request->get('search'));
+        $baseSearch = (Yii::$app->request->get('search'));
+        $search = (new Product())->cleanSearchString($baseSearch);
 
         //404
         if (empty($search)) {
             return $this->render('search');
         }
         //404
-        $key = 'search-' . md5($search) . '-page-' . $page;
-
-        //getCache
-        $data = Yii::$app->cache->get($key);
-            if ($data === false) {
-                $queryProductsToSearch = (new Product())->getQueryProductsToSearch($search);
-                $pages = (new Product())->getPaginationParameters($queryProductsToSearch);
-                $renderProductsToSearch = $queryProductsToSearch
-                    ->offset($pages->offset)
-                    ->limit($pages->limit)
-                    ->orderBy('price')
-                    ->all();
-                $data = [$renderProductsToSearch, $pages];
-                //setCache
-                Yii::$app->cache->set($key, $data, $this->cache_time);
-            }
+        $data = (new Product())->getProductToSearch($search, $page);
         $renderProductsToSearch = $data[0];
         $pages = $data[1];
 
         //set Meta
         $this->setMeta("Поиск: {$search} ");
-        //set Meta
 
         return $this->render('search', compact(
-             'renderProductsToSearch',
-                    'pages',
-                    'search'));
+                          'renderProductsToSearch',
+                                'pages',
+                                   'search'));
     }
 
     public function actionShow()

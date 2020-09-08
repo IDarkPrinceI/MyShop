@@ -343,12 +343,15 @@ $('#filterButton').on('click', function () {
 	let target = document.querySelector('#filterButton'),
 		rangePrice = document.querySelector('#my_range').value,
 		categoryId = target.value,
+		paginationSearch = document.querySelector('.paginationSearch'),
 		params = {
 			url: '/category/filter',
 			type: 'GET',
 			success: function (res) {
 				if (!res) alert('Ошибка фильтра')
 				$('#myIncludeProductList').html(res);
+				paginationSearch.classList.add('hideSearch');
+
 			},
 			error: function () {
 				alert('Error!')

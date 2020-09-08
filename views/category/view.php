@@ -64,10 +64,12 @@ use yii\helpers\Url;
                         <?= $this->render('include', compact('renderProducts'))?>
 
                     <div class="clearfix"> </div>
-                    <?= LinkPager::widget([
-                        'pagination' => $pages,
-                        'maxButtonCount' => 3,
-                    ])?>
+                    <div class="paginationSearch">
+                        <?= LinkPager::widget([
+                            'pagination' => $pages,
+                            'maxButtonCount' => 3,
+                        ])?>
+                    </div>
                 </div>
                 <div class="clearfix"> </div>
             </div>

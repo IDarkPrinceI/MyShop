@@ -4,11 +4,14 @@
 namespace app\models;
 
 
+use phpDocumentor\Reflection\Types\Self_;
+use Yii;
 use yii\data\Pagination;
 use yii\db\ActiveRecord;
 
 class Product extends ActiveRecord
 {
+    private $cache_time = 30;
 
     public static function tableName()
     {
@@ -70,16 +73,55 @@ class Product extends ActiveRecord
         return $query;
     }
 
+    public function getProductToSearch($search, $page)
+    {
+        $key = 'search-' . md5($search) . '-page-' . $page;
+
+        //getCache
+        $data = Yii::$app->cache->get($key);
+            if ($data === false) {
+                $wordsSearch = explode(' ', $search);
+                $queryProductsToSearch = self::find()
+                    ->where(['like', 'name', $wordsSearch[0]]);
+                for ($i = 1; $i < count($wordsSearch); $i++) {
+                    $queryProductsToSearch = $queryProductsToSearch
+                        ->andWhere(['like', 'name', $wordsSearch[$i]]);
+                }
+                $pages = self::getPaginationParameters($queryProductsToSearch);
+                $renderProductsToSearch = $queryProductsToSearch
+                    ->offset($pages->offset)
+                    ->limit($pages->limit)
+                    ->orderBy('price')
+                    ->all();
+                $data = [$renderProductsToSearch, $pages];
+
+                //setCache
+                Yii::$app->cache->set($key, $data, $this->cache_time);
+            }
+            return $data;
+    }
+
+    public function cleanSearchString($search)
+    {
+        // удалить все, кроме букв и цифр
+        $search = preg_replace('#[^0-9a-zA-ZА-Яа-яёЁ]#u', ' ', $search);
+        // заменить двойные пробелы на одинарные
+        $search = preg_replace('#\s+#u', ' ', $search);
+        $search = trim($search);
+        return $search;
+    }
+
     public function getPaginationParameters($query)
     {
         $paginationParameters = new Pagination([
             'totalCount' => $query->count(),
-            'pageSize' => 9,
+            'pageSize' => 6,
             'forcePageParam' => false,
             'pageSizeParam' => false
         ]);
         return $paginationParameters;
     }
+
     public function getProductsBrandParameters($productsBrandBase)
     {
         $productsBrand = $productsBrandBase

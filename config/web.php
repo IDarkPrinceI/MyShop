@@ -85,19 +85,13 @@ $config = [
             'showScriptName' => false,
             'enableStrictParsing' => false,
             'rules' => [
-//                'new/<pageHit:\d+>' => 'home/index',
-//                'new/<pageNew:\d+>' => 'home/index',
-//                'category/<category_id:\d+>/brand_id:\d+>' => 'category/view',
+//                'category/<category_id:\d+>/page/<page:\d+>' => 'category/view',
                 'category/<category_id:\d+>' => 'category/view',
                 'product/<id:\d+>' => 'product/view',
-//                'search/page/<page:\d+>' => 'catalog/search',
+//                'search/page/<page:\d+>' => 'product/search',
                 'search' => 'product/search',
-
-
-//                 'category/<id:\d+>/page/<page:\d+>' => 'category/view',
             ],
         ],
-
     ],
     'params' => $params,
 ];

@@ -739,6 +739,9 @@ a:focus {
 #error_404 {
 	text-align: center;
 }
+.hideSearch {
+	display: none;
+}
 .ribben p{
 	font-size:1em;
 	color:#fff;
@@ -1418,7 +1421,7 @@ h3.tittle1 {
     color: #777;
 }
 .categories a{
-    /*background: url("../images/icons1.png") no-repeat 10px 9px !important;*/
+    background: url("../images/icons1.png") no-repeat 10px 9px !important;
     padding: 7px 3px 0 31px;
     border-radius: 3px;
     /*margin: 2px;*/

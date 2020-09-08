@@ -30,61 +30,58 @@ class CategoryController extends AppHomeController
         if ($brandId && $rangePrice) {
 //            print_r('Есть оба параметра');
             $baseProductsToCategory = (new Product())->getQueryProductsToCategoryToBrandToRange($categoryId, $brandId, $rangePrice);
-            $pages = (new Product())->getPaginationParameters($baseProductsToCategory);
-            $renderProducts = (new Product())->getFilterRenderProducts($baseProductsToCategory, $pages);
+//            $pages = (new Product())->getPaginationParameters($baseProductsToCategory);
 
         } elseif (empty($brandId) && $rangePrice) {
 //            print_r('Есть только цена');
             $baseProductsToCategory = (new Product())->getQueryProductsToCategoryToRange($categoryId, $rangePrice);
-            $pages = (new Product())->getPaginationParameters($baseProductsToCategory);
-            $renderProducts = (new Product())->getFilterRenderProducts($baseProductsToCategory, $pages);
-
+//            $pages = (new Product())->getPaginationParameters($baseProductsToCategory);
         } else {
 //            print_r('Есть только бренд');
             $baseProductsToCategory = (new Product())->getQueryProductsToCategoryToBrand($categoryId, $brandId);
-            $pages = (new Product())->getPaginationParameters($baseProductsToCategory);
-            $renderProducts = (new Product())->getFilterRenderProducts($baseProductsToCategory, $pages);
+//            $pages = (new Product())->getPaginationParameters($baseProductsToCategory);
         }
+//        $pages = (new Product())->getPaginationParameters($baseProductsToCategory);
+        $renderProducts = (new Product())->getFilterRenderProducts($baseProductsToCategory, $pages);
 
         return $this->renderPartial('include', compact(
-                                 'renderProducts',
-                                      'pages'));
+                                 'renderProducts'
+//                                      'pages'
+        ));
     }
 
-    public function actionView($category_id)
+    public function actionView($category_id, $page = 1)
     {
         $category_id = (int)$category_id;
+        $key = 'category-' . $category_id . '-page-' . $page;
 
-            $data = Yii::$app->cache->get('category-' . $category_id);
+        //getCache
+        $data = Yii::$app->cache->get($key);
             if ($data === false) {
                 $baseProductsToCategory = (new Product())->getQueryProductsToCategory($category_id);
                 $pages = (new Product())->getPaginationParameters($baseProductsToCategory);
                 $data = (new Product())->getRenderProducts($baseProductsToCategory, $pages);
-                Yii::$app->cache->set('category-' . $category_id, $data, $this->cache_time);
+                Yii::$app->cache->set($key, $data, $this->cache_time);
             }
             $renderProducts = $data['0'];
             $pages = $data['1'];
 
-            if (empty($renderProducts)) {
-                throw new HttpException(
-                    404,
-                    'Запрашиваемая категория не существует'
-                );
-            }
         //404
-//        if (empty($renderProducts)) {
-//            throw new NotFoundHttpException('Запрашиваемая страница не существует.');
-//        }
+        if (empty($renderProducts)) {
+            throw new HttpException(
+                404,
+                'Запрашиваемая категория не существует'
+            );
+        }
         //404
 
-        //set Meta
+        //setCacheMeta
         $category = Yii::$app->cache->get('categoryMeta-' . $category_id);
         if ($category === false) {
             $category = Category::findOne($category_id);
             $this->setMeta("{$category->name}", $category->keywords, $category->description);
             Yii::$app->cache->set('categoryMeta-' . $category_id, $category, $this->cache_time);
         }
-        //set Meta
 
         //brands
         $productsBrand = Yii::$app->cache->get('productsBrandBase-' . $category_id);
@@ -94,16 +91,12 @@ class CategoryController extends AppHomeController
             $productsBrand = (new Product())->getProductsBrandParameters($productsBrandBase);
             Yii::$app->cache->set('productsBrandBase-' . $category_id, $productsBrand, $this->cache_time);
         }
-        //brands
 
         return $this->render('view', compact(
                           'category',
                                'renderProducts',
                                   'pages',
-                                  'productsBrand',
-                                  'brandName',
-                                  'range',
-                                  'brand'
+                                  'productsBrand'
                             ));
     }
 }
