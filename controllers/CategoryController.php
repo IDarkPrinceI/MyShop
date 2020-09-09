@@ -30,23 +30,18 @@ class CategoryController extends AppHomeController
         if ($brandId && $rangePrice) {
 //            print_r('Есть оба параметра');
             $baseProductsToCategory = (new Product())->getQueryProductsToCategoryToBrandToRange($categoryId, $brandId, $rangePrice);
-//            $pages = (new Product())->getPaginationParameters($baseProductsToCategory);
 
         } elseif (empty($brandId) && $rangePrice) {
 //            print_r('Есть только цена');
             $baseProductsToCategory = (new Product())->getQueryProductsToCategoryToRange($categoryId, $rangePrice);
-//            $pages = (new Product())->getPaginationParameters($baseProductsToCategory);
         } else {
 //            print_r('Есть только бренд');
             $baseProductsToCategory = (new Product())->getQueryProductsToCategoryToBrand($categoryId, $brandId);
-//            $pages = (new Product())->getPaginationParameters($baseProductsToCategory);
         }
-//        $pages = (new Product())->getPaginationParameters($baseProductsToCategory);
-        $renderProducts = (new Product())->getFilterRenderProducts($baseProductsToCategory, $pages);
+        $renderProducts = (new Product())->getFilterRenderProducts($baseProductsToCategory);
 
         return $this->renderPartial('include', compact(
                                  'renderProducts'
-//                                      'pages'
         ));
     }
 

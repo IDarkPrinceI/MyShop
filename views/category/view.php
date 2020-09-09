@@ -64,7 +64,7 @@ use yii\helpers\Url;
                         <?= $this->render('include', compact('renderProducts'))?>
 
                     <div class="clearfix"> </div>
-                    <div class="paginationSearch">
+                    <div id="paginationSearch">
                         <?= LinkPager::widget([
                             'pagination' => $pages,
                             'maxButtonCount' => 3,

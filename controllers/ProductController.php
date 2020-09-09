@@ -44,14 +44,15 @@ class ProductController extends AppHomeController
     public function actionSearch($page = 1)
     {
         $baseSearch = (Yii::$app->request->get('search'));
-        $search = (new Product())->cleanSearchString($baseSearch);
 
+        $data = (new Product())->getProductToSearch($baseSearch, $page);
+//        $search = (new Product())->cleanSearchString($baseSearch);
         //404
-        if (empty($search)) {
+        if (empty($data)) {
             return $this->render('search');
         }
         //404
-        $data = (new Product())->getProductToSearch($search, $page);
+
         $renderProductsToSearch = $data[0];
         $pages = $data[1];
 

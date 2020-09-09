@@ -13,8 +13,7 @@ use yii\helpers\Url;
 <!--</div>-->
 <!--brendcrumbs-->
 <!--content-->
-<?php //debug($pages);?>
-<?//= debug($productsBrand) ?>
+
 <div class="content">
     <div class="products-agileinfo">
         <div class="container">
@@ -89,9 +88,9 @@ use yii\helpers\Url;
                                                 <div class="grid-arr">
                                                     <div  class="grid-arrival">
                                                         <figure>
-                                                            <a data-id="<?= $product->id ?>" type="button" class="get-modal-product new-gri" data-toggle="modal" data-target="#myModalSingle">
+                                                            <a data-id="<?= $product['id'] ?>" type="button" class="get-modal-product new-gri" data-toggle="modal" data-target="#myModalSingle">
                                                                 <div class="grid-img">
-                                                                    <img  src="<?= Url::to(["@web/product_img/{$product->img}", 'alt' => $product->name]) ?>" class="img-responsive">
+                                                                    <img  src="<?= Url::to(["@web/product_img/{$product['img']}", 'alt' => $product['name']]) ?>" class="img-responsive">
                                                                 </div>
                                                                 <!--                                                            <div class="grid-img">-->
                                                                 <!--                                                                <img  src="/images/p22.jpg" class="img-responsive"  alt="">-->
@@ -118,16 +117,16 @@ use yii\helpers\Url;
                                                         <div class="starbox small ghosting"> </div>
                                                     </div>
                                                     <div class="women">
-                                                        <h6><a href="<?= \yii\helpers\Url::to(['product/view', 'id' => $product['id']]) ?>"><?= $product->name ?></a></h6>
+                                                        <h6><a href="<?= \yii\helpers\Url::to(['product/view', 'id' => $product['id']]) ?>"><?= $product['name'] ?></a></h6>
                                                         <p >
-                                                            <?php if(!empty($product->old_price)): ?>
-                                                                <del> <?= $product->old_price ?> </del>
+                                                            <?php if(!empty($product['old_price'])): ?>
+                                                                <del> <?= $product['old_price'] ?> </del>
                                                                 <span>/</span>
                                                             <?php endif; ?>
-                                                            <em class="price"><?= $product->price?></em>
+                                                            <em class="price"><?= $product['price']?></em>
                                                             <em class="rub"> Р</em>
                                                         </p>
-                                                        <a href="<?= \yii\helpers\Url::to(['cart/add', 'id' => $product->id])?>" data-id="<?= $product->id ?>" data-text="Add To Cart" class="button add-to-cart my-cart-b">Добавить в корзину</a>
+                                                        <a href="<?= \yii\helpers\Url::to(['cart/add', 'id' => $product['id']])?>" data-id="<?= $product['id'] ?>" data-text="Add To Cart" class="button add-to-cart my-cart-b">Добавить в корзину</a>
                                                     </div>
                                                 </div>
                                             </div>

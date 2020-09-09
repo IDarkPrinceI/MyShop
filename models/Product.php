@@ -8,6 +8,7 @@ use phpDocumentor\Reflection\Types\Self_;
 use Yii;
 use yii\data\Pagination;
 use yii\db\ActiveRecord;
+use yii\db\Query;
 
 class Product extends ActiveRecord
 {
@@ -64,41 +65,69 @@ class Product extends ActiveRecord
         return $query;
     }
 
-    public function getQueryProductsToSearch($search)
-    {
-        $query = Product::find()
-            ->where([
-                'like', 'name', $search
-            ]);
-        return $query;
-    }
+//    public function getQueryProductsToSearch($search)
+//    {
+//        $query = Product::find()
+//            ->where([
+//                'like', 'name', $search
+//            ]);
+//        return $query;
+//    }
 
-    public function getProductToSearch($search, $page)
+    public function getProductToSearch($baseSearch, $page)
     {
-        $key = 'search-' . md5($search) . '-page-' . $page;
+        $wordsSearch = self::cleanSearchString($baseSearch);
+        if (!$wordsSearch) {
+            return null;
+        }
+        $key = 'search-' . md5($baseSearch) . '-page-' . $page;
 
         //getCache
         $data = Yii::$app->cache->get($key);
-            if ($data === false) {
-                $wordsSearch = explode(' ', $search);
-                $queryProductsToSearch = self::find()
-                    ->where(['like', 'name', $wordsSearch[0]]);
-                for ($i = 1; $i < count($wordsSearch); $i++) {
-                    $queryProductsToSearch = $queryProductsToSearch
-                        ->andWhere(['like', 'name', $wordsSearch[$i]]);
-                }
-                $pages = self::getPaginationParameters($queryProductsToSearch);
-                $renderProductsToSearch = $queryProductsToSearch
-                    ->offset($pages->offset)
-                    ->limit($pages->limit)
-                    ->orderBy('price')
-                    ->all();
-                $data = [$renderProductsToSearch, $pages];
+        if ($data === false) {
 
-                //setCache
-                Yii::$app->cache->set($key, $data, $this->cache_time);
+
+            $count = count($wordsSearch);
+
+            //значения каждого отдельного слова в названии для расчета релевантности
+            $separateWordName = round((20/$count), 2);
+
+            //значения каждого отдельного слова в описании для расчета релевантности
+            $separateWordContent = round((10/$count),2);
+
+            //Задаем параметры релевантности
+            //Условия для полного запроса в названии и описании
+            $relevance = "IF (`name` LIKE '%" . $baseSearch . "%', 60, 0)";
+            $relevance .= " + IF (`content` LIKE '%" . $baseSearch . "%', 10, 0)";
+            //Условия для каждого из слов запроса в названии и описании
+            foreach ($wordsSearch as $word) {
+                $relevance .= " + IF (`name` LIKE '%" . $word . "%', ".$separateWordName.", 0)";
+                $relevance .= " + IF (`content` LIKE '%" . $word . "%', ".$separateWordContent.", 0)";
             }
-            return $data;
+        }
+        $query = Product::find()
+            ->select(['*', 'relevance' => $relevance])
+
+            // сортируем разультаты по убыванию релевантности
+            ->orderBy(['relevance' => SORT_DESC])
+            ->where(['like', 'name', $baseSearch])
+            ->orwhere(['like', 'content', $baseSearch])
+            ->orWhere(['like', 'name', $wordsSearch[0]])
+            ->orWhere(['like', 'content', $wordsSearch[0]]);
+        for ($i = 1; $i < $count; $i++) {
+            $query = $query->orWhere(['like', 'name', $wordsSearch[$i]]);
+            $query = $query->orWhere(['like', 'content', $wordsSearch[$i]]);
+        }
+        $pages = self::getPaginationParameters($query);
+
+        $renderProductsToSearch = $query
+             ->offset($pages->offset)
+             ->limit($pages->limit)
+             ->all();
+        $data = [$renderProductsToSearch, $pages];
+//      //setCache
+        Yii::$app->cache->set($key, $data, $this->cache_time);
+        return $data;
     }
 
     public function cleanSearchString($search)
@@ -108,7 +137,25 @@ class Product extends ActiveRecord
         // заменить двойные пробелы на одинарные
         $search = preg_replace('#\s+#u', ' ', $search);
         $search = trim($search);
-        return $search;
+        //Разделяем поисковый запрос на отдельные слова
+        $baseWordsSearch = explode(' ', $search);
+        $wordsSearch = [];
+        foreach ($baseWordsSearch as $word) {
+            if (strlen($word) > 6) {
+                if (strlen($word) > 14) {
+                    $word = substr($word, 0, (strlen($word) - 4));
+                    array_push($wordsSearch, $word);
+                } elseif (strlen($word) > 10) {
+                    $word = substr($word, 0, (strlen($word) - 2));
+                    array_push($wordsSearch, $word);
+                }
+                array_push($wordsSearch, $word);
+            }
+            if (empty($wordsSearch)) {
+                return null;
+            }
+        }
+        return $wordsSearch;
     }
 
     public function getPaginationParameters($query)
@@ -152,11 +199,9 @@ class Product extends ActiveRecord
         return $data;
     }
 
-    public function getFilterRenderProducts($baseProductsToCategory, $pages)
+    public function getFilterRenderProducts($baseProductsToCategory)
     {
         $renderProducts = $baseProductsToCategory
-            ->offset($pages->offset)
-            ->limit($pages->limit)
             ->orderBy('price')
             ->all();
         return $renderProducts;
