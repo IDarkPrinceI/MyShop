@@ -77,6 +77,7 @@ class Product extends ActiveRecord
     public function getProductToSearch($baseSearch, $page)
     {
         $wordsSearch = self::cleanSearchString($baseSearch);
+//        debug($wordsSearch);
         if (!$wordsSearch) {
             return null;
         }
@@ -92,17 +93,12 @@ class Product extends ActiveRecord
             //значения каждого отдельного слова в названии для расчета релевантности
             $separateWordName = round((20/$count), 2);
 
-            //значения каждого отдельного слова в описании для расчета релевантности
-            $separateWordContent = round((10/$count),2);
-
             //Задаем параметры релевантности
-            //Условия для полного запроса в названии и описании
+            //Условия для полного запроса в названии
             $relevance = "IF (`name` LIKE '%" . $baseSearch . "%', 60, 0)";
-            $relevance .= " + IF (`content` LIKE '%" . $baseSearch . "%', 10, 0)";
-            //Условия для каждого из слов запроса в названии и описании
+            //Условия для каждого из слов запроса в названии
             foreach ($wordsSearch as $word) {
                 $relevance .= " + IF (`name` LIKE '%" . $word . "%', ".$separateWordName.", 0)";
-                $relevance .= " + IF (`content` LIKE '%" . $word . "%', ".$separateWordContent.", 0)";
             }
         }
         $query = Product::find()
@@ -111,12 +107,9 @@ class Product extends ActiveRecord
             // сортируем разультаты по убыванию релевантности
             ->orderBy(['relevance' => SORT_DESC])
             ->where(['like', 'name', $baseSearch])
-            ->orwhere(['like', 'content', $baseSearch])
-            ->orWhere(['like', 'name', $wordsSearch[0]])
-            ->orWhere(['like', 'content', $wordsSearch[0]]);
+            ->orWhere(['like', 'name', $wordsSearch[0]]);
         for ($i = 1; $i < $count; $i++) {
             $query = $query->orWhere(['like', 'name', $wordsSearch[$i]]);
-            $query = $query->orWhere(['like', 'content', $wordsSearch[$i]]);
         }
         $pages = self::getPaginationParameters($query);
 
@@ -124,16 +117,16 @@ class Product extends ActiveRecord
              ->offset($pages->offset)
              ->limit($pages->limit)
              ->all();
-        $data = [$renderProductsToSearch, $pages];
+        $data = [$renderProductsToSearch, $pages, $baseSearch];
 //      //setCache
         Yii::$app->cache->set($key, $data, $this->cache_time);
         return $data;
     }
 
-    public function cleanSearchString($search)
+    public function cleanSearchString($baseSearch)
     {
         // удалить все, кроме букв и цифр
-        $search = preg_replace('#[^0-9a-zA-ZА-Яа-яёЁ]#u', ' ', $search);
+        $search = preg_replace('#[^0-9a-zA-ZА-Яа-яёЁ]#u', ' ', $baseSearch);
         // заменить двойные пробелы на одинарные
         $search = preg_replace('#\s+#u', ' ', $search);
         $search = trim($search);
@@ -141,6 +134,23 @@ class Product extends ActiveRecord
         $baseWordsSearch = explode(' ', $search);
         $wordsSearch = [];
         foreach ($baseWordsSearch as $word) {
+            if (preg_match('/[zA-ZА]/i', $word)) {
+                if (strlen($word) > 3) {
+                    if (strlen($word) > 7) {
+                        $word = substr($word, 0, (strlen($word) - 2));
+                        array_push($wordsSearch, $word);
+                    } elseif (strlen($word) > 5) {
+                        $word = substr($word, 0, (strlen($word) - 1));
+                        array_push($wordsSearch, $word);
+                    } else {
+                        array_push($wordsSearch, $word);
+                    }
+                }
+                if (empty($wordsSearch)) {
+                    return null;
+                }
+                return $wordsSearch;
+            }
             if (strlen($word) > 6) {
                 if (strlen($word) > 14) {
                     $word = substr($word, 0, (strlen($word) - 4));
@@ -148,8 +158,9 @@ class Product extends ActiveRecord
                 } elseif (strlen($word) > 10) {
                     $word = substr($word, 0, (strlen($word) - 2));
                     array_push($wordsSearch, $word);
+                } else {
+                    array_push($wordsSearch, $word);
                 }
-                array_push($wordsSearch, $word);
             }
             if (empty($wordsSearch)) {
                 return null;

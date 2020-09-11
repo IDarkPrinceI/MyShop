@@ -24,6 +24,7 @@ $config = [
         'far' => [
             'class' => 'app\modules\far\Module',//подключили модуль админки
             'layout' => 'far',
+            'defaultRoute' => 'far/index',
         ],
     ],
     'components' => [
@@ -48,6 +49,7 @@ $config = [
         'user' => [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
+            'loginUrl' => '/far/auth/login',
         ],
         'errorHandler' => [
 //            'errorAction' => 'site/error',

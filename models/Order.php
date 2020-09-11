@@ -36,9 +36,14 @@ class Order extends ActiveRecord
             [['name', 'email', 'phone', 'address'], 'required'],
             ['note', 'string'],
             ['email', 'email'],
+//            [   'phone',
+//                'match',
+//                'pattern' => '~^\+7\s\[0-9]{3}\\s[0-9]{3}\s[0-9]{2}\s[0-9]{2}$~',
+//                'message' => 'Номер телефона должен соответствовать шаблону +7 495 123 45 67'
+//            ],
             [['created_at', 'updated_at'], 'safe'],
             ['qty', 'integer'],
-            [['sum','phone'], 'number'],
+            [['sum', 'phone'], 'number'],
             ['status', 'boolean'],
         ];
     }

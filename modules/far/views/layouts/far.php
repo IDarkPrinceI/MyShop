@@ -11,14 +11,11 @@ FarAsset::register($this);
 
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
 <html lang="<?= Yii::$app->language ?>">
 <head>
     <base href="/adminlte/">
     <meta charset="<?= Yii::$app->charset ?>">
+    <meta charset="utf-8">
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

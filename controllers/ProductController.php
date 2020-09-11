@@ -46,7 +46,7 @@ class ProductController extends AppHomeController
         $baseSearch = (Yii::$app->request->get('search'));
 
         $data = (new Product())->getProductToSearch($baseSearch, $page);
-//        $search = (new Product())->cleanSearchString($baseSearch);
+
         //404
         if (empty($data)) {
             return $this->render('search');
@@ -55,6 +55,7 @@ class ProductController extends AppHomeController
 
         $renderProductsToSearch = $data[0];
         $pages = $data[1];
+        $search = $data[2];
 
         //set Meta
         $this->setMeta("Поиск: {$search} ");
