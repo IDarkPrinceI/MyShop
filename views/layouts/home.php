@@ -38,9 +38,37 @@ OldIeAsset::register($this);
             </div>
             <div class="top-right">
                 <ul>
-                    <li><a href="checkout.html">Checkout</a></li>
+                    <?php if (Yii::$app->user->isGuest): ?>
+<!--                    --><?php //if(Yii::$app->user->identity['role'] === 'user') ?>
+<!--                    <li><a href="--><?//= Url::to(['user/logout'])?><!--">Выход</a></li>-->
                     <li><a href="<?= Url::to(['user/login'])?>">Вход / Регистрация</a></li>
 <!--                    <li><a href="registered.html"> Create Account </a></li>-->
+                    <?php else: ?>
+                    <li class="dropdown user user-menu">
+                        <!-- Menu Toggle Button -->
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                            <span class="hidden-xs"><?= Yii::$app->user->identity['username']?></span>
+                        </a>
+                        <ul class="dropdown-menu profile">
+                            <!-- The user image in the menu -->
+                            <li class="user-header">
+<!--                                <p>Alexander Pierce</p>-->
+                                <span><?= Yii::$app->user->identity['role']?></span>
+                            </li>
+                            <div class="clearfix"> </div>
+                            <li class="divider"></li>
+                            <li id="profile" class="user-footer">
+                                <div class="pull-left">
+                                    <a  href="#" class="btn btn-default btn-flat">Профиль</a>
+                                </div>
+                                <div class="pull-right">
+                                    <a class="btn btn-default btn-flat" href="<?= Url::to(['user/logout'])?>">Выйти</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+<?php endif; ?>
                 </ul>
             </div>
             <div class="clearfix"></div>
@@ -132,6 +160,7 @@ OldIeAsset::register($this);
 
 
 <div id="content">
+    <?= debug(Yii::$app->user->identity) ?>
     <?= $content ?>
 </div>
 

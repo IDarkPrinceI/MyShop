@@ -8,12 +8,6 @@ use yii\web\IdentityInterface;
 
 class User extends ActiveRecord implements IdentityInterface
 {
-//    public $id;
-//    public $username;
-//    public $password;
-//    public $authKey;
-//    public $accessToken;
-
     public static function tableName()
     {
         return 'user';
@@ -23,7 +17,7 @@ class User extends ActiveRecord implements IdentityInterface
     public static function findIdentity($id)
     {
         $id = (int)$id;
-        return User::findOne($id);
+        return static::findOne($id);
     }
 
     public static function findIdentityByAccessToken($token, $type = null)
@@ -37,9 +31,9 @@ class User extends ActiveRecord implements IdentityInterface
 //        return null;
     }
     
-    public function findByUsername($username)
+    public static function findByUsername($username)
     {
-        return User::findOne(['username' => $username]);
+        return static::findOne(['username' => $username]);
     }
 
     public function getId()
@@ -49,17 +43,17 @@ class User extends ActiveRecord implements IdentityInterface
 
     public function getAuthKey()
     {
-        return $this->authKey;
+        return $this->auth_key;
     }
 
     public function validateAuthKey($authKey)
     {
-        return $this->authKey === $authKey;
+        return $this->auth_key === $authKey;
     }
 
     public function validatePassword($password)
     {
-        return Yii::$app->security->validatePassword($password, $this->password);
+        return Yii::$app->getSecurity()->validatePassword($password, $this->password);
     }
 
     public function login()
@@ -77,5 +71,10 @@ class User extends ActiveRecord implements IdentityInterface
 //        }
 //
 //        return $this->_user;
+    }
+
+    public function generateAuthKey()
+    {
+        $this->auth_key = Yii::$app->security->generateRandomString();
     }
 }

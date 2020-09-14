@@ -2335,6 +2335,8 @@ p.quote {
     margin-top: 2em;
 }
 .main-agileits {
+	border-radius: 1em;
+	background-color: #8ebebe;
     width: 30%;
     margin: 0em auto ;
 	box-shadow: 0px 0px 15px 0px #D6D6D6;
@@ -2426,11 +2428,34 @@ h3.account-text{
 	-o-transition:0.5s all;
 	-ms-transition:0.5s all;
 }
+.user-footer ul li a {
+	color: black;
+}
 .forg a {
     text-decoration: none;
     color: #AF1D0D;
     font-size:1em;
 }
+.profile {
+	width: 210px;
+	height: 150px;
+	text-align: center;
+}
+.user-footer a {
+	margin: 2px;
+}
+
+/*.user-header {*/
+/*	padding-top: 2em; !important;*/
+/*}*/
+#profile a{
+	color: black;
+}
+/*.btn-enter {*/
+/*	color: #fff;*/
+/*	background-color: #798ca2;*/
+/*	border-color: #2e6da4;*/
+/*}*/
 .forg a:hover{
 	color:#fdb515;
 }
@@ -2439,6 +2464,14 @@ h3.account-text{
 }
 .forg-right{
 	float:right;
+}
+.forg-right a{
+	text-decoration: none;
+	font-weight: bold;
+	color: white;
+}
+.forg-middle {
+	float: top;
 }
 .form1 input[type="submit"] {
 	margin-bottom:0;

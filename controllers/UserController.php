@@ -34,12 +34,18 @@ class UserController extends AppHomeController
 //        if (!Yii::$app->user->isGuest) {
 //        return $this->goHome();
 //    }
-        $user = new User();
-//        if ($user->load(Yii::$app->request->post()) && $user->login()) {
-        if ($user->load(Yii::$app->request->post()) && $user->findByUsername($user->username)) {
-            return $this->goBack();
+        $user = new LoginForm();
+        if ($user->load(Yii::$app->request->post()) && $user->login()) {
+            return $this->goHome();
         }
         return $this->render('login', [
             'model' => $user]);
+    }
+
+    public function actionLogout()
+    {
+        Yii::$app->user->logout();
+
+        return $this->goHome();
     }
 }
