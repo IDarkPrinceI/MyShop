@@ -2744,7 +2744,8 @@ li.bt-nn h6 {
     top: 15%;
 }
 .main-agileits {
-    width: 33%;
+	width: auto;
+	max-width:40%;
 }
 .cd-search {
     top: 17%;

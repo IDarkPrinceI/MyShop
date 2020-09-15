@@ -50,7 +50,7 @@ OldIeAsset::register($this);
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
                             <span class="hidden-xs"><?= Yii::$app->user->identity['username']?></span>
                         </a>
-                        <ul class="dropdown-menu profile">
+                        <ul class="dropdown-menu pull-right profile">
                             <!-- The user image in the menu -->
                             <li class="user-header">
 <!--                                <p>Alexander Pierce</p>-->
@@ -60,7 +60,7 @@ OldIeAsset::register($this);
                             <li class="divider"></li>
                             <li id="profile" class="user-footer">
                                 <div class="pull-left">
-                                    <a  href="#" class="btn btn-default btn-flat">Профиль</a>
+                                    <a href="<?= Url::to(['user/profile'])?>" class="btn btn-default btn-flat">Профиль</a>
                                 </div>
                                 <div class="pull-right">
                                     <a class="btn btn-default btn-flat" href="<?= Url::to(['user/logout'])?>">Выйти</a>
@@ -119,11 +119,8 @@ OldIeAsset::register($this);
                                 <div class="total">
                                     <button onclick="getCart()" id="my_cart" type="button"  data-toggle="modal" data-target="#modal-cart">
                                         <span class="cart-qty" id="my_cart-qty"><?= $_SESSION['cart.qty'] ?? '0' ?> </span><span> шт. на сумму:</span>
-<!--                                        <span class="cart-qty" id="my_cart-qty">--><?//= isset($_SESSION['cart.qty']) ? $_SESSION['cart.qty'] : 'Корзина пуста' ?><!-- </span>-->
                                         <span class="cart-sum" id="my_cart-sum"><?= $_SESSION['cart.sum'] ?? '0' ?> </span><span> руб.</span>
-<!--                                        <span class="cart-sum" id="my_cart-sum">--><?//= isset($_SESSION['cart.sum']) ? print('на сумму: ') . $_SESSION['cart.sum']  : '' ?><!--</span>-->
-                                        <!--$--><?/*= isset($_SESSION['cart-sum']) ?
-                    $_SESSION['cart-sum'] : '0' */?>
+
                                     </button>
 <!--                                button cart-->
                                 <img id="my_bag" src="/images/bag.png" alt="" />
@@ -160,7 +157,7 @@ OldIeAsset::register($this);
 
 
 <div id="content">
-    <?= debug(Yii::$app->user->identity) ?>
+<!--    --><?//= debug(Yii::$app->user->identity) ?>
     <?= $content ?>
 </div>
 

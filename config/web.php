@@ -24,7 +24,7 @@ $config = [
         'far' => [
             'class' => 'app\modules\far\Module',//подключили модуль админки
             'layout' => 'far',
-            'defaultRoute' => 'far/index',
+            'defaultRoute' => 'home/index',
         ],
     ],
     'components' => [
@@ -38,6 +38,11 @@ $config = [
 //                ],
 //            ],
 //        ],
+//        'components' => [
+//            'authManager' => [
+//                'class' => 'yii\rbac\DbManager',
+//            ],
+//        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'kWvmSbridDnOOyyoWNFNicbn7mQxO9Gc',
@@ -49,7 +54,7 @@ $config = [
         'user' => [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
-            'loginUrl' => '/far/auth/login',
+            'loginUrl' => '/user/login',
         ],
         'errorHandler' => [
 //            'errorAction' => 'site/error',

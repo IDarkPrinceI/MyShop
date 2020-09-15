@@ -17,11 +17,11 @@ use yii\helpers\Url;
             <?= $form->field($model, 'username',
                 ['template' => "<div class='form-group has-feedback'> {input} 
 <span class=\"glyphicon glyphicon-king form-control-feedback\"></span>
-<div>{error}</div></div>",])->textInput(['placeholder' => 'Логин']) ?>
+<div>{error}</div></div>",])->textInput(['placeholder' => 'Логин', 'autocomplete' => 'off']) ?>
             <?= $form->field($model, 'password',
                 ['template' => "<div class='form-group has-feedback'> {input} 
 <span class=\"glyphicon glyphicon-equalizer form-control-feedback\"></span>
-<div>{error}</div></div>",])->passwordInput(['placeholder' => 'Пароль']) ?>
+<div>{error}</div></div>",])->passwordInput(['placeholder' => 'Пароль','autocomplete' => 'off']) ?>
             <div class="form-group">
                 <div>
                     <?= Html::submitButton('Вход', ['class' => 'btn btn-primary btn-block btn-flat']) ?>

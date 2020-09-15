@@ -13,7 +13,7 @@ class User extends ActiveRecord implements IdentityInterface
         return 'user';
     }
 
-
+    //mustHave
     public static function findIdentity($id)
     {
         $id = (int)$id;
@@ -22,20 +22,8 @@ class User extends ActiveRecord implements IdentityInterface
 
     public static function findIdentityByAccessToken($token, $type = null)
     {
-//        foreach (self::$users as $user) {
-//            if ($user['accessToken'] === $token) {
-//                return new static($user);
-//            }
-//        }
-//
-//        return null;
+        return static::findOne(['access_token' => $token]);
     }
-    
-    public static function findByUsername($username)
-    {
-        return static::findOne(['username' => $username]);
-    }
-
     public function getId()
     {
         return $this->id;
@@ -50,27 +38,17 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return $this->auth_key === $authKey;
     }
+    //mustHave
+
+
+    public static function findByUsername($username)
+    {
+        return static::findOne(['username' => $username]);
+    }
 
     public function validatePassword($password)
     {
         return Yii::$app->getSecurity()->validatePassword($password, $this->password);
-    }
-
-    public function login()
-    {
-//        if ($this->validate()) {
-//            return Yii::$app->user->login($this->getUser());
-//        }
-//        return false;
-    }
-
-    public function getUser()
-    {
-//        if ($this->_user === false) {
-//            $this->_user = $this::findByUsername($this->username);
-//        }
-//
-//        return $this->_user;
     }
 
     public function generateAuthKey()

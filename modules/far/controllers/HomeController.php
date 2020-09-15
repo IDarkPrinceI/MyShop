@@ -4,7 +4,7 @@
 namespace app\modules\far\controllers;
 
 
-class FarController extends AppFarController
+class HomeController extends AppFarController
 {
 
     public function actionIndex()

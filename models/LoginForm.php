@@ -24,6 +24,13 @@ class LoginForm extends Model
         ];
     }
 
+    public function attributeLabels()
+    {
+        return ['username' => 'Логин',
+                'password' => 'Пароль'
+               ];
+    }
+
     public function validatePassword($attribute, $params)
     {
         if (!$this->hasErrors()) {
@@ -58,7 +65,6 @@ class LoginForm extends Model
         if ($this->_user === false) {
             $this->_user = User::findByUsername($this->username);
         }
-
         return $this->_user;
     }
 }

@@ -25,7 +25,6 @@ class Signup extends Model
         return [
                 'username' => 'Логин',
                 'password' => 'Пароль',
-
                ];
     }
 }

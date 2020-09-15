@@ -4,29 +4,19 @@
 namespace app\modules\far\controllers;
 
 
-use yii\filters\AccessControl;
+
 use yii\web\Controller;
+use yii\web\HttpException;
 
 class AppFarController extends Controller
 {
-    public function behaviors()
+    public function beforeAction($action)
     {
-        return [
-            'access' => [
-                'class' => AccessControl::class,
-//                'only' => ['login', 'logout', 'signup'],
-                'rules' => [
-                    [
-                        'allow' => true,
-                        'actions' => ['login', 'signup'],
-                        'roles' => ['?'],
-                    ],
-                    [
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
-        ];
+        if (\Yii::$app->user->identity['role'] === 'admin') {
+            return true;
+        }
+        throw new HttpException(
+            406, 'К сожалению, для посещения данной страницы у Все нет доступа'
+        );
     }
 }
