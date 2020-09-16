@@ -72,10 +72,14 @@ class CartController extends AppHomeController
         $session = \Yii::$app->session;
         $session->open();
         $order = new Order();
+
         $order_product = new OrderProduct();
         if($order->load(\Yii::$app->request->post())) {
             $order->qty = $session['cart.qty'];
             $order->sum = $session['cart.sum'];
+            if (\Yii::$app->user->identity['role'] === 'user') {
+                $order->user_id = \Yii::$app->user->identity['id'];
+            }
             //transaction
             $transaction = \Yii::$app->getDb()->beginTransaction();
             if(!$order->save() || !$order_product->

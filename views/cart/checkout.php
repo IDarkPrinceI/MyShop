@@ -1,3 +1,11 @@
+<?php
+
+use yii\helpers\Html;
+use yii\helpers\Url;
+
+?>
+
+
 <!--content-->
 <div class="content">
     <div class="cart-items">
@@ -31,8 +39,8 @@
                         <tr class="my_relactive">
                             <td><?= $i?></td>
                             <td>
-                                <a href="<?=\yii\helpers\Url::to(['product/view', 'id' => $id]) ?>">
-                                    <?= \yii\helpers\Html::img("@web/product_img/{$item['img']}", ['alt' => $item['name'],'height' => 60]) ?>
+                                <a href="<?= Url::to(['product/view', 'id' => $id]) ?>">
+                                    <?= Html::img("@web/product_img/{$item['img']}", ['alt' => $item['name'],'height' => 60]) ?>
                                 </a>
                             </td>
                             <td>
@@ -48,7 +56,7 @@
                             <td><?= $item['price'] ?> руб</td>
                             <td><?= $item['price'] * $item['qty'] ?> руб</td>
                             <td>
-                                <a class="close1" href="<?= \yii\helpers\Url::to(['cart/del-item', 'id' => $id])?>"></a>
+                                <a class="close1" href="<?= Url::to(['cart/del-item', 'id' => $id])?>"></a>
                             </td>
                         </tr>
                         <?php $i ++; endforeach; ?>
@@ -65,13 +73,18 @@
                </div>
                 <div class="mail-grids">
                     <h4>Данные покупателя</h4>
+                            <?php $userName = Yii::$app->user->identity['username']; ?>
+                            <?php $userEmail = Yii::$app->user->identity['email']; ?>
+                            <?php $userPhone = Yii::$app->user->identity['phone']; ?>
+                            <?php $userAddress = Yii::$app->user->identity['address']; ?>
+
                             <?php $form = \yii\widgets\ActiveForm::begin()?>
-                            <?= $form->field($order, 'name') ?>
-                            <?= $form->field($order, 'email') ?>
-                            <?= $form->field($order, 'phone') ?>
-                            <?= $form->field($order, 'address') ?>
+                            <?= $form->field($order, 'name')->input('string',['value' => $userName]) ?>
+                            <?= $form->field($order, 'email')->input('string',['value' => $userEmail]) ?>
+                            <?= $form->field($order, 'phone')->input('string',['value' => $userPhone]) ?>
+                            <?= $form->field($order, 'address')->input('string',['value' => $userAddress]) ?>
                             <?= $form->field($order, 'note')->textarea(['rows' => 5]) ?>
-                            <?= \yii\helpers\Html::submitButton('Заказать', ['class' => 'submit_check_out']) ?>
+                            <?= Html::submitButton('Заказать', ['class' => 'submit_check_out']) ?>
                             <?php \yii\widgets\ActiveForm::end() ?>
                       </div>
                 </div>

@@ -48,19 +48,26 @@ OldIeAsset::register($this);
                         <!-- Menu Toggle Button -->
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                            <span class="hidden-xs"><?= Yii::$app->user->identity['username']?></span>
+                            <span class="hidden-xs">
+                            <i class="glyphicon glyphicon-user" aria-hidden="true"></i>
+                                <?= Yii::$app->user->identity['username']?></span>
                         </a>
                         <ul class="dropdown-menu pull-right profile">
                             <!-- The user image in the menu -->
                             <li class="user-header">
 <!--                                <p>Alexander Pierce</p>-->
-                                <span><?= Yii::$app->user->identity['role']?></span>
+                                <span>Вы зашли как: <?= Yii::$app->user->identity['role']?></span>
                             </li>
                             <div class="clearfix"> </div>
                             <li class="divider"></li>
+                            <div class="clearfix"> </div>
                             <li id="profile" class="user-footer">
                                 <div class="pull-left">
-                                    <a href="<?= Url::to(['user/profile'])?>" class="btn btn-default btn-flat">Профиль</a>
+                                    <?php if (Yii::$app->user->identity['role'] === 'admin'): ?>
+                                        <a href="<?= Url::to(['far/home/index'])?>" class="btn btn-default btn-flat">Админка</a>
+                                    <?php else: ?>
+                                        <a href="<?= Url::to(['user/profile'])?>" class="btn btn-default btn-flat">Профиль</a>
+                                    <?php endif; ?>
                                 </div>
                                 <div class="pull-right">
                                     <a class="btn btn-default btn-flat" href="<?= Url::to(['user/logout'])?>">Выйти</a>

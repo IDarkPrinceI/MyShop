@@ -23,10 +23,26 @@ use yii\helpers\Html;
                 ['template' => "<div class='form-group has-feedback'> {input} 
 <span class=\"glyphicon glyphicon-king form-control-feedback\"></span>
 <div>{error}</div></div>",])->textInput(['placeholder' => 'Логин', 'autocomplete' => 'off']) ?>
+
             <?= $form->field($model, 'password',
                 ['template' => "<div class='form-group has-feedback'> {input} 
 <span class=\"glyphicon glyphicon-equalizer form-control-feedback\"></span>
 <div>{error}</div></div>",])->passwordInput(['placeholder' => 'Пароль','autocomplete' => 'off']) ?>
+
+            <?= $form->field($model, 'email',
+                ['template' => "<div class='form-group has-feedback'> {input} 
+<span class=\"glyphicon glyphicon-text-background form-control-feedback\"></span>
+<div>{error}</div></div>",])->textInput(['placeholder' => 'E-mail','autocomplete' => 'off']) ?>
+
+            <?= $form->field($model, 'phone',
+                ['template' => "<div class='form-group has-feedback'> {input} 
+<span class=\"glyphicon glyphicon-phone form-control-feedback\"></span>
+<div>{error}</div></div>",])->textInput(['placeholder' => 'Телефон','autocomplete' => 'off']) ?>
+
+            <?= $form->field($model, 'address',
+                ['template' => "<div class='form-group has-feedback'> {input} 
+<span class=\"glyphicon glyphicon-home form-control-feedback\"></span>
+<div>{error}</div></div>",])->textInput(['placeholder' => 'Адрес','autocomplete' => 'off']) ?>
             <div class="form-group">
                 <div>
                     <?= Html::submitButton('Регистрация', ['class' => 'btn btn-primary btn-block btn-flat']) ?>

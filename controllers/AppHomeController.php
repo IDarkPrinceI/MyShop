@@ -13,6 +13,7 @@ class AppHomeController extends Controller
     {
 //        debug($action);
         $guestPossibleActions = ['login',
+            'signup',
             'index',
             'search',
             'add',

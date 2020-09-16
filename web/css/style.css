@@ -2437,25 +2437,19 @@ h3.account-text{
     font-size:1em;
 }
 .profile {
-	width: 210px;
-	height: 150px;
+	width: 250px;
+
+	height: 100px;
 	text-align: center;
 }
 .user-footer a {
 	margin: 2px;
 }
 
-/*.user-header {*/
-/*	padding-top: 2em; !important;*/
-/*}*/
 #profile a{
 	color: black;
 }
-/*.btn-enter {*/
-/*	color: #fff;*/
-/*	background-color: #798ca2;*/
-/*	border-color: #2e6da4;*/
-/*}*/
+
 .forg a:hover{
 	color:#fdb515;
 }

@@ -5,6 +5,7 @@ namespace app\controllers;
 
 
 use app\models\LoginForm;
+use app\models\Order;
 use app\models\Signup;
 use app\models\User;
 use Yii;
@@ -22,6 +23,9 @@ class UserController extends AppHomeController
             $user = new User();
             $user->username = $model->username;
             $user->password = Yii::$app->security->generatePasswordHash($model->password);
+            $user->email = $model->email;
+            $user->phone = $model->phone;
+            $user->address = $model->address;
             if($user->save()) {
                 return $this->goBack();
             }
@@ -51,6 +55,17 @@ class UserController extends AppHomeController
 
     public function actionProfile()
     {
-        return $this->render('profile');
+        $user = Yii::$app->user->id;
+
+        $orders = (new Order())->getOrders($user);
+//        $orders = new User();
+//        $orders = $user->orders;
+//        debug($orders);
+//        $userId = Yii::$app->user->getId();
+//        $order = new User();
+//        $order->getOrders();
+
+//        debug($order);
+        return $this->render('profile', compact('orders'));
     }
 }

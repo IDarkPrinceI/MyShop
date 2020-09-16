@@ -42,7 +42,7 @@ class Order extends ActiveRecord
 //                'message' => 'Номер телефона должен соответствовать шаблону +7 495 123 45 67'
 //            ],
             [['created_at', 'updated_at'], 'safe'],
-            ['qty', 'integer'],
+            [['qty', 'user_id'], 'integer'],
             [['sum', 'phone'], 'number'],
             ['status', 'boolean'],
         ];
@@ -57,5 +57,29 @@ class Order extends ActiveRecord
             'address' => 'Адрес',
             'note' => 'Примечание',
         ];
+    }
+
+    public function getOrderProducts()
+    {
+        return $this->hasMany(OrderProduct::class, ['order_id' => 'id']);
+    }
+
+    public function getOrders($userId) {
+        $orders = Order::find()
+//            ->asArray()
+//            ->select('order_product.*')
+//            ->leftJoin('order_product', '`order_product`.`order_id` = `orders`.`id`')
+//            ->all();
+//
+            ->asArray()
+            ->joinWith('orderProducts')
+            ->select([OrderProduct::tableName() . '.product_id'])
+//            ->select([OrderProduct::tableName() . '.name' , 'price'])
+//            ->addselect([OrderProduct::tableName() . '.sum'])
+//            ->addselect([OrderProduct::tableName() . '.qty'])
+//            ->addselect([OrderProduct::tableName() . '.name'])
+            ->where(['user_id' => $userId])
+            ->all();
+        return $orders;
     }
 }
