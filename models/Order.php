@@ -66,20 +66,17 @@ class Order extends ActiveRecord
 
     public function getOrders($userId) {
         $orders = Order::find()
-//            ->asArray()
-//            ->select('order_product.*')
-//            ->leftJoin('order_product', '`order_product`.`order_id` = `orders`.`id`')
-//            ->all();
-//
             ->asArray()
             ->joinWith('orderProducts')
-            ->select([OrderProduct::tableName() . '.product_id'])
-//            ->select([OrderProduct::tableName() . '.name' , 'price'])
-//            ->addselect([OrderProduct::tableName() . '.sum'])
-//            ->addselect([OrderProduct::tableName() . '.qty'])
-//            ->addselect([OrderProduct::tableName() . '.name'])
+            ->select([OrderProduct::tableName() . '.product_id' , 'img', 'price'])
+            ->addselect([OrderProduct::tableName() . '.sum'])
+            ->addselect([OrderProduct::tableName() . '.qty'])
+            ->addselect([Order::tableName() . '.status', 'created_at'])
             ->where(['user_id' => $userId])
+            ->orderBy(['created_at' => SORT_DESC])
             ->all();
         return $orders;
     }
+
+
 }

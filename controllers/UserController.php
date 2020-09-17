@@ -58,14 +58,7 @@ class UserController extends AppHomeController
         $user = Yii::$app->user->id;
 
         $orders = (new Order())->getOrders($user);
-//        $orders = new User();
-//        $orders = $user->orders;
-//        debug($orders);
-//        $userId = Yii::$app->user->getId();
-//        $order = new User();
-//        $order->getOrders();
-
-//        debug($order);
-        return $this->render('profile', compact('orders'));
+        $userData = new Signup();
+        return $this->render('profile', compact('orders', 'userData'));
     }
 }

@@ -2431,6 +2431,12 @@ h3.account-text{
 .user-footer ul li a {
 	color: black;
 }
+
+.line td {
+	border-bottom-color: #0a0a0a;
+	border-bottom-style : solid;
+	border-bottom-width : 4px;
+}
 .forg a {
     text-decoration: none;
     color: #AF1D0D;

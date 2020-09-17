@@ -65,19 +65,9 @@ class Product extends ActiveRecord
         return $query;
     }
 
-//    public function getQueryProductsToSearch($search)
-//    {
-//        $query = Product::find()
-//            ->where([
-//                'like', 'name', $search
-//            ]);
-//        return $query;
-//    }
-
     public function getProductToSearch($baseSearch, $page)
     {
         $wordsSearch = self::cleanSearchString($baseSearch);
-//        debug($wordsSearch);
         if (!$wordsSearch) {
             return null;
         }

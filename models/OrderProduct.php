@@ -20,7 +20,7 @@ class OrderProduct extends ActiveRecord
             [['order_id', 'product_id', 'name', 'price', 'qty', 'sum'], 'required'],
             [['order_id', 'product_id', 'qty'], 'integer'],
             [['price', 'sum'], 'number'],
-            [['name'], 'string', 'max' => 255],
+            [['name', 'img'], 'string', 'max' => 255],
         ];
     }
 
@@ -33,6 +33,7 @@ class OrderProduct extends ActiveRecord
             $this->order_id = $order_id;
             $this->product_id = $id;
             $this->name = $product['name'];
+            $this->img = $product['img'];
             $this->price = $product['price'];
             $this->qty = $product['qty'];
             $this->sum = $product['qty'] * $product['price'];
