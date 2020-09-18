@@ -2431,7 +2431,12 @@ h3.account-text{
 .user-footer ul li a {
 	color: black;
 }
-
+.ready {
+	background-color: lightgreen;
+}
+.wait {
+	background-color: yellow;
+}
 .line td {
 	border-bottom-color: #0a0a0a;
 	border-bottom-style : solid;

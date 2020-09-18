@@ -58,7 +58,26 @@ class UserController extends AppHomeController
         $user = Yii::$app->user->id;
 
         $orders = (new Order())->getOrders($user);
+        //изменить данные пользователя
         $userData = new Signup();
+            if ($userData->load(Yii::$app->request->post())) {
+                $user = new User();
+                $userId = Yii::$app->user->identity['id'];
+                $string = User::find()
+                    ->where(['id' => $userId])
+                    ->one();
+                $string->delete();
+                $user->id = Yii::$app->user->identity['id'];
+                $user->username = Yii::$app->user->identity['username'];
+                $user->password = Yii::$app->user->identity['password'];
+                $user->email = $userData->email;
+                $user->phone = $userData->phone;
+                $user->address = $userData->address;
+                if($user->save()) {
+                    return  $this->refresh();
+                }
+         //изменить данные пользователя
+            }
         return $this->render('profile', compact('orders', 'userData'));
     }
 }

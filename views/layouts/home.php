@@ -4,6 +4,7 @@
 
 use app\assets\AppHomeAsset;
 use app\assets\OldIeAsset;
+use phpnt\yandexMap\YandexMaps;
 use yii\helpers\Html;
 use app\components\DropDownWidget;
 use yii\helpers\Url;
@@ -34,15 +35,12 @@ OldIeAsset::register($this);
     <div class="header-top">
         <div class="container">
             <div class="top-left">
-                <a href="#"> Help  <i class="glyphicon glyphicon-phone" aria-hidden="true"></i> +0123-456-789</a>
+                <a href="#"> Помощь  <i class="glyphicon glyphicon-phone" aria-hidden="true"></i> +0123-456-789</a>
             </div>
             <div class="top-right">
                 <ul>
                     <?php if (Yii::$app->user->isGuest): ?>
-<!--                    --><?php //if(Yii::$app->user->identity['role'] === 'user') ?>
-<!--                    <li><a href="--><?//= Url::to(['user/logout'])?><!--">Выход</a></li>-->
                     <li><a href="<?= Url::to(['user/login'])?>">Вход / Регистрация</a></li>
-<!--                    <li><a href="registered.html"> Create Account </a></li>-->
                     <?php else: ?>
                     <li class="dropdown user user-menu">
                         <!-- Menu Toggle Button -->
@@ -56,7 +54,7 @@ OldIeAsset::register($this);
                             <!-- The user image in the menu -->
                             <li class="user-header">
 <!--                                <p>Alexander Pierce</p>-->
-                                <span>Вы зашли как: <?= Yii::$app->user->identity['role']?></span>
+                                <span>Вы вошли как: <?= Yii::$app->user->identity['role']?></span>
                             </li>
                             <div class="clearfix"> </div>
                             <li class="divider"></li>
@@ -164,45 +162,59 @@ OldIeAsset::register($this);
 
 
 <div id="content">
-<!--    --><?//= debug(Yii::$app->user->identity) ?>
     <?= $content ?>
 </div>
 
 
 <!---footer--->
-
+<?php
+echo YandexMaps::widget([
+    'myPlacemarks'          => $items,
+    'mapOptions'            => [
+        'center'            => [52, 59],                                                // центр карты
+        'zoom'              => 3,                                                       // показывать в масштабе
+        'controls'          => ['zoomControl',  'fullscreenControl', 'searchControl'],  // использовать эл. управления
+        'control'           => [
+            'zoomControl'   => [                                                        // расположение кнопок управлением масштабом
+                'top'       => 75,
+                'left'      => 5
+            ],
+        ],
+    ],
+    'disableScroll'         => true,                                                    // отключить скролл колесиком мыши (по умолчанию true)
+    'windowWidth'           => '100%',                                                  // длинна карты (по умолчанию 100%)
+    'windowHeight'          => '400px',                                                 // высота карты (по умолчанию 400px)
+]); ?>
 <div class="footer-w3l" id="my_footer">
     <div class="container">
         <div class="footer-grids">
-            <div class="col-md-3 footer-grid">
-                <h4>About </h4>
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+            <div class="col-md-4 footer-grid">
+                <h4>О сайте </h4>
+                <p>Какая-то информация о сайте.</p>
             </div>
-            <div class="col-md-3 footer-grid">
-                <h4>My Account</h4>
+            <div class="col-md-4 footer-grid">
+                <h4>Мой аккаунт</h4>
                 <ul>
-                    <li><a href="checkout.html">Checkout</a></li>
-                    <li><a href="login.html">Login</a></li>
-                    <li><a href="registered.html"> Create Account </a></li>
+                    <li><a href="<?= Url::to(['user/profile'])?>">Профиль</a></li>
+                    <li><a href="<?= Url::to(['user/logout'])?>">Выйти</a></li>
                 </ul>
             </div>
-            <div class="col-md-3 footer-grid">
-                <h4>Information</h4>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="products.html">Products</a></li>
-                    <li><a href="codes.html">Short Codes</a></li>
-                    <li><a href="mail.html">Mail Us</a></li>
-                    <li><a href="products1.html">products1</a></li>
-                </ul>
-            </div>
-            <div class="col-md-3 footer-grid foot">
+<!--            <div class="col-md-3 footer-grid">-->
+<!--                <h4>Information</h4>-->
+<!--                <ul>-->
+<!--                    <li><a href="index.html">Home</a></li>-->
+<!--                    <li><a href="products.html">Products</a></li>-->
+<!--                    <li><a href="codes.html">Short Codes</a></li>-->
+<!--                    <li><a href="mail.html">Mail Us</a></li>-->
+<!--                    <li><a href="products1.html">products1</a></li>-->
+<!--                </ul>-->
+<!--            </div>-->
+            <div class="col-md-4 footer-grid foot">
                 <h4>Contacts</h4>
                 <ul>
                     <li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i><a href="#">E Comertown Rd, Westby, USA</a></li>
                     <li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i><a href="#">1 599-033-5036</a></li>
                     <li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:example@mail.com"> example@mail.com</a></li>
-
                 </ul>
             </div>
             <div class="clearfix"> </div>

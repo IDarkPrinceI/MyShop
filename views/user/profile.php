@@ -36,6 +36,7 @@ use yii\helpers\Url;
             </div>
             <div class="clearfix"></div>
             <div class="cart-table">
+                <?php if($orders) :?>
                 <table class="timetable_sub">
                     <thead>
                     <h3>История Ваших заказов:</h3>
@@ -69,12 +70,18 @@ use yii\helpers\Url;
                             <td><?= $item['price'] ?> руб</td>
                             <td><?= $item['sum']?> руб</td>
                             <td><?= $item['created_at'] ?></td>
-                            <td><?= $item['status']?></td>
+                            <?php if ($item['status'] ):  ?>
+                                <td class="ready">Завершен</td>
+                            <?php else: ?>
+                                <td class="wait">В работе</td>
+                            <?php endif; ?>
                         </tr>
                         <?php $i ++; endforeach; ?>
                     </tbody></table>
+                <?php else: ?>
+                <h3>Вы еще ничего не заказали...</h3>
+                <?php endif;?>
             </div>
-
         </div>
     </div>
 </div>
