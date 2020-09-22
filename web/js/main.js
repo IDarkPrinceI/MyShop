@@ -381,6 +381,70 @@ $('#filterButton').on('click', function () {
 
 //productFilter
 
+//yandexMapRegistration
+if (window.location.pathname.includes('user/signup')) {
+	var myMap
+// Инициализация карты
+	ymaps.ready(init);
+
+	function init() {
+		var myPlacemark,
+			myMap = new ymaps.Map('map', {
+				center: [47.422052, 40.093725],
+				zoom: 17
+			});
+		myMap.controls
+			//Геолокация
+			.remove('geolocationControl')
+			//Полноэкранный режим
+			.remove('fullscreenControl')
+			// Список типов карты
+			.remove('typeSelector')
+			//Пробки
+			.remove('trafficControl')
+			//Линейка
+			.remove('rulerControl')
+
+		// Событие клика на карте.
+		myMap.events.add('click', function (e) {
+			var coords = e.get('coords');
+			// Если метка уже создана – передвигаем ее.
+			if (myPlacemark) {
+				myPlacemark.geometry.setCoordinates(coords);
+			}
+			// Если нет – создаем.
+			else {
+				myPlacemark = createPlacemark(coords);
+				myMap.geoObjects.add(myPlacemark);
+			}
+			//Получаем адрес по координатам клика
+			ymaps.geocode(coords).then(function (res) {
+				let firstGeoObject = res.geoObjects.get(0),
+					address = firstGeoObject.getAddressLine(),
+					test = document.querySelector('#signup-address')
+
+				if (address.includes("Новочеркасск")) {
+					test.value = firstGeoObject.getAddressLine()
+				} else {
+					test.value = ''
+					alert('Укажите адрес в пределах города Новочеркасск')
+				}
+				console.log(address)
+
+			});
+			// Создание метки.
+		});
+
+		function createPlacemark(coords) {
+			return new ymaps.Placemark(coords, {
+				iconContent: '!'
+			});
+		}
+	}
+}
+//yandexMapRegistration
+
+
 
 
 

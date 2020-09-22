@@ -20,6 +20,9 @@ class AppHomeAsset extends AssetBundle
         '//fonts.googleapis.com/css?family=Open+Sans:400,800italic,800,700italic,700,600italic,600,400italic,300italic,300',
     ];
     public $js = [
+        'https://api-maps.yandex.ru/2.1/?apikey=8a3ecadb-e4ca-48eb-9d4e-cbc2af213efb&lang=ru-RU',
+//        'https://api-maps.yandex.ru/2.0/?load=package.standard&lang=ru-RU',
+//        'https://api-maps.yandex.ru/2.0/?key=8a3ecadb-e4ca-48eb-9d4e-cbc2af213efb',
 //        'js/bootstrap.min.js',
 //        search jQuery
         'js/jquery-ui.js',

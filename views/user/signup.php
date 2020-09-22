@@ -38,11 +38,11 @@ use yii\helpers\Html;
                 ['template' => "<div class='form-group has-feedback'> {input} 
 <span class=\"glyphicon glyphicon-phone form-control-feedback\"></span>
 <div>{error}</div></div>",])->textInput(['placeholder' => 'Телефон','autocomplete' => 'off']) ?>
-
             <?= $form->field($model, 'address',
                 ['template' => "<div class='form-group has-feedback'> {input} 
 <span class=\"glyphicon glyphicon-home form-control-feedback\"></span>
 <div>{error}</div></div>",])->textInput(['placeholder' => 'Адрес','autocomplete' => 'off']) ?>
+            <div id="map"></div>
             <div class="form-group">
                 <div>
                     <?= Html::submitButton('Регистрация', ['class' => 'btn btn-primary btn-block btn-flat']) ?>

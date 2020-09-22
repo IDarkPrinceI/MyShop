@@ -24,7 +24,6 @@ OldIeAsset::register($this);
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-
 <?php $this->head() ?>
 </head>
 
@@ -162,29 +161,50 @@ OldIeAsset::register($this);
 
 
 <div id="content">
+<!--    <input id="testInput" type="text"><label for="">Адрес</label>-->
+<!--    <div id="map"></div>-->
     <?= $content ?>
+
 </div>
 
 
 <!---footer--->
 <?php
-echo YandexMaps::widget([
-    'myPlacemarks'          => $items,
-    'mapOptions'            => [
-        'center'            => [52, 59],                                                // центр карты
-        'zoom'              => 3,                                                       // показывать в масштабе
-        'controls'          => ['zoomControl',  'fullscreenControl', 'searchControl'],  // использовать эл. управления
-        'control'           => [
-            'zoomControl'   => [                                                        // расположение кнопок управлением масштабом
-                'top'       => 75,
-                'left'      => 5
-            ],
-        ],
-    ],
-    'disableScroll'         => true,                                                    // отключить скролл колесиком мыши (по умолчанию true)
-    'windowWidth'           => '100%',                                                  // длинна карты (по умолчанию 100%)
-    'windowHeight'          => '400px',                                                 // высота карты (по умолчанию 400px)
-]); ?>
+//echo YandexMaps::widget([
+//    'myPlacemarks'          => [
+//    [
+//        'latitude' => 55.751812,
+//        'longitude' => 37.599292,
+//        'options' => [
+//            [
+//                'hintContent' => 'Подсказка при наведении на маркет',
+//                'balloonContentHeader' => 'Заголовок после нажатия на маркер',
+//                'balloonContentBody' => 'Контент после нажатия на маркер',
+//                'balloonContentFooter' => 'Футер после нажатия на маркер',
+//            ],
+//            [
+//                'preset' => 'islands#circleIcon',
+//                'iconColor' => '#19aa8d',
+//                'draggable' => true
+//            ]
+//        ]
+//    ],
+//],
+//    'mapOptions'            => [
+//        'center'            => [47.422052, 40.093725],                                                // центр карты
+//        'zoom'              => 13,                                                       // показывать в масштабе
+//        'controls'          => ['zoomControl',  'fullscreenControl'],  // использовать эл. управления
+//        'control'           => [
+//            'zoomControl'   => [                                                        // расположение кнопок управлением масштабом
+//                'top'       => 75,
+//                'left'      => 5
+//            ],
+//        ],
+//    ],
+//    'disableScroll'         => true,                                                    // отключить скролл колесиком мыши (по умолчанию true)
+//    'windowWidth'           => '100%',                                                  // длинна карты (по умолчанию 100%)
+//    'windowHeight'          => '400px',                                                 // высота карты (по умолчанию 400px)
+//]); ?>
 <div class="footer-w3l" id="my_footer">
     <div class="container">
         <div class="footer-grids">
