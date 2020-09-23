@@ -22,12 +22,12 @@ use yii\helpers\Html;
             <?= $form->field($model, 'username',
                 ['template' => "<div class='form-group has-feedback'> {input} 
 <span class=\"glyphicon glyphicon-king form-control-feedback\"></span>
-<div>{error}</div></div>",])->textInput(['placeholder' => 'Логин', 'autocomplete' => 'off']) ?>
+<div>{error}</div></div>",])->textInput(['placeholder' => 'Логин *', 'autocomplete' => 'off']) ?>
 
             <?= $form->field($model, 'password',
                 ['template' => "<div class='form-group has-feedback'> {input} 
 <span class=\"glyphicon glyphicon-equalizer form-control-feedback\"></span>
-<div>{error}</div></div>",])->passwordInput(['placeholder' => 'Пароль','autocomplete' => 'off']) ?>
+<div>{error}</div></div>",])->passwordInput(['placeholder' => 'Пароль *','autocomplete' => 'off']) ?>
 
             <?= $form->field($model, 'email',
                 ['template' => "<div class='form-group has-feedback'> {input} 
@@ -46,6 +46,10 @@ use yii\helpers\Html;
             <div class="form-group">
                 <div>
                     <?= Html::submitButton('Регистрация', ['class' => 'btn btn-primary btn-block btn-flat']) ?>
+                </div>
+                <div class="myButtonLogin forg-right">
+                    <span>Есть учетная запись?</span>
+                    <a class="btn btn-primary" href="<?= \yii\helpers\Url::to(['user/login'])?>">Войти</a>
                 </div>
             </div>
             <?php ActiveForm::end() ?>

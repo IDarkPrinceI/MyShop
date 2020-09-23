@@ -97,6 +97,7 @@ $config = [
                 'product/<id:\d+>' => 'product/view',
 //                'search/page/<page:\d+>' => 'product/search',
                 'search' => 'product/search',
+                'admin' => 'far/home/index'
             ],
         ],
     ],

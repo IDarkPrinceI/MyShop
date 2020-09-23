@@ -54,6 +54,8 @@ OldIeAsset::register($this);
                             <li class="user-header">
 <!--                                <p>Alexander Pierce</p>-->
                                 <span>Вы вошли как: <?= Yii::$app->user->identity['role']?></span>
+                                <div class="clearfix"> </div>
+                                <small>Зарегистрирован с:  <?= Yii::$app->user->identity['registred_at']?></small>
                             </li>
                             <div class="clearfix"> </div>
                             <li class="divider"></li>
@@ -161,8 +163,7 @@ OldIeAsset::register($this);
 
 
 <div id="content">
-<!--    <input id="testInput" type="text"><label for="">Адрес</label>-->
-<!--    <div id="map"></div>-->
+
     <?= $content ?>
 
 </div>
@@ -210,15 +211,21 @@ OldIeAsset::register($this);
         <div class="footer-grids">
             <div class="col-md-4 footer-grid">
                 <h4>О сайте </h4>
-                <p>Какая-то информация о сайте.</p>
+                <p><i class="glyphicon glyphicon-cog" aria-hidden="true"></i>Какая-то информация о сайте.</p>
             </div>
-            <div class="col-md-4 footer-grid">
+            <div class="col-md-4 footer-grid foot">
                 <h4>Мой аккаунт</h4>
                 <ul>
-                    <li><a href="<?= Url::to(['user/profile'])?>">Профиль</a></li>
-                    <li><a href="<?= Url::to(['user/logout'])?>">Выйти</a></li>
+                <?php if (Yii::$app->user->isGuest): ?>
+                    <li><i class="glyphicon glyphicon-user" aria-hidden="true"></i><a href="<?= Url::to(['user/login'])?>">Войти</a></li>
+                    <li><i class="glyphicon glyphicon-plus" aria-hidden="true"></i><a href="<?= Url::to(['user/signup'])?>">Зарегистрироваться</a></li>
+                <?php else:?>
+                    <li><i class="glyphicon glyphicon-check" aria-hidden="true"></i><a href="<?= Url::to(['user/profile'])?>">Профиль</a></li>
+                    <li><i class="glyphicon glyphicon-log-out" aria-hidden="true"></i><a href="<?= Url::to(['user/logout'])?>">Выйти</a></li>
+                <?php endif;?>
                 </ul>
             </div>
+
 <!--            <div class="col-md-3 footer-grid">-->
 <!--                <h4>Information</h4>-->
 <!--                <ul>-->
@@ -230,7 +237,7 @@ OldIeAsset::register($this);
 <!--                </ul>-->
 <!--            </div>-->
             <div class="col-md-4 footer-grid foot">
-                <h4>Contacts</h4>
+                <h4>Контакты</h4>
                 <ul>
                     <li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i><a href="#">E Comertown Rd, Westby, USA</a></li>
                     <li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i><a href="#">1 599-033-5036</a></li>

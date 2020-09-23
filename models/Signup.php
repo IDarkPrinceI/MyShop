@@ -15,6 +15,7 @@ class Signup extends Model
     public $phone;
     public $address;
 
+
     public function rules()
     {
         return [
@@ -22,6 +23,7 @@ class Signup extends Model
                ['email', 'email'],
                ['phone', 'number'],
                ['address', 'string'],
+//               ['registred_at', 'safe'],
                ['username', 'unique', 'targetClass' => User::class, 'message' => 'Этот логин занят, попробуйте другой']
                ];
     }

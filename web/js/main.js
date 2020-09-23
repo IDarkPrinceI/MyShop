@@ -383,12 +383,12 @@ $('#filterButton').on('click', function () {
 
 //yandexMapRegistration
 if (window.location.pathname.includes('user/signup')) {
-	var myMap
+	let myMap
 // Инициализация карты
 	ymaps.ready(init);
 
 	function init() {
-		var myPlacemark,
+		let myPlacemark,
 			myMap = new ymaps.Map('map', {
 				center: [47.422052, 40.093725],
 				zoom: 17
@@ -407,7 +407,7 @@ if (window.location.pathname.includes('user/signup')) {
 
 		// Событие клика на карте.
 		myMap.events.add('click', function (e) {
-			var coords = e.get('coords');
+			let coords = e.get('coords');
 			// Если метка уже создана – передвигаем ее.
 			if (myPlacemark) {
 				myPlacemark.geometry.setCoordinates(coords);
@@ -419,22 +419,20 @@ if (window.location.pathname.includes('user/signup')) {
 			}
 			//Получаем адрес по координатам клика
 			ymaps.geocode(coords).then(function (res) {
-				let firstGeoObject = res.geoObjects.get(0),
-					address = firstGeoObject.getAddressLine(),
+				let geoObject = res.geoObjects.get(0),
+					address = geoObject.getAddressLine(),
 					test = document.querySelector('#signup-address')
 
 				if (address.includes("Новочеркасск")) {
-					test.value = firstGeoObject.getAddressLine()
+					test.value = geoObject.getAddressLine()
 				} else {
 					test.value = ''
 					alert('Укажите адрес в пределах города Новочеркасск')
 				}
-				console.log(address)
-
 			});
-			// Создание метки.
 		});
 
+// Создание метки.
 		function createPlacemark(coords) {
 			return new ymaps.Placemark(coords, {
 				iconContent: '!'

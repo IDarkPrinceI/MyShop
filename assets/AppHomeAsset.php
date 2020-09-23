@@ -21,8 +21,6 @@ class AppHomeAsset extends AssetBundle
     ];
     public $js = [
         'https://api-maps.yandex.ru/2.1/?apikey=8a3ecadb-e4ca-48eb-9d4e-cbc2af213efb&lang=ru-RU',
-//        'https://api-maps.yandex.ru/2.0/?load=package.standard&lang=ru-RU',
-//        'https://api-maps.yandex.ru/2.0/?key=8a3ecadb-e4ca-48eb-9d4e-cbc2af213efb',
 //        'js/bootstrap.min.js',
 //        search jQuery
         'js/jquery-ui.js',

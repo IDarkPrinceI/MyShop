@@ -3,6 +3,7 @@
 
 use app\assets\FarAsset;
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 
 FarAsset::register($this);
@@ -51,19 +52,19 @@ desired effect
     <header class="main-header">
 
         <!-- Logo -->
-        <a href="index2.html" class="logo">
+        <a href="<?= \yii\helpers\Url::to('/far/home/index')?>" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini"><b>A</b>LT</span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>Admin</b>LTE</span>
+            <span class="logo-lg"><b>Админка</b></span>
         </a>
 
         <!-- Header Navbar -->
         <nav class="navbar navbar-static-top" role="navigation">
             <!-- Sidebar toggle button-->
-            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-                <span class="sr-only">Toggle navigation</span>
-            </a>
+<!--            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">-->
+<!--                <span class="sr-only">Toggle navigation</span>-->
+<!--            </a>-->
             <!-- Navbar Right Menu -->
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
@@ -83,7 +84,7 @@ desired effect
                                         <a href="#">
                                             <div class="pull-left">
                                                 <!-- User Image -->
-                                                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+<!--                                                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">-->
                                             </div>
                                             <!-- Message title and timestamp -->
                                             <h4>
@@ -108,10 +109,12 @@ desired effect
                         <!-- Menu toggle button -->
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-bell-o"></i>
-                            <span class="label label-warning">10</span>
+                            <?php if (Yii::$app->params['newOrders']): ?>
+                            <span class="label label-warning"><?= Yii::$app->params['newOrders'] ?></span>
+                            <?php endif; ?>
                         </a>
                         <ul class="dropdown-menu">
-                            <li class="header">You have 10 notifications</li>
+                            <li class="header">У Вас новых заказов: <?= Yii::$app->params['newOrders'] ?? '0'?> </li>
                             <li>
                                 <!-- Inner Menu: contains the notifications -->
                                 <ul class="menu">
@@ -168,50 +171,50 @@ desired effect
                         <!-- Menu Toggle Button -->
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <!-- The user image in the navbar-->
-                            <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+<!--                            <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">-->
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                            <span class="hidden-xs">Alexander Pierce</span>
+                            <span class="hidden-xs"><?= Yii::$app->user->identity['username']?></span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
                             <li class="user-header">
-                                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+<!--                                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">-->
 
                                 <p>
-                                    Alexander Pierce - Web Developer
-                                    <small>Member since Nov. 2012</small>
+                                    <?= Yii::$app->user->identity['username']?>
+                                    <small>Зарегистрирован с: <?= Yii::$app->user->identity['registred_at']?></small>
                                 </p>
                             </li>
                             <!-- Menu Body -->
                             <li class="user-body">
-                                <div class="row">
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Followers</a>
-                                    </div>
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Sales</a>
-                                    </div>
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Friends</a>
-                                    </div>
-                                </div>
+<!--                                <div class="row">-->
+<!--                                    <div class="col-xs-4 text-center">-->
+<!--                                        <a href="#">Followers</a>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-xs-4 text-center">-->
+<!--                                        <a href="#">Sales</a>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-xs-4 text-center">-->
+<!--                                        <a href="#">Friends</a>-->
+<!--                                    </div>-->
+<!--                                </div>-->
                                 <!-- /.row -->
                             </li>
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                    <a href="<?= Url::to(['/home/index'])?>" class="btn btn-default btn-flat" target="_blank">На главную</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                    <a href="<?= Url::to(['/user/logout'])?>" class="btn btn-default btn-flat">Выйти</a>
                                 </div>
                             </li>
                         </ul>
                     </li>
                     <!-- Control Sidebar Toggle Button -->
-                    <li>
-                        <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-                    </li>
+<!--                    <li>-->
+<!--                        <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>-->
+<!--                    </li>-->
                 </ul>
             </div>
         </nav>
@@ -221,25 +224,12 @@ desired effect
 
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
-
-            <!-- Sidebar user panel (optional) -->
-            <div class="user-panel">
-                <div class="pull-left image">
-                    <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                </div>
-                <div class="pull-left info">
-                    <p>Alexander Pierce</p>
-                    <!-- Status -->
-                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-                </div>
-            </div>
-
             <!-- search form (Optional) -->
-            <form action="#" method="get" class="sidebar-form">
+            <form action="<?= Url::to(['/product/search'])?>" method="get" class="sidebar-form">
                 <div class="input-group">
-                    <input type="text" name="q" class="form-control" placeholder="Search...">
+                    <input autocomplete="off" type="text" name="search" class="form-control" placeholder="Поиск...">
                     <span class="input-group-btn">
-              <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+              <button type="submit" class="btn btn-flat"><i class="fa fa-search"></i>
               </button>
             </span>
                 </div>
@@ -274,13 +264,13 @@ desired effect
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Page Header
-                <small>Optional description</small>
+                <?= $this->title ?>
             </h1>
-            <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-                <li class="active">Here</li>
-            </ol>
+          <?= \yii\widgets\Breadcrumbs::widget([
+                  'links' => isset($this->params['breadcrumbs']) ?
+                      $this->params['breadcrumbs'] : [],
+          ]) ?>
+            <?= \app\widgets\Alert::widget() ?>
         </section>
 
         <!-- Main content -->

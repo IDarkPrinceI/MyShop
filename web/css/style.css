@@ -2458,10 +2458,13 @@ h3.account-text{
     color: #AF1D0D;
     font-size:1em;
 }
+.myButtonLogin {
+	margin-top: 1em;
+}
 .profile {
 	width: 250px;
 
-	height: 100px;
+	/*height: 100px;*/
 	text-align: center;
 }
 .user-footer a {
