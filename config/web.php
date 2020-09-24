@@ -28,6 +28,9 @@ $config = [
         ],
     ],
     'components' => [
+//        'formatter' => [
+//            'dateFormat' => 'php:d-F-Y | H:i',
+//        ],
 //        'assetManager' => [
 //            'bundles' => [
 //                'yii\web\JqueryAsset' => [

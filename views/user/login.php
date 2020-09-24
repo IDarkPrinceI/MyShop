@@ -6,8 +6,11 @@ use yii\helpers\Url;
 
 ?>
 
+<?php
 
+$this->title = 'Вход на сайт';
 
+?>
 <!--login-->
 <div class="login">
     <div class="main-agileits">

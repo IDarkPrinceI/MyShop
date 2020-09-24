@@ -39,7 +39,10 @@ class UserController extends AppHomeController
         return $this->goHome();
     }
         $user = new LoginForm();
-        if ($user->load(Yii::$app->request->post()) && $user->login()) {
+        if ( $user->load(Yii::$app->request->post()) && $user->login() ) {
+            if (Yii::$app->user->identity['role'] === 'admin') {
+                return $this->redirect(['far/home/index']);
+            }
             return $this->goHome();
         }
         return $this->render('login', [
@@ -60,7 +63,7 @@ class UserController extends AppHomeController
         $orders = (new Order())->getOrders($user);
         //изменить данные пользователя
         $userData = new Signup();
-            if ($userData->load(Yii::$app->request->post())) {
+            if ( $userData->load(Yii::$app->request->post()) ) {
                 $user = new User();
                 $userId = Yii::$app->user->identity['id'];
                 $string = User::find()

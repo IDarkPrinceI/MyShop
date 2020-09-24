@@ -109,12 +109,12 @@ desired effect
                         <!-- Menu toggle button -->
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-bell-o"></i>
-                            <?php if (Yii::$app->params['newOrders']): ?>
-                            <span class="label label-warning"><?= Yii::$app->params['newOrders'] ?></span>
+                            <?php if ($_SESSION['newOrders']): ?>
+                            <span class="label label-warning"><?= $_SESSION['newOrders'] ?></span>
                             <?php endif; ?>
                         </a>
                         <ul class="dropdown-menu">
-                            <li class="header">У Вас новых заказов: <?= Yii::$app->params['newOrders'] ?? '0'?> </li>
+                            <li class="header">У Вас новых заказов: <?= $_SESSION['newOrders'] ?? '0'?> </li>
                             <li>
                                 <!-- Inner Menu: contains the notifications -->
                                 <ul class="menu">
@@ -220,44 +220,7 @@ desired effect
         </nav>
     </header>
     <!-- Left side column. contains the logo and sidebar -->
-    <aside class="main-sidebar">
-
-        <!-- sidebar: style can be found in sidebar.less -->
-        <section class="sidebar">
-            <!-- search form (Optional) -->
-            <form action="<?= Url::to(['/product/search'])?>" method="get" class="sidebar-form">
-                <div class="input-group">
-                    <input autocomplete="off" type="text" name="search" class="form-control" placeholder="Поиск...">
-                    <span class="input-group-btn">
-              <button type="submit" class="btn btn-flat"><i class="fa fa-search"></i>
-              </button>
-            </span>
-                </div>
-            </form>
-            <!-- /.search form -->
-
-            <!-- Sidebar Menu -->
-            <ul class="sidebar-menu" data-widget="tree">
-                <li class="header">HEADER</li>
-                <!-- Optionally, you can add icons to the links -->
-                <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
-                <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
-                <li class="treeview">
-                    <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
-                        <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li><a href="#">Link in level 2</a></li>
-                        <li><a href="#">Link in level 2</a></li>
-                    </ul>
-                </li>
-            </ul>
-            <!-- /.sidebar-menu -->
-        </section>
-        <!-- /.sidebar -->
-    </aside>
+    <?= $this->render('/layouts/inc/sidebar') ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -267,6 +230,7 @@ desired effect
                 <?= $this->title ?>
             </h1>
           <?= \yii\widgets\Breadcrumbs::widget([
+                  'homeLink' => ['label' => 'Главная', 'url' => '/far'],
                   'links' => isset($this->params['breadcrumbs']) ?
                       $this->params['breadcrumbs'] : [],
           ]) ?>

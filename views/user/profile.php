@@ -5,7 +5,7 @@ use yii\helpers\Url;
 
 ?>
 
-<?php //debug($orders);?>
+<?php $this->title = 'Личный кабинет'?>
 
 <!--content-->
 <div class="content">
