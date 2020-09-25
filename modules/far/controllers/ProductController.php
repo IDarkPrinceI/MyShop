@@ -2,20 +2,21 @@
 
 namespace app\modules\far\controllers;
 
-use app\modules\far\models\OrderProduct;
 use Yii;
-use app\modules\far\models\Order;
-use yii\data\ActiveDataProvider;
+use app\modules\far\models\Product;
+use app\modules\far\models\ProductSearch;
 use app\modules\far\controllers\AppFarController;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * OrderController implements the CRUD actions for Order model.
+ * ProductController implements the CRUD actions for Product model.
  */
-class OrderController extends AppFarController
+class ProductController extends AppFarController
 {
-
+    /**
+     * {@inheritdoc}
+     */
     public function behaviors()
     {
         return [
@@ -28,21 +29,14 @@ class OrderController extends AppFarController
         ];
     }
 
+
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Order::find(),
-            'pagination' => [
-                'pageSize' => 10,
-            ],
-            'sort' => [
-                'defaultOrder' => [
-                    'status' => SORT_ASC
-                ]
-            ],
-        ]);
+        $searchModel = new ProductSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
+            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -56,9 +50,10 @@ class OrderController extends AppFarController
 
     public function actionCreate()
     {
-        $model = new Order();
+        $model = new Product();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success', 'Товар успешно добавлен');
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -72,7 +67,7 @@ class OrderController extends AppFarController
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('success', 'Заказ успешно обновлен!');
+            Yii::$app->session->setFlash('success', 'Товар успешно отредактирован');
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -84,14 +79,15 @@ class OrderController extends AppFarController
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
-        OrderProduct::deleteAll(['order_id' => $id]);
-        Yii::$app->session->setFlash('success', 'Заказ успешно удален!');
+        Yii::$app->session->setFlash('success', 'Товар успешно удален');
+
+
         return $this->redirect(['index']);
     }
 
     protected function findModel($id)
     {
-        if (($model = Order::findOne($id)) !== null) {
+        if (($model = Product::findOne($id)) !== null) {
             return $model;
         }
 

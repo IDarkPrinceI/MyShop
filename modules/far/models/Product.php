@@ -3,6 +3,9 @@
 namespace app\modules\far\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveRecord;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "product".
@@ -23,17 +26,17 @@ use Yii;
  */
 class Product extends \yii\db\ActiveRecord
 {
-    /**
-     * {@inheritdoc}
-     */
+
     public static function tableName()
     {
         return 'product';
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    public function getCategory()
+    {
+        return $this->hasOne(Category::class, ['catehgory_id' => 'id']);
+    }
+
     public function rules()
     {
         return [
@@ -45,25 +48,22 @@ class Product extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function attributeLabels()
     {
         return [
             'id' => 'ID',
-            'category_id' => 'Category ID',
-            'name' => 'Name',
-            'content' => 'Content',
-            'price' => 'Price',
-            'old_price' => 'Old Price',
-            'description' => 'Description',
+            'category_id' => 'Родительская категория',
+            'name' => 'Название',
+            'content' => 'Описание',
+            'price' => 'Цена',
+            'old_price' => 'Старая цена',
+            'description' => 'Контент',
             'keywords' => 'Keywords',
-            'img' => 'Img',
-            'is_sale' => 'Is Sale',
-            'is_hit' => 'Is Hit',
-            'is_new' => 'Is New',
-            'brand_id' => 'Brand ID',
+            'img' => 'Изображение',
+            'is_sale' => 'Распродажа',
+            'is_hit' => 'Хит',
+            'is_new' => 'Новинка',
+            'brand_id' => 'Бренд',
         ];
     }
 }

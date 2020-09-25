@@ -20,11 +20,23 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
             <div class="box-body">
                 <div class="order-index">
+
                     <?= GridView::widget([
                         'dataProvider' => $dataProvider,
                         'columns' => [
                             ['class' => 'yii\grid\SerialColumn'],
-                            'status',
+//                            'status',
+                            [
+                                 'attribute' => 'status',
+                                 'value' => function($data) {
+                                        switch ($data->status) {
+                                            case 0: return '<span class="text-red">Новый</span>';
+                                            case 1: return '<span class="text-green">Завершен</span>';
+                                            default: return 'Ошибка';
+                                        }
+                                 },
+                                'format' => 'html',
+                            ],
                             'qty',
                             'sum',
                             'name',
@@ -41,11 +53,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'attribute' => 'updated_at',
                                 'format' => ['date', 'php:d-M-Y | H:i']
                             ],
-                            //'user_id',
                             ['class' => 'yii\grid\ActionColumn',
                                 'header' => 'Действия'
                             ],
-//
                         ],
                     ]); ?>
                 </div>

@@ -31,13 +31,16 @@ class Order extends ActiveRecord
         return 'orders';
     }
 
+    public function getProducts() {
+        return $this->hasMany(OrderProduct::class, ['order_id' => 'id']);
+    }
+
     public function behaviors()
     {
         return [
             [
                 'class' => TimestampBehavior::class,
                 'attributes' => [
-                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
                     ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
                 ],
                 // если вместо метки времени UNIX используется datetime:

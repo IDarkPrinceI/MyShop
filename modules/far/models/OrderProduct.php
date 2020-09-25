@@ -18,17 +18,16 @@ use Yii;
  */
 class OrderProduct extends \yii\db\ActiveRecord
 {
-    /**
-     * {@inheritdoc}
-     */
+
     public static function tableName()
     {
         return 'order_product';
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    public function getOrder() {
+        return $this->hasOne(Order::class, ['id' => 'order_id']);
+    }
+
     public function rules()
     {
         return [
@@ -39,20 +38,17 @@ class OrderProduct extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function attributeLabels()
     {
         return [
             'id' => 'ID',
-            'order_id' => 'Order ID',
-            'product_id' => 'Product ID',
-            'name' => 'Name',
-            'img' => 'Img',
-            'price' => 'Price',
-            'qty' => 'Qty',
-            'sum' => 'Sum',
+            'order_id' => '№ заказа',
+            'product_id' => '№ продукта',
+            'name' => 'Название',
+            'img' => 'Изображение',
+            'price' => 'Цеа',
+            'qty' => 'Количество',
+            'sum' => 'Сумма',
         ];
     }
 }
