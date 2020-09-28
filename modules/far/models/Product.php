@@ -34,7 +34,12 @@ class Product extends \yii\db\ActiveRecord
 
     public function getCategory()
     {
-        return $this->hasOne(Category::class, ['catehgory_id' => 'id']);
+        return $this->hasOne(Category::class, ['id' => 'category_id']);
+    }
+
+    public function getBrand()
+    {
+        return $this->hasOne(Brand::class, ['id' => 'brand_id']);
     }
 
     public function rules()
@@ -52,11 +57,11 @@ class Product extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'category_id' => 'Родительская категория',
+            'category_id' => 'Категория',
             'name' => 'Название',
             'content' => 'Описание',
-            'price' => 'Цена',
-            'old_price' => 'Старая цена',
+            'price' => 'Цена, руб',
+            'old_price' => 'Старая цена, руб',
             'description' => 'Контент',
             'keywords' => 'Keywords',
             'img' => 'Изображение',

@@ -13,7 +13,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="product-index">
 
-<!--    <h1>--><?//= Html::encode($this->title) ?><!--</h1>-->
 
     <p>
         <?= Html::a('Добавить товар', ['create'], ['class' => 'btn btn-success']) ?>
@@ -28,11 +27,38 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'category_id',
-            'name',
+//            'name',
+            [
+                'attribute' => 'name',
+                'format' => 'html',
+                'value' => function($data) {
+                    return '<a href="' .\yii\helpers\Url::to(['/product/view' , 'id' => $data->id]) . '">' . $data->name . '</a>';
+                }
+            ],
+            [
+                'attribute' => 'category_id',
+                'format' => 'html',
+                'value' => function($data) {
+                    return '<a href="' . \yii\helpers\Url::to(['/category/view', 'category_id' => $data->category->id]) . '">' . $data->category->name . '</a>';
+                }
+            ],
             'price',
-            'old_price',
+            [
+                'attribute' => 'old_price',
+                'value' => function($data) {
+                    if( empty($data->old_price) ) {
+                        return '';
+                    } else {
+                        return $data->old_price;
+                    }
+                }
+            ],
+            [
+                'attribute' => 'brand_id',
+                'value' => function($data) {
+                    return $data->brand->name;
+                }
+            ],
             [
                 'attribute' => 'is_sale',
                 'format' => 'html',
@@ -66,8 +92,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     }
                 }
             ],
-            'brand_id',
-
             ['class' => 'yii\grid\ActionColumn',
                 'header' => 'Действия',
             ],

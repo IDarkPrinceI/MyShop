@@ -36,13 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'status',
                 'format' => 'html',
-                'value' => function($data) {
-                    switch ($data->status) {
-                        case 0: return '<span class="text-red">В работе</span>';
-                        case 1: return '<span class="text-green">Завершено</span>';
-                        default: return 'Ошибка';
-                    }
-                }
+                'value' => $model->status ? '<span class="text-green">Завершено</span>' : '<span class="text-red">Новый</span>'
             ],
             [
                 'attribute' => 'created_at',
@@ -72,7 +66,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     </tr>
                     <?php foreach ($orderProducts as $product): ?>
                         <tr>
-                            <td><?= $product->name; ?></td>
+                            <td><a href="<?= \yii\helpers\Url::to(['/product/view', 'id' => $product['product_id']])?>"><?= $product->name ?></td>
                             <td><?= $product->qty; ?></td>
                             <td><?= $product->price; ?></td>
                             <td><?= $product->sum; ?></td>
