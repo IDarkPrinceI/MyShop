@@ -26,8 +26,6 @@ use yii\widgets\ActiveForm;
 //    ];
 //    ?>
 
-    <?= $form->field($model, 'qty')->textInput() ?>
-
     <?= $form->field($model, 'status')->dropDownList(['В работе', 'Завершен']) ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
@@ -38,11 +36,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'updated_at')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'created_at')->textInput(['readonly' => true]) ?>
-
     <?= $form->field($model, 'sum')->textInput(['readonly' => true]) ?>
+
+    <?= $form->field($model, 'qty')->textInput(['readonly' => true]) ?>
 
     <?= $form->field($model, 'note')->textarea(['rows' => 2]) ?>
 

@@ -10,7 +10,16 @@ use yii\widgets\ActiveForm;
 
             <div class="product-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin([
+            'fieldConfig' => [
+                    'template' => '
+                    <div class="col-md-6">
+                        <p>{label}</p>{input} 
+                        <div>{error}</div>
+                    </div> 
+                    ',
+                ]
+    ]); ?>
 
 <!--    --><?//= $form->field($model, 'category_id')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'category_id')->dropDownList(['maxlength' => true]) ?>
@@ -29,13 +38,15 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'img')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'brand_id')->textInput(['maxlength' => true]) ?>
+
     <?= $form->field($model, 'is_sale')->checkbox() ?>
 
     <?= $form->field($model, 'is_hit')->checkbox() ?>
 
     <?= $form->field($model, 'is_new')->checkbox() ?>
 
-    <?= $form->field($model, 'brand_id')->textInput(['maxlength' => true]) ?>
+
 
     <div class="form-group">
 

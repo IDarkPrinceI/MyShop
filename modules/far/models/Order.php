@@ -45,6 +45,9 @@ class Order extends ActiveRecord
                 ],
                 // если вместо метки времени UNIX используется datetime:
                 'value' => new Expression('NOW()'),
+//                'value' => function(){
+//                    return date('d-M-Y H:i');
+//                }
             ],
         ];
     }
@@ -67,8 +70,8 @@ class Order extends ActiveRecord
             'id' => 'ID',
             'created_at' => 'Cоздан',
             'updated_at' => 'Обновлен',
-            'qty' => 'Кол-во',
-            'sum' => 'Сумма',
+            'qty' => 'Кол-во, шт',
+            'sum' => 'Сумма, руб',
             'status' => 'Статус',
             'name' => 'Имя',
             'email' => 'E-mail',
