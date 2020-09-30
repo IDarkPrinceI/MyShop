@@ -14,20 +14,19 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="product-index">
 
 
-    <p>
+
         <?= Html::a('Добавить товар', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
     <div class="row">
         <div class="col-md-12">
             <div class="box">
-
+                <div class="box-body">
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-//            'name',
             [
                 'attribute' => 'name',
                 'format' => 'html',

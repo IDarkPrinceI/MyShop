@@ -31,13 +31,6 @@ class CategorySearch extends Category
         return Model::scenarios();
     }
 
-    /**
-     * Creates data provider instance with search query applied
-     *
-     * @param array $params
-     *
-     * @return ActiveDataProvider
-     */
     public function search($params)
     {
         $query = Category::find();
@@ -46,6 +39,14 @@ class CategorySearch extends Category
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+                'pageSize' => 10
+            ],
+            'sort' => [
+                'defaultOrder' => [
+                    'parent_id' => SORT_ASC
+                ]
+            ],
         ]);
 
         $this->load($params);

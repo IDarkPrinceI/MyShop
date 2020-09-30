@@ -26,20 +26,43 @@ use yii\helpers\Url; ?>
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">HEADER</li>
             <!-- Optionally, you can add icons to the links -->
-            <li class="active">
-                <a href="<?= Url::to(['home/index'])?>"><i class="fa fa-building-o"></i>Статистика магазина</a></li>
+            <li>
+                <a  href="<?= Url::to(['home/index'])?>"><i class="fa fa-building-o"></i><span>Статистика магазина</span></a></li>
 <!--            <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>-->
             <li class="treeview">
-                <a href=""><i class="fa fa-opencart"></i>Товары
+                <a href=""><i class="fa fa-archive"></i><span>Заказы</span>
                     <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="my123"><a href="<?= Url::to(['product/index'])?>">Просмотр товаров</a></li>
-                    <li class="my321"><a href="<?= Url::to(['product/create'])?>">Добавить товар</a></li>
+                    <li><a href="<?= Url::to(['order/index'])?>">Список заказов</a></li>
                 </ul>
             </li>
+            <li class="treeview">
+                <a href=""><i class="fa fa-sliders"></i><span>Категории</span>
+                    <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="<?= Url::to(['category/index'])?>">Список категорий</a></li>
+                    <li><a href="<?= Url::to(['category/create'])?>">Добавить категорию</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href=""><i class="fa fa-opencart"></i><span>Товары</span>
+                    <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="<?= Url::to(['product/index'])?>">Список товаров</a></li>
+                    <li><a href="<?= Url::to(['product/create'])?>">Добавить товар</a></li>
+                </ul>
+            </li>
+
+
         </ul>
         <!-- /.sidebar-menu -->
     </section>

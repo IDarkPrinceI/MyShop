@@ -15,17 +15,16 @@ use Yii;
  */
 class Category extends \yii\db\ActiveRecord
 {
-    /**
-     * {@inheritdoc}
-     */
+
     public static function tableName()
     {
         return 'category';
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    public function getCategory()
+    {
+        return $this->hasOne(Category::class, ['id' => 'parent_id']);
+    }
     public function rules()
     {
         return [
@@ -35,17 +34,14 @@ class Category extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function attributeLabels()
     {
         return [
             'id' => 'ID',
-            'parent_id' => 'Parent ID',
-            'name' => 'Name',
-            'description' => 'Description',
-            'keywords' => 'Keywords',
+            'parent_id' => 'Родительская категория',
+            'name' => 'Название',
+            'description' => 'Описание',
+            'keywords' => 'Ключевые слова',
         ];
     }
 }

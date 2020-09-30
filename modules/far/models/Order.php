@@ -45,9 +45,7 @@ class Order extends ActiveRecord
                 ],
                 // если вместо метки времени UNIX используется datetime:
                 'value' => new Expression('NOW()'),
-//                'value' => function(){
-//                    return date('d-M-Y H:i');
-//                }
+
             ],
         ];
     }

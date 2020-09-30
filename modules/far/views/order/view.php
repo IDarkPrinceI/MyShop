@@ -29,6 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </p>
         <div class="box">
             <div class="order-view">
+                <div class="box-body">
 
     <?= DetailView::widget([
         'model' => $model,
@@ -78,6 +79,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     </tr>
                 </table>
 
+                </div>
             </div>
         </div>
     </div>

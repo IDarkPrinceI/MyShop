@@ -41,6 +41,7 @@ class CategoryController extends AppFarController
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+
         ]);
     }
 

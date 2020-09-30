@@ -25,7 +25,6 @@ $this->params['breadcrumbs'][] = $this->title;
                         'dataProvider' => $dataProvider,
                         'columns' => [
                             ['class' => 'yii\grid\SerialColumn'],
-//                            'status',
                             [
                                  'attribute' => 'status',
                                  'value' => function($data) {
