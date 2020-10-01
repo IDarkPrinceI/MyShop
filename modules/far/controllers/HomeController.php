@@ -5,6 +5,7 @@ namespace app\modules\far\controllers;
 
 
 use app\models\Order;
+use app\modules\far\models\Brand;
 use app\modules\far\models\Category;
 use app\modules\far\models\Product;
 use yii\i18n\Formatter;
@@ -25,6 +26,8 @@ class HomeController extends AppFarController
             ->count();
         $categories = Category::find()
             ->count();
+        $brands = Brand::find()
+            ->count();
 
 //        $dateToday = date('Y-m-d H:i:s');
 //        $test = \Yii::$app->formatter->asTimestamp($dateToday);
@@ -32,6 +35,7 @@ class HomeController extends AppFarController
         return $this->render('index', compact('newOrders',
                                                         'products',
                                                           'categories',
+                                                          'brands',
                                                           'session'));
     }
 }

@@ -19,16 +19,21 @@ class UserController extends AppHomeController
             return $this->goHome();
         }
         $model = new Signup();
+
         if($model->load(Yii::$app->request->post()) && $model->validate()) {
-            $user = new User();
-            $user->username = $model->username;
-            $user->password = Yii::$app->security->generatePasswordHash($model->password);
-            $user->email = $model->email;
-            $user->phone = $model->phone;
-            $user->address = $model->address;
-            if($user->save()) {
-                return $this->goBack();
-            }
+
+                $user = new User();
+                $user->username = $model->username;
+                $user->password = Yii::$app->security->generatePasswordHash($model->password);
+                $user->email = $model->email;
+                $user->phone = $model->phone;
+                $user->address = $model->address;
+                if($model->password === $model->passwordRepl) {
+                    if ($user->save()) {
+                        return $this->goBack();
+                    }
+                }
+            Yii::$app->session->setFlash('error', 'Пароли не совпадают');
         }
         return $this->render('signup', compact('model'));
     }

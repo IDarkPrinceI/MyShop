@@ -11,6 +11,7 @@ class Signup extends Model
 
     public $username;
     public $password;
+    public $passwordRepl;
     public $email;
     public $phone;
     public $address;
@@ -19,11 +20,11 @@ class Signup extends Model
     public function rules()
     {
         return [
-               [['username', 'password'], 'required', 'message' => 'Заполните поле'],
+               [['username', 'password', 'passwordRepl'], 'required', 'message' => 'Заполните поле'],
                ['email', 'email'],
                ['phone', 'number'],
                ['address', 'string'],
-//               ['registred_at', 'safe'],
+               ['registred_at', 'safe'],
                ['username', 'unique', 'targetClass' => User::class, 'message' => 'Этот логин занят, попробуйте другой']
                ];
     }

@@ -25,6 +25,21 @@ $this->params['breadcrumbs'][] = $this->title;
             <!-- ./col -->
             <div class="col-lg-3 col-xs-6">
                 <!-- small box -->
+                <div class="small-box bg-yellow">
+                    <div class="inner">
+                        <h3><?= $categories ?></h3>
+
+                        <p>Категорий</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-bookmark"></i>
+                    </div>
+                    <a href="<?= Url::to(['category/index'])?>" class="small-box-footer">Просмотреть <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
                 <div class="small-box bg-green">
                     <div class="inner">
                         <h3><?= $products ?></h3>
@@ -39,16 +54,15 @@ $this->params['breadcrumbs'][] = $this->title;
             <!-- ./col -->
             <div class="col-lg-3 col-xs-6">
                 <!-- small box -->
-                <div class="small-box bg-yellow">
+                <div class="small-box bg-blue">
                     <div class="inner">
-                        <h3><?= $categories ?></h3>
-
-                        <p>Категорий</p>
+                        <h3><?= $brands ?></h3>
+                        <p>Брендов</p>
                     </div>
                     <div class="icon">
-                        <i class="fa fa-bookmark"></i>
+                        <i class="fa fa-cube"></i>
                     </div>
-                    <a href="<?= Url::to(['category/index'])?>" class="small-box-footer">Просмотреть <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="<?= Url::to(['brand/index'])?>" class="small-box-footer">Просмотреть <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->

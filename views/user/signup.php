@@ -6,6 +6,13 @@ use yii\helpers\Html;
 
 <?php $this->title = 'Регистарция на сайте' ?>
 
+<?php if (Yii::$app->session->hasFlash('error')) :?>
+<div class="container alert alert-danger alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <?php echo Yii::$app->session->getFlash('error') ?>
+</div>
+<?php endif;?>
+
 <div class="login">
     <div class="main-agileits">
         <div class="form-w3agile">
@@ -20,6 +27,11 @@ use yii\helpers\Html;
                 ['template' => "<div class='form-group has-feedback'> {input} 
 <span class=\"glyphicon glyphicon-equalizer form-control-feedback\"></span>
 <div>{error}</div></div>",])->passwordInput(['placeholder' => 'Пароль *','autocomplete' => 'off']) ?>
+
+            <?= $form->field($model, 'passwordRepl',
+                ['template' => "<div class='form-group has-feedback'> {input} 
+<span class=\"glyphicon glyphicon-equalizer form-control-feedback\"></span>
+<div>{error}</div></div>",])->passwordInput(['placeholder' => 'Повторите пароль *','autocomplete' => 'off']) ?>
 
             <?= $form->field($model, 'email',
                 ['template' => "<div class='form-group has-feedback'> {input} 

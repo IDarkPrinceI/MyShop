@@ -2,6 +2,7 @@
 
 namespace app\modules\far\controllers;
 
+use app\modules\far\models\Product;
 use Yii;
 use app\modules\far\models\Category;
 use app\modules\far\models\CategorySearch;
@@ -96,27 +97,23 @@ class CategoryController extends AppFarController
         ]);
     }
 
-    /**
-     * Deletes an existing Category model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param string $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-
+        $childrenCategory = Category::find()
+            ->where(['parent_id' => $id])
+            ->count();
+        $products = Product::find()
+            ->where(['category_id' => $id])
+            ->count();
+        if ( empty($childrenCategory || $products) ) {
+            $this->findModel($id)->delete();
+            Yii::$app->session->setFlash('success', 'Категория удалена');
+        } else {
+            Yii::$app->session->setFlash('error', 'Удалить данную категорию невозможно. К данной категории прикреплены другие категории или товары');
+        }
         return $this->redirect(['index']);
     }
 
-    /**
-     * Finds the Category model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param string $id
-     * @return Category the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     protected function findModel($id)
     {
         if (($model = Category::findOne($id)) !== null) {

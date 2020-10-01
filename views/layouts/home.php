@@ -39,7 +39,8 @@ OldIeAsset::register($this);
             <div class="top-right">
                 <ul>
                     <?php if (Yii::$app->user->isGuest): ?>
-                    <li><a href="<?= Url::to(['user/login'])?>">Вход / Регистрация</a></li>
+                        <li><a href="<?= Url::to(['user/login'])?>"><i class="glyphicon glyphicon-user" aria-hidden="true">
+                                </i> Вход / Регистрация</a></li>
                     <?php else: ?>
                     <li class="dropdown user user-menu">
                         <!-- Menu Toggle Button -->
@@ -57,7 +58,7 @@ OldIeAsset::register($this);
                                 <div class="clearfix"> </div>
                                 <small>Зарегистрирован с:  <?= Yii::$app->user->identity['registred_at']?></small>
                             </li>
-                            <div class="clearfix"> </div>
+                            <div class="clearfix"></div>
                             <li class="divider"></li>
                             <div class="clearfix"> </div>
                             <li id="profile" class="user-footer">

@@ -16,6 +16,7 @@ class DropDownWidget extends Widget
     public $menuHtml;
     public $cache_time = 5;
 
+    public $model; //для category выпадающего списка
 
     public function init()
     {
@@ -61,16 +62,16 @@ class DropDownWidget extends Widget
         return $tree;
     }
 
-    protected function getMenuHtml($tree)
+    protected function getMenuHtml($tree, $tab = '')
     {
 
         foreach ($tree as $category) {
-            $str .= $this->catToTemplate($category);
+            $str .= $this->catToTemplate($category, $tab);
         }
         return $str;
     }
 
-    protected function catToTemplate($category)
+    protected function catToTemplate($category, $tab)
     {
         ob_start();
         include __DIR__ . '/tpl/' . $this->tpl;

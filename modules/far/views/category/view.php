@@ -34,7 +34,8 @@ $this->params['breadcrumbs'][] = $this->title;
 //            'id',
             [
                 'attribute' => 'parent_id',
-                'value' => $model->category->name ? $model->category->name : '',
+                'format' => 'html',
+                'value' => $model->category->name ? '<a href="' . \yii\helpers\Url::to(['category/view', 'id' => $model['parent_id']]) . '">' . $model->category->name . '</a>': 'Самостоятельная категория',
             ],
             'name',
             'description',
