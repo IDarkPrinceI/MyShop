@@ -2,6 +2,7 @@
 
 namespace app\modules\far\controllers;
 
+use app\modules\far\models\Brand;
 use Yii;
 use app\modules\far\models\Product;
 use app\modules\far\models\ProductSearch;
@@ -58,7 +59,7 @@ class ProductController extends AppFarController
         }
 
         return $this->render('create', [
-            'model' => $model,
+            'model' => $model
         ]);
     }
 

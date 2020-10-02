@@ -12,8 +12,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="category-index">
 
-
-
         <?= Html::a('Добавить категорию', ['create'], ['class' => 'btn btn-success']) ?>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>

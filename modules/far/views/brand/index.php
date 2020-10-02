@@ -7,27 +7,30 @@ use yii\grid\GridView;
 /* @var $searchModel app\modules\far\models\BrandSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Brands';
+$this->title = 'Бренды';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="brand-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('Create Brand', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+        <?= Html::a('Добавить бренд', ['create'], ['class' => 'btn btn-success']) ?>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-body">
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'name',
+            [
+                'attribute' => 'name',
+                'format' => 'html',
+                'value' => function($data) {
+                   return '<a href="' . \yii\helpers\Url::to(['brand/view', 'id' => $data->id]) . '">' . $data->name . '</a>';
+                }
+            ],
             'content',
             'keywords',
             'description',
@@ -37,5 +40,8 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 
-
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

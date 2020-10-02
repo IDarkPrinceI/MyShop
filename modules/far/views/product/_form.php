@@ -35,9 +35,7 @@ use yii\widgets\ActiveForm;
                 ])?>
 
             </select>
-
         </div>
-
 
     <?= $form->field($model, 'content')->textarea(['rows' => 4]) ?>
 
@@ -51,7 +49,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'img')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'brand_id')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'brand_id')->dropDownList(\yii\helpers\ArrayHelper::map(\app\modules\far\models\Brand::find()->all(), 'id', 'name')) ?>
 
     <?= $form->field($model, 'is_sale')->checkbox() ?>
 

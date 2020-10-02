@@ -5,16 +5,27 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\modules\far\models\Brand */
 
-$this->title = 'Create Brand';
-$this->params['breadcrumbs'][] = ['label' => 'Brands', 'url' => ['index']];
+$this->title = 'Добавить бренд';
+$this->params['breadcrumbs'][] = ['label' => 'Бренд', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="brand-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box">
+            <div class="box-header with-border">
+
+            </div>
+            <div class="box-body">
+                <div class="brand-create">
 
     <?= $this->render('_form', [
-        'model' => $model,
+        'model' => $model
     ]) ?>
 
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

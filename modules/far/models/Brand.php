@@ -4,21 +4,10 @@ namespace app\modules\far\models;
 
 use Yii;
 
-/**
- * This is the model class for table "brand".
- *
- * @property int $id Уникальный идентификатор
- * @property string $name Наименование
- * @property string|null $content Краткое описание
- * @property string|null $keywords Мета-тег keywords
- * @property string|null $description Мета-тег description
- * @property string|null $image Имя файла изображения
- */
+
 class Brand extends \yii\db\ActiveRecord
 {
-    /**
-     * {@inheritdoc}
-     */
+
     public static function tableName()
     {
         return 'brand';
@@ -32,18 +21,15 @@ class Brand extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function attributeLabels()
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'content' => 'Content',
-            'keywords' => 'Keywords',
-            'description' => 'Description',
-            'image' => 'Image',
+            'name' => 'Название',
+            'content' => 'Содержание',
+            'keywords' => 'Ключевые клова',
+            'description' => 'Описание',
+            'image' => 'Изображение',
         ];
     }
 }

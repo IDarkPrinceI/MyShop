@@ -24,9 +24,9 @@ use yii\helpers\Url; ?>
 
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu" data-widget="tree">
-            <li class="header">HEADER</li>
+            <li class="header"></li>
             <!-- Optionally, you can add icons to the links -->
-            <li>
+            <li id="mainPage">
                 <a  href="<?= Url::to(['home/index'])?>"><i class="fa fa-building-o"></i><span>Статистика магазина</span></a></li>
 <!--            <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>-->
             <li class="treeview">
@@ -61,6 +61,18 @@ use yii\helpers\Url; ?>
                     <li><a href="<?= Url::to(['product/create'])?>">Добавить товар</a></li>
                 </ul>
             </li>
+            <li class="treeview">
+                <a href=""><i class="fa fa-bars"></i><span>Бренды</span>
+                    <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="<?= Url::to(['brand/index'])?>">Список брендов</a></li>
+                    <li><a href="<?= Url::to(['brand/create'])?>">Добавить бренд</a></li>
+                </ul>
+            </li>
+
 
 
         </ul>

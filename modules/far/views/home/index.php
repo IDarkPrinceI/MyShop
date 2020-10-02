@@ -28,7 +28,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="small-box bg-yellow">
                     <div class="inner">
                         <h3><?= $categories ?></h3>
-
                         <p>Категорий</p>
                     </div>
                     <div class="icon">
@@ -60,7 +59,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <p>Брендов</p>
                     </div>
                     <div class="icon">
-                        <i class="fa fa-cube"></i>
+                        <i class="fa fa-gg"></i>
                     </div>
                     <a href="<?= Url::to(['brand/index'])?>" class="small-box-footer">Просмотреть <i class="fa fa-arrow-circle-right"></i></a>
                 </div>

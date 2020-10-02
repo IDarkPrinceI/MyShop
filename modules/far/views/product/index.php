@@ -13,8 +13,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="product-index">
 
-
-
         <?= Html::a('Добавить товар', ['create'], ['class' => 'btn btn-success']) ?>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>

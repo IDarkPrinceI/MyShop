@@ -7,6 +7,7 @@ namespace app\controllers;
 use app\models\LoginForm;
 use app\models\Order;
 use app\models\Signup;
+use app\models\Statistics;
 use app\models\User;
 use Yii;
 
@@ -20,7 +21,7 @@ class UserController extends AppHomeController
         }
         $model = new Signup();
 
-        if($model->load(Yii::$app->request->post()) && $model->validate()) {
+        if( $model->load(Yii::$app->request->post()) && $model->validate() ) {
 
                 $user = new User();
                 $user->username = $model->username;
@@ -44,7 +45,13 @@ class UserController extends AppHomeController
         return $this->goHome();
     }
         $user = new LoginForm();
+
         if ( $user->load(Yii::$app->request->post()) && $user->login() ) {
+
+            $statistics = new Statistics();
+            $statistics->username = $user->username;
+            $statistics->save();
+
             if (Yii::$app->user->identity['role'] === 'admin') {
                 return $this->redirect(['far/home/index']);
             }
