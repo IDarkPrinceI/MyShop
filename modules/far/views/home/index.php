@@ -69,14 +69,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 <!-- small box -->
                 <div class="small-box bg-red">
                     <div class="inner">
-                        <h3>65</h3>
-
-                        <p>Unique Visitors</p>
+                        <h3><?= $uniqueUsers?></h3>
+                        <p>Уникальных посетителей за сегодня</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-pie-graph"></i>
                     </div>
-                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="<?= Url::to(['statistic/index'])?>" class="small-box-footer">Просмотреть <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->

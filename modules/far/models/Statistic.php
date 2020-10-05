@@ -1,19 +1,19 @@
 <?php
 
 
-namespace app\models;
+namespace app\modules\far\models;
 
 
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\db\Expression;
 
-class Statistics extends ActiveRecord
+class Statistic extends ActiveRecord
 {
 
     public static function tableName()
     {
-        return 'statistics';
+        return 'statistic';
     }
 
     public function behaviors()
@@ -22,7 +22,7 @@ class Statistics extends ActiveRecord
             [
                 'class' => TimestampBehavior::class,
                 'attributes' => [
-                    ActiveRecord::EVENT_BEFORE_INSERT => ['time'],
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['time', 'date'],
                 ],
                 // если вместо метки времени UNIX используется datetime:
                 'value' => new Expression('NOW()'),
@@ -33,7 +33,8 @@ class Statistics extends ActiveRecord
     public function rules()
     {
         return [
-          [['username','time'],'required'],
+          [['username','time','date'],'required'],
+          ['date', 'date', 'format' => 'php:Y-m-d']
         ];
     }
 
