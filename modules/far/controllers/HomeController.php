@@ -16,10 +16,10 @@ class HomeController extends AppFarController
     public function actionIndex()
     {
 
-        $chooseDay = date('Y-m-d');
+        $nowDay = date('Y-m-d');
 
         $uniqueUsers = Statistic::find()
-            ->where(['date' => $chooseDay])
+            ->where(['date' => $nowDay])
             ->select('username')
             ->distinct('username')
             ->asArray()

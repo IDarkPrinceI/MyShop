@@ -7,7 +7,7 @@ namespace app\controllers;
 use app\models\LoginForm;
 use app\models\Order;
 use app\models\Signup;
-use app\models\Statistics;
+use app\modules\far\models\Statistic;
 use app\models\User;
 use Yii;
 
@@ -48,7 +48,7 @@ class UserController extends AppHomeController
 
         if ( $user->load(Yii::$app->request->post()) && $user->login() ) {
 
-            $statistics = new Statistics();
+            $statistics = new Statistic();
             $statistics->username = $user->username;
             $statistics->save();
 

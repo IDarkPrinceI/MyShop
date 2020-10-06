@@ -30,7 +30,6 @@ p{
 	padding:0 0;
 	margin:0 0;
 }
-
 ul{
 	padding:0 0;
 	margin:0 0;	
@@ -1817,6 +1816,7 @@ section#tables  p {
 	float: left;
 	padding-left: 0;
 }
+
 .checkout-left-basket h4 {
 	padding: 1em;
 	background: #8ebebe;
@@ -3743,6 +3743,9 @@ h3.tittle1, h3.tittle {
 		font-size: 1em;	
 	}
 
+}
+#userStatistic {
+	padding-top: 2em;
 }
 @media(max-width:375px){
 	.cd-header-buttons {
