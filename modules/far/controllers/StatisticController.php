@@ -19,49 +19,36 @@ class StatisticController extends AppFarController
             $nowDateTimeStamp = \Yii::$app->formatter->asTimestamp($nowDate);
             $chooseDateTimeStamp = \Yii::$app->formatter->asTimestamp($baseChooseDate);
 
-            for ($i = 0, $result = $chooseDateTimeStamp + $oneDay; $i <= 7; $i++) {
+            $differenceDateDay = (($nowDateTimeStamp - $chooseDateTimeStamp) / $oneDay);
+            if ($differenceDateDay) {
+                if ($differenceDateDay < 7) {
+                    $result = $chooseDateTimeStamp + ($oneDay * $differenceDateDay) + $oneDay;
+                    $count = 13;
+                } else {
+                    $result = $chooseDateTimeStamp + ($oneDay * 8);
+                    $count = 14;
+                }
+            } else {
+                $result = $chooseDateTimeStamp + $oneDay;
+                $count = 7;
+            }
+            for ($i = 0; $i <= $count; $i++) {
                 $result = $result - $oneDay;
-                $dateBefore = \Yii::$app->formatter->asDate($result, 'php:Y-m-d');
-                $resultDateBefore[$i] = $dateBefore;
-                $oneWeekBefore[$i] = Statistic::find()
-                    ->where(['date' => $dateBefore])
+                $dateTimeStamp = \Yii::$app->formatter->asDate($result, 'php:Y-m-d');
+                $resultDate[$i] = $dateTimeStamp;
+                $oneWeek[$i] = Statistic::find()
+                    ->where(['date' => $dateTimeStamp])
                     ->select('username')
                     ->distinct('username')
                     ->count();
             }
-
-            $differenceDateDay = (($nowDateTimeStamp - $chooseDateTimeStamp) / $oneDay);
-            if ($differenceDateDay) {
-                if ($differenceDateDay < 7) {
-//                    print_r('Меньше 7');
-                    $result = $chooseDateTimeStamp + ($oneDay * $differenceDateDay);
-                } else {
-//                    print_r('Больше 7');
-                    $result = $chooseDateTimeStamp + ($oneDay * 8);
-                }
-//                debug($result);
-                for ($i = 0; $i <= $differenceDateDay && $i <= 6; $i++) {
-                    $result = $result - $oneDay;
-                    $dateAfter = \Yii::$app->formatter->asDate($result, 'php:Y-m-d');
-                    $resultDateAfter[$i] = $dateAfter;
-                    $numberDayAfter[$i] = Statistic::find()
-                        ->where(['date' => $dateAfter])
-                        ->select('username')
-                        ->distinct('username')
-                        ->count();
-                }
-            }
-////                debug($numberDayAfter);
-////                debug($resultDateAfter);
-                return $this->renderPartial('includeIndex', compact(
-                    'resultDateBefore',
-                    'oneWeekBefore',
-                    'numberDayAfter',
-                    'resultDateAfter'));
-            }
-//        $nowDay = $oneWeekAfter[0];
-//        unset($oneWeekAfter[0]);
-
+            $baseChooseDate = \Yii::$app->formatter->asDate($baseChooseDate, 'php:Y-m-d');
+            return $this->renderPartial('includeIndex', compact(
+                                     'resultDate',
+                                          'oneWeek',
+                                             'nowDate',
+                                             'baseChooseDate'));
+        }
         return $this->render('index');
     }
 }

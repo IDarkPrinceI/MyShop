@@ -30,6 +30,8 @@ $(function () {
 //Добавления класса active к выбранному элементу sidebar'а
 
 //календарь
+if (window.location.pathname.includes('statistic/index')) {
+
 $(function(){
     $("#datepicker").datepicker();
 });
@@ -53,6 +55,7 @@ $.datepicker.regional['ru'] = {
 };
 $.datepicker.setDefaults($.datepicker.regional['ru']);
 //календарь
+}
 
 $('#userStatistic').on('click', function () {
     let chooseDate = document.querySelector('#datepicker').value

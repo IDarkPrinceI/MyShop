@@ -1,9 +1,12 @@
 <?php
+use app\assets\StatisticAsset;
+
+StatisticAsset::register($this);
 
 $this->title = 'Статистика посетителей';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<?php //debug($resultDateAfter);?>
+
 <div class="row">
     <div class="box">
         <div class="box-header with-border">

@@ -48,13 +48,14 @@ class UserController extends AppHomeController
 
         if ( $user->load(Yii::$app->request->post()) && $user->login() ) {
 
+            if (Yii::$app->user->identity['role'] === 'admin') {
+                return $this->redirect(['far/home/index']);
+            }
+
             $statistics = new Statistic();
             $statistics->username = $user->username;
             $statistics->save();
 
-            if (Yii::$app->user->identity['role'] === 'admin') {
-                return $this->redirect(['far/home/index']);
-            }
             return $this->goHome();
         }
         return $this->render('login', [

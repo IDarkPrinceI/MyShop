@@ -3,12 +3,14 @@
 namespace app\modules\far\controllers;
 
 use app\modules\far\models\Brand;
+use app\modules\far\models\UploadForm;
 use Yii;
 use app\modules\far\models\Product;
 use app\modules\far\models\ProductSearch;
 use app\modules\far\controllers\AppFarController;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * ProductController implements the CRUD actions for Product model.
@@ -52,14 +54,23 @@ class ProductController extends AppFarController
     public function actionCreate()
     {
         $model = new Product();
+        $img = new UploadForm();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) &&
+            $img->load(Yii::$app->request->post()) ) {
+            $img->img = UploadedFile::getInstance($img, 'img');
+            if ($img->upload()) {
+                $model->img = '32131';
+                $model->save();
+            }
+
             Yii::$app->session->setFlash('success', 'Товар успешно добавлен');
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('create', [
-            'model' => $model
+            'model' => $model,
+            'img' => $img
         ]);
     }
 
@@ -93,5 +104,20 @@ class ProductController extends AppFarController
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    public function actionUpload()
+    {
+        $img = new UploadForm();
+
+        if (Yii::$app->request->isPost) {
+            $img->img = UploadedFile::getInstance($img, 'img');
+            if ($img->upload()) {
+                Yii::$app->session->setFlash('success', 'Изображение загружено');
+                return $this->refresh();
+            }
+        }
+
+        return $this->render('index', ['img' => $img]);
     }
 }

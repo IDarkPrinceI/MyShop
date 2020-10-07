@@ -5,14 +5,13 @@ namespace app\controllers;
 
 
 use yii\web\Controller;
-use yii\web\HttpException;
 
 class AppHomeController extends Controller
 {
     public function beforeAction($action)
     {
-//        debug($action);
         $guestPossibleActions = ['login',
+            'filter',
             'view',
             'signup',
             'index',

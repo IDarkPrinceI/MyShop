@@ -6,7 +6,7 @@ namespace app\assets;
 
 use yii\web\AssetBundle;
 
-class FarAsset extends AssetBundle
+class StatisticAsset extends AssetBundle
 {
     public $basePath = '@webroot';
     public $baseUrl = '@web';
@@ -21,9 +21,8 @@ class FarAsset extends AssetBundle
 
     ];
     public $js = [
-//        'adminlte/bower_components/jquery/dist/jquery.min.js',
-//        '//code.jquery.com/jquery-1.12.4.js', //календарь
-//        '//code.jquery.com/ui/1.12.1/jquery-ui.js', //календарь
+        '//code.jquery.com/jquery-1.12.4.js', //календарь
+        '//code.jquery.com/ui/1.12.1/jquery-ui.js', //календарь
         'adminlte/bower_components/bootstrap/dist/js/bootstrap.min.js',
         'adminlte/dist/js/adminlte.min.js',
         'js/far.js'

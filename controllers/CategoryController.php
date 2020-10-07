@@ -5,13 +5,12 @@ namespace app\controllers;
 
 
 
-use app\models\Brand;
+
 use app\models\Category;
 use app\models\Product;
-use app\widgets\Alert;
 use Yii;
 use yii\web\HttpException;
-use yii\web\NotFoundHttpException;
+
 
 class CategoryController extends AppHomeController
 {

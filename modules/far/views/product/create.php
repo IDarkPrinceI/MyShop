@@ -4,6 +4,8 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\far\models\Product */
+/* @var $img app\modules\far\models\UploadForm */
+
 
 $this->title = 'Добавить товар';
 $this->params['breadcrumbs'][] = ['label' => 'Товары', 'url' => ['index']];
@@ -19,6 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= $this->render('_form', [
         'model' => $model,
+        'img' => $img
     ]) ?>
 
                 </div>

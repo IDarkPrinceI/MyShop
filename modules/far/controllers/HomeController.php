@@ -9,6 +9,9 @@ use app\modules\far\models\Statistic;
 use app\modules\far\models\Brand;
 use app\modules\far\models\Category;
 use app\modules\far\models\Product;
+use app\modules\far\models\UploadForm;
+use Yii;
+use yii\web\UploadedFile;
 
 class HomeController extends AppFarController
 {
@@ -46,4 +49,6 @@ class HomeController extends AppFarController
                                                           'session',
                                                           'uniqueUsers'));
     }
+
+
 }

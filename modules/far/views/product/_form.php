@@ -2,15 +2,21 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use mihaildev\ckeditor\CKEditor;
+use mihaildev\elfinder\ElFinder;
+
+mihaildev\elfinder\Assets::noConflict($this);
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\far\models\Product */
+/* @var $img app\modules\far\models\UploadForm */
 /* @var $form yii\widgets\ActiveForm */
+
 ?>
 
             <div class="product-form">
 
-    <?php $form = ActiveForm::begin([
+    <?php $form = ActiveForm::begin(['options' => [],
             'fieldConfig' => [
                     'template' => '
                     <div class="col-md-6">
@@ -37,7 +43,19 @@ use yii\widgets\ActiveForm;
             </select>
         </div>
 
-    <?= $form->field($model, 'content')->textarea(['rows' => 4]) ?>
+<!--    --><?//= $form->field($model, 'content')->textarea(['rows' => 4]) ?>
+
+<!--    --><?php //echo $form->field($model, 'content')->widget(CKEditor::class,[
+//        'editorOptions' => [
+//            'preset' => 'standard', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
+//            'inline' => false, //по умолчанию false
+//        ],
+//    ]);?>
+    <?php
+    echo $form->field($model, 'content')->widget(CKEditor::class, [
+        'editorOptions' => ElFinder::ckeditorOptions('elfinder',['preset' => 'standard'/* Some CKEditor Options */]),
+    ]);
+    ?>
 
     <?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>
 
@@ -47,7 +65,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'keywords')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'img')->textInput(['maxlength' => true]) ?>
+<!--    --><?//= $form->field($model, 'img')->textInput(['maxlength' => true, 'value' => 'no-image.png']) ?>
+    <?= $form->field($img, 'img')->fileInput() ?>
 
     <?= $form->field($model, 'brand_id')->dropDownList(\yii\helpers\ArrayHelper::map(\app\modules\far\models\Brand::find()->all(), 'id', 'name')) ?>
 

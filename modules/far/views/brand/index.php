@@ -31,12 +31,29 @@ $this->params['breadcrumbs'][] = $this->title;
                    return '<a href="' . \yii\helpers\Url::to(['brand/view', 'id' => $data->id]) . '">' . $data->name . '</a>';
                 }
             ],
-            'content',
-            'keywords',
-            'description',
+            [
+                 'attribute' => 'content',
+                 'value' => function($data) {
+                    return $data['content'] ?? '';
+                 }
+            ],
+            [
+                'attribute' => 'keywords',
+                'value' => function($data) {
+                    return $data['keywords'] ?? '';
+                }
+            ],
+            [
+                'attribute' => 'description',
+                'value' => function($data) {
+                    return $data['description'] ?? '';
+                }
+            ],
             //'image',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+            'header' => 'Действия']
+            ,
         ],
     ]); ?>
 

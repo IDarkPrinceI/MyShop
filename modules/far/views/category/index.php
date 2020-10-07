@@ -43,7 +43,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'description',
             'keywords',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+            'header' => 'Действия'
+            ],
         ],
     ]); ?>
 
