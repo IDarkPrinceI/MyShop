@@ -13,9 +13,9 @@ mihaildev\elfinder\Assets::noConflict($this);
 /* @var $form yii\widgets\ActiveForm */
 
 ?>
-
+<?php //debug($model);?>
             <div class="product-form">
-
+<!--    --><?php //$img = $model->img ?>
     <?php $form = ActiveForm::begin(['options' => [],
             'fieldConfig' => [
                     'template' => '
@@ -26,7 +26,6 @@ mihaildev\elfinder\Assets::noConflict($this);
                     ',
                 ]
     ]); ?>
-
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
         <div class="col-md-6 form-group field-product-category_id has-success">
@@ -43,14 +42,6 @@ mihaildev\elfinder\Assets::noConflict($this);
             </select>
         </div>
 
-<!--    --><?//= $form->field($model, 'content')->textarea(['rows' => 4]) ?>
-
-<!--    --><?php //echo $form->field($model, 'content')->widget(CKEditor::class,[
-//        'editorOptions' => [
-//            'preset' => 'standard', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
-//            'inline' => false, //по умолчанию false
-//        ],
-//    ]);?>
     <?php
     echo $form->field($model, 'content')->widget(CKEditor::class, [
         'editorOptions' => ElFinder::ckeditorOptions('elfinder',['preset' => 'standard'/* Some CKEditor Options */]),
@@ -65,7 +56,8 @@ mihaildev\elfinder\Assets::noConflict($this);
 
     <?= $form->field($model, 'keywords')->textInput(['maxlength' => true]) ?>
 
-<!--    --><?//= $form->field($model, 'img')->textInput(['maxlength' => true, 'value' => 'no-image.png']) ?>
+    <?= $form->field($model, 'img')->textInput(['value' => $model['img']]) ?>
+
     <?= $form->field($img, 'img')->fileInput() ?>
 
     <?= $form->field($model, 'brand_id')->dropDownList(\yii\helpers\ArrayHelper::map(\app\modules\far\models\Brand::find()->all(), 'id', 'name')) ?>
@@ -75,8 +67,6 @@ mihaildev\elfinder\Assets::noConflict($this);
     <?= $form->field($model, 'is_hit')->checkbox() ?>
 
     <?= $form->field($model, 'is_new')->checkbox() ?>
-
-
 
     <div class="form-group">
 

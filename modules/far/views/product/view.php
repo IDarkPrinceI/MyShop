@@ -52,9 +52,8 @@ $this->params['breadcrumbs'][] = $this->title;
 //            'keywords',
             [
                 'attribute' => 'img',
-                'value' => "/product_img/{$model->img}",
+                'value' => "/uploads/product/{$model->img}",
                 'format' => ['image', ['height' => '125']],
-
             ],
             [
                 'attribute' => 'is_sale',

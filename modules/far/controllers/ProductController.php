@@ -55,14 +55,13 @@ class ProductController extends AppFarController
     {
         $model = new Product();
         $img = new UploadForm();
+        $var = 'product';
 
-        if ($model->load(Yii::$app->request->post()) &&
-            $img->load(Yii::$app->request->post()) ) {
+        if ($model->load(Yii::$app->request->post()) && $img->load(Yii::$app->request->post()) ) {
             $img->img = UploadedFile::getInstance($img, 'img');
-            if ($img->upload()) {
-                $model->img = '32131';
-                $model->save();
-            }
+            $name = $img->upload($var);
+            $model->img = $name;
+            $model->save();
 
             Yii::$app->session->setFlash('success', 'Товар успешно добавлен');
             return $this->redirect(['view', 'id' => $model->id]);
@@ -77,6 +76,8 @@ class ProductController extends AppFarController
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $img = new UploadForm();
+
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', 'Товар успешно отредактирован');
@@ -85,6 +86,7 @@ class ProductController extends AppFarController
 
         return $this->render('update', [
             'model' => $model,
+            'img' => $img
         ]);
     }
 
@@ -104,20 +106,5 @@ class ProductController extends AppFarController
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
-    }
-
-    public function actionUpload()
-    {
-        $img = new UploadForm();
-
-        if (Yii::$app->request->isPost) {
-            $img->img = UploadedFile::getInstance($img, 'img');
-            if ($img->upload()) {
-                Yii::$app->session->setFlash('success', 'Изображение загружено');
-                return $this->refresh();
-            }
-        }
-
-        return $this->render('index', ['img' => $img]);
     }
 }

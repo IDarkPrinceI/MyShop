@@ -14,7 +14,8 @@
                                     <figure>
                                         <a data-id="<?= $product->id ?>" type="button" class="get-modal-product new-gri" data-toggle="modal" data-target="#myModalSingle">
                                             <div class="grid-img">
-                                                <img src="<?= Url::to(["@web/product_img/{$product->img}", ['alt' => $product->name ] ]) ?>" class="img-responsive">
+<!--                                                <img src="--><?//= Url::to(["@web/product_img/{$product->img}", ['alt' => $product->name ] ]) ?><!--" class="img-responsive">-->
+                                                <img src="<?= Url::to(["@web/uploads/product/{$product->img}", ['alt' => $product->name ] ]) ?>" class="img-responsive">
                                             </div>
                                             <!--                                                            <div class="grid-img">-->
                                             <!--                                                                <img  src="/images/p22.jpg" class="img-responsive"  alt="">-->
