@@ -40,7 +40,7 @@ use yii\helpers\Url;
                             <td><?= $i?></td>
                             <td>
                                 <a href="<?= Url::to(['product/view', 'id' => $id]) ?>">
-                                    <?= Html::img("@web/product_img/{$item['img']}", ['alt' => $item['name'],'height' => 60]) ?>
+                                    <?= Html::img("@web/uploads/product/{$item['img']}", ['alt' => $item['name'],'height' => 60]) ?>
                                 </a>
                             </td>
                             <td>

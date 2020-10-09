@@ -14,7 +14,7 @@ use yii\helpers\Url;
             <h2 class="tittle">Личный кабинет</h2>
             <div class="checkout-left">
                 <div class="col-md-4 checkout-left-basket">
-                    <h4>Детали заказа</h4>
+<!--                    <h4>Детали заказа</h4>-->
                     <ul>
                         <!--                        <li>Количество товаров в корзине: <span>--><?//= $session['cart.qty']?><!-- шт.</span></li>-->
                         <!--                        <li>Итого: <span>--><?//= $session['cart.sum'] ?><!-- руб.</span></li>-->
@@ -56,7 +56,7 @@ use yii\helpers\Url;
                             <td><?= $i?></td>
                             <td>
                                 <a href="<?= Url::to(['product/view', 'id' => $item['product_id']]) ?>">
-                                    <?= Html::img("@web/product_img/{$item['img']}", ['alt' => $item['name'],'height' => 60]) ?>
+                                    <?= Html::img("@web/uploads/product/{$item['img']}", ['alt' => $item['name'],'height' => 60]) ?>
                                 </a>
                             </td>
                             <td>

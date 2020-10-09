@@ -19,7 +19,7 @@ use yii\widgets\LinkPager;
                             <div class="flexslider">
                                 <ul class="slides">
 <!--                                    <li data-thumb="images/si.jpg">-->
-                                        <div class="thumb-image"> <img src="<?= \yii\helpers\Url::to(["@web/product_img/{$product->img}", ['alt' => $product->name]]) ?>" data-imagezoom="true" class="img-responsive"> </div>
+                                        <div class="thumb-image"> <img src="<?= \yii\helpers\Url::to(["@web/uploads/product/{$product->img}", ['alt' => $product->name]]) ?>" data-imagezoom="true" class="img-responsive"> </div>
 <!--                                    </li>-->
 <!--                                    <li data-thumb="images/si1.jpg">-->
 <!--                                        <div class="thumb-image"> <img src="images/si1.jpg" data-imagezoom="true" class="img-responsive"> </div>-->
@@ -98,7 +98,7 @@ use yii\widgets\LinkPager;
                                 <figure>
                                     <a data-id="<?= $sale->id ?>" type="button" class="get-modal-product new-gri" data-toggle="modal" data-target="#myModalSingle">
                                         <div class="grid-img">
-                                            <img  src="<?= \yii\helpers\Url::to(["@web/product_img/{$sale->img}", ['alt' => Html::encode($sale->name)]]) ?>" class="img-responsive">
+                                            <img  src="<?= \yii\helpers\Url::to(["@web/uploads/product/{$sale->img}", ['alt' => Html::encode($sale->name)]]) ?>" class="img-responsive">
                                         </div>
                                         <!--                                    <div class="grid-img">-->
                                         <!--                                        <img  src="images/p27.jpg" class="img-responsive"  alt="">-->

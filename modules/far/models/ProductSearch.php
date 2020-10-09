@@ -45,7 +45,7 @@ class ProductSearch extends Product
             ],
             'sort' => [
                 'defaultOrder' => [
-                    'name' => SORT_ASC
+                    'category_id' => SORT_ASC
                 ]
             ],
         ]);

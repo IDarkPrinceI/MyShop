@@ -67,7 +67,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     </tr>
                     <?php foreach ($orderProducts as $product): ?>
                         <tr>
-                            <td><a href="<?= \yii\helpers\Url::to(['/product/view', 'id' => $product['product_id']])?>"><?= $product->name ?></td>
+                            <td><a href="<?= \yii\helpers\Url::to(['product/view', 'id' => $product['product_id']])?>"><?= $product->name ?></td>
                             <td><?= $product->qty; ?></td>
                             <td><?= $product->price; ?></td>
                             <td><?= $product->sum; ?></td>

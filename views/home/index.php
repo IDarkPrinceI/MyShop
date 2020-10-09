@@ -50,7 +50,7 @@ use yii\helpers\Url;
                             <figure>
                                 <a data-id="<?= $new->id ?>" type="button" class="get-modal-product new-gri" data-toggle="modal" data-target="#myModalSingle">
                                     <div class="grid-img">
-                                        <img  src="<?= Url::to(["@web/product_img/{$new->img}"]) ?>" class="img-responsive" alt="">
+                                        <img  src="<?= Url::to(["@web/uploads/product/{$new->img}"]) ?>" class="img-responsive" alt="">
                                     </div>
 <!--                                    <div class="grid-img">-->
                                         <!--                                        <img  src="images/p5.jpg" class="img-responsive"  alt="">-->
@@ -99,7 +99,7 @@ use yii\helpers\Url;
                             <figure>
                                 <a data-id="<?= $hit->id ?>" type="button" class="get-modal-product new-gri" data-toggle="modal" data-target="#myModalSingle">
                                     <div class="grid-img">
-                                        <img  src="<?= Url::to(["@web/product_img/{$hit->img}"])?>" class="img-responsive" alt="">
+                                        <img  src="<?= Url::to(["@web/uploads/product/{$hit->img}"])?>" class="img-responsive" alt="">
                                     </div>
 <!--                                    <div class="grid-img">-->
 <!--                                        <img  src="images/p27.jpg" class="img-responsive"  alt="">-->

@@ -13,7 +13,8 @@ mihaildev\elfinder\Assets::noConflict($this);
 /* @var $form yii\widgets\ActiveForm */
 
 ?>
-<?php //debug($model);?>
+<?php $option = ['encode' => false];
+        ?>
             <div class="product-form">
 <!--    --><?php //$img = $model->img ?>
     <?php $form = ActiveForm::begin(['options' => [],
@@ -56,11 +57,17 @@ mihaildev\elfinder\Assets::noConflict($this);
 
     <?= $form->field($model, 'keywords')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'img')->textInput(['value' => $model['img']]) ?>
-
-    <?= $form->field($img, 'img')->fileInput() ?>
+<!--    --><?//= $form->field($model, 'img')->textInput(['value' => $model['img']]) ?>
+<!--    --><?//= $form->field($model, 'img', ['template'=>'<div> {label}{input} </div>'])->dropDownList(['value' => Html::img( "@web/uploads/product/" . $model['img'])], $option) ?>
+    <?php if($model['img']): ?>
+    <span>Прикрепленное изображение:</span>
+    <?php endif; ?>
+                
+    <?= Html::img( "@web/uploads/product/" . $model['img'],['height' => '200px'])?>
 
     <?= $form->field($model, 'brand_id')->dropDownList(\yii\helpers\ArrayHelper::map(\app\modules\far\models\Brand::find()->all(), 'id', 'name')) ?>
+
+    <?= $form->field($img, 'img')->fileInput() ?>
 
     <?= $form->field($model, 'is_sale')->checkbox() ?>
 
@@ -74,5 +81,6 @@ mihaildev\elfinder\Assets::noConflict($this);
     </div>
 
     <?php ActiveForm::end(); ?>
-
+    <div>
+    </div>
 </div>

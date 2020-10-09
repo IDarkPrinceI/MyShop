@@ -19,11 +19,12 @@ class UploadForm extends Model
     {
         return [
             ['img', 'image',
-                'extensions' => ['jpg', 'jpeg', 'png', 'gif'],
+                'extensions' => ['jpg', 'jpeg', 'png'],
                 'checkExtensionByMimeType' => true,
 //                'maxSize' => 512000, // 500 килобайт = 500 * 1024 байта = 512 000 байт
 //                'tooBig' => 'Limit is 500KB'
             ],
+            ['img','required',],
         ];
     }
     public function attributeLabels()
@@ -54,7 +55,11 @@ class UploadForm extends Model
 
             //cоздаем новое изображение заданных параметров
             $newImg = imagecreatetruecolor($wightNewImg, $heightNewImg);
-            $uploadImg = imagecreatefromjpeg($path);
+            if($this->img->extension == 'jpeg') {
+                $uploadImg = imagecreatefromjpeg($path);
+            } else {
+                $uploadImg = imagecreatefrompng($path);
+            }
             imagecopyresampled($newImg, $uploadImg, 0, 0, 0 ,0, $wightNewImg, $heightNewImg, $imgWight, $imgHeight);
             imagejpeg($newImg, $path);
 

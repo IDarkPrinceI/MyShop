@@ -77,9 +77,16 @@ class ProductController extends AppFarController
     {
         $model = $this->findModel($id);
         $img = new UploadForm();
+        $var = 'product';
 
+        if ( $model->load(Yii::$app->request->post()) ) {
+            if($img->load(Yii::$app->request->post()) && !empty($img->img)) {
+                $img->img = UploadedFile::getInstance($img, 'img');
+                $name = $img->upload($var);
+                $model->img = $name;
+            }
+            $model->save();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', 'Товар успешно отредактирован');
             return $this->redirect(['view', 'id' => $model->id]);
         }
@@ -92,6 +99,8 @@ class ProductController extends AppFarController
 
     public function actionDelete($id)
     {
+        $del = $this->findModel($id);
+        unlink('../web/uploads/product/' . $del['img']);
         $this->findModel($id)->delete();
         Yii::$app->session->setFlash('success', 'Товар успешно удален');
 
@@ -105,6 +114,6 @@ class ProductController extends AppFarController
             return $model;
         }
 
-        throw new NotFoundHttpException('The requested page does not exist.');
+        throw new NotFoundHttpException('Такой страицы нет.');
     }
 }
